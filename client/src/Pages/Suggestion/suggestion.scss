@@ -1,0 +1,45 @@
+.suggestion-page {
+    width: 100%;
+    // height: 70vh;
+    display: flex;
+    justify-content: center;
+}
+
+.suggest-content {
+    width: 91vw;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 45px;
+    height: 100%;
+    justify-self: flex-start;
+}
+
+.suggest-item {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.suggest-item-content {
+    width: 100%;
+}
+
+.suggest-name {
+    font-weight: 600;
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1 {
+            cursor: pointer;
+            color: #242424;
+        }
+        svg {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            color: #242424;
+        }
+        margin-bottom: 1rem;
+    }
+}
+

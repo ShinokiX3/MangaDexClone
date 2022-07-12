@@ -1,0 +1,172 @@
+.sch-items-block {
+    h2 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: #494949;
+    }
+}
+
+.sch-items {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.img-srch {
+    grid-area: 'img-srch';
+}
+
+.title-srch {
+    grid-area: 'title-srch';
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    div:last-child {
+        font-size: 12pt;
+        font-weight: 100;
+    }
+}
+
+.img-srch, .title-srch {
+    z-index: 1040;
+}
+
+.description-srch {
+    padding-top: 10px;
+    grid-area: 'description-srch';
+}
+
+.search-input {
+    border-radius: 0.2ch;
+    border: 1px solid transparent;
+    font-size: 11.5pt;
+    &:focus {
+        border: 1px solid red;
+        outline: 0;
+        outline-offset: 0;
+    }
+}
+
+.sch-item-block {
+    background-color: #f0f1f2;
+    color: #242424;
+    border-radius: 0.5ch;
+    padding: 0.5rem;
+    column-gap: 0.6rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    font-size: 1.3rem;
+    display: grid;
+    grid-template-areas: 'img-srch title-srch'
+                         'img-srch description-srch';
+    justify-content: left;
+    img {
+        border-radius: 0.2ch;
+        min-width: 50px;
+        max-width: 50px;
+        max-height: 70px;
+        min-height: 70px;
+
+    }
+    cursor: pointer;
+}
+
+.srch-group-block {
+    background-image: url(https://mangadex.org/group-banner.png);
+    background-position: 50%;
+    backdrop-filter: blur(4px);
+    color: #fff;
+    position: relative;
+    img {
+        max-width: 60px;
+        min-width: 60px;
+        border-radius: 9999px;
+        min-height: 1px;
+        border: 1px solid;
+        border-color: currentColor;
+    }
+}
+
+.srch-group-block::after {
+    backdrop-filter: blur(4px);
+    content: "";
+    background: linear-gradient(67.81deg,rgba(0,0,0,.6) 35.51%,transparent);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.search-noresults {
+    text-align: center;
+    font-weight: bold;
+    padding: 7px;
+    border-radius: 4ch;
+    color: #242424;
+    background-color: #f0f1f2;
+    font-size: 12pt;
+    margin-top: 10px;
+}
+
+.srch-author-block {
+    img {
+        min-width: 32px;
+        max-width: 32px;
+        min-height: 1px;
+        border-radius: 9999px;
+        min-height: 1px;
+        border: 1px solid;
+        border-color: currentColor;
+    }
+}
+
+.search-header {
+    color: #2a2a2a;
+    font-size: 18pt;
+}
+
+.search-input {
+    width: 87vw;
+}
+
+.manga-status-block {
+    width: fit-content;
+    padding-left: 7px;
+    padding-right: 7px;
+    span {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgb(95, 83, 255);
+        margin-right: 4px;
+    }
+    display: flex;
+    align-items: center;
+    padding: 30 10 30 10;
+    border-radius: 0.4ch;
+    background-color: #e6e6e6;
+    p {
+        margin-left: 5px;
+    }
+}
+
+.search-modal-statistics {
+    display: grid;
+    gap: 1rem;
+    margin-left: 10px;
+    color: #242424;
+    div {
+        align-items: center;
+    }
+    svg {
+        position: initial;
+        width: 1rem;
+        height: 1rem;
+        margin-right: 7px;
+    }
+    p {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}

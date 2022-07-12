@@ -1,0 +1,213 @@
+.manga-page {
+    display: grid;
+    align-items: flex-start;
+}
+
+.banner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17.5rem;
+    right: 10px;
+    width: 100%;
+    background-size: cover;
+    background-position: center 25%;
+    z-index: 101;
+    background-repeat: no-repeat;
+    &::after {
+        z-index: 105;
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: rgba($color: #000000, $alpha: 0.7);
+        backdrop-filter: blur(3.5px);
+    }
+}
+
+.manga-container {
+    display: grid;
+    max-width: 95%;
+    justify-self: center;
+    gap: 10px;
+    grid-template-areas: 
+        'manga-cover manga-title'
+        'manga-cover introduction'
+        'synopsis synopsis'
+        'content content';
+    grid-template-columns: 1fr 6fr;
+}
+
+.manga-title {
+    padding: 10px;
+    height: 12.4rem;
+    margin-bottom: 16px;
+    padding-bottom: 0px;
+    grid-area: manga-title;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    p {
+        color: white;
+    }
+    .main-title {
+        font-size: 4.5rem;
+    }
+    .sub-title {
+        font-size: 1.2rem;
+    }
+}
+
+.manga-cover {
+    margin: 10px;
+    grid-area: manga-cover;
+    max-width: fit-content;
+    max-height: fit-content;
+    align-self: flex-start;
+}
+
+.introduction {
+    padding: 10px;
+    padding-top: 7px;
+    grid-area: introduction;
+    align-self: flex-start;
+    position: relative;
+    button {
+        border: 0;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        margin-right: 8px;
+        font-size: 12pt;
+        color: white;
+        font-weight: bold;
+        &:last-child {
+            margin-right: 0;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .butt-with-ico {
+            margin-left: 16px;
+        }
+    }
+    button:not(.add-butt) {
+        background-color: #f0f1f2;
+        color: black;
+    }
+    .add-butt {
+        width: 220px;
+        height: 48px;
+        background-color: #ff6740;
+    }
+    .read-butt {
+        width: 174px;
+        height: 48px;
+    }
+    .report-butt {
+        width: 48px;
+        height: 48px;
+    }
+    .share-butt {
+        width: 48px;
+        height: 48px;
+    }
+    .buttons_wrapp {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.manga-tags {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    span:not(.manga-status-span) {
+        display: inline-block;
+        border-radius: .25rem;
+        font-size: 10pt;
+        font-weight: 400;
+        padding: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin: 2px;
+        display: inline-block;
+        line-height: .9375rem;
+        text-transform: uppercase;
+        font-size: .625rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+}
+
+.synopsis {
+    padding: 10px;
+    margin-top: 30px;
+    grid-area: synopsis;
+}
+
+.content {
+    padding: 10px;
+    grid-area: content;
+    .selectors {
+        width: fit-content;
+        height: fit-content;
+        overflow: hidden;
+        margin-bottom: 20px;
+        background-color: #f0f1f2;
+        padding: 8px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 2px;
+        span {
+            color: #808080;
+            border-radius: 2px;
+            font-size: 15pt;
+            font-weight: bold;
+            min-height: 32px;
+            margin-right: 15px;
+            &:last-child{
+                margin-right: 0;
+            }
+            padding: 4px 8px 4px 8px;
+            cursor: pointer;
+            position: relative;
+            transition: all .5s cubic-bezier(.2,.6,.1,1.2),color .2s cubic-bezier(.2,.6,.1,1.2);
+            opacity: 0.4;
+        }
+        span.active {
+            color: white;
+            background-color: #242424;
+            opacity: 1;
+        }
+    }
+}
+
+.manga-statistics {
+    position: absolute;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    &, div {
+        display: flex;
+        align-items: center;
+    }
+    div {
+        margin-right: 7px;
+        img, svg {
+            width: 1em;
+            margin-right: 4px;
+        }
+        p {
+            font-size: 1rem;
+        }
+    }
+    .seen {
+        color: rgba($color: #242424, $alpha: 0.4);
+    }
+    .rating {
+        color: #ff6740;
+    }
+    .follows {
+        color: #494949
+    }
+}

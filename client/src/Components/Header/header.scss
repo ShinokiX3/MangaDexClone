@@ -1,0 +1,116 @@
+$header-bg-color: #fff;
+
+.header-block {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    user-select: none;
+    padding: 6px 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    a {
+        h1:hover, &:hover {
+            color: chocolate;
+            transition: .4s ease-in-out;
+        }
+    }
+    transition: 0.3s all;
+}
+
+// w100%
+
+.header-dark {
+    border-bottom: 1px solid red;
+}
+
+.logo-dark {
+    color: white;
+    h1 {
+        color: white;
+    }
+}
+
+.right-links_wrapp-dark {
+    .login-block svg {
+        color: white;
+    }
+}
+
+.search-block-dark {
+    background-color: rgba($color: black, $alpha: 0.2);
+}
+
+.links-row {
+    a {
+        margin-right: 7vw;
+    }
+}
+
+.user-lnks-row {
+    a {
+        margin-right: 2vw;
+    }
+}
+
+.search-block {
+    display: flex;
+    align-items: center;
+    font-size: 13pt;
+    font-weight: 400;
+    padding: 9px;
+    min-width: 300px;
+    background-color: rgba($color: #f0f1f2, $alpha: 0.7);
+    min-height: 22px;
+    border-radius: 0.125rem;
+    svg {
+        margin-right: 12px;
+        margin-left: 5px;
+        cursor: pointer;
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+    cursor:text;
+}
+
+.search-input {
+    width: 70vw;
+    margin-top: 10px;
+}
+
+.seach-modal {
+    position: relative;
+    svg {
+        position: absolute;
+        left: 1rem;
+    }
+}
+
+.right-links_wrapp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-block {
+    margin-left: 17px;
+    svg {
+        font-size: 15pt;
+        cursor: pointer;
+    }
+}
+
+// https://mangadex.org/group-banner.png
+
+// .logo {
+//     z-index: 2030;
+//     color: white;
+//     h1 {
+//         color: white;
+//     }
+// }
+
+// .right-links_wrapp {
+//     z-index: 2030;
+//     color: white;
+// }

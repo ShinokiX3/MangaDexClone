@@ -1,0 +1,212 @@
+.form_wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    div {
+        margin-bottom: 28px;
+    }
+    padding-bottom: 15px;
+}
+
+.text-field_floating {
+    position: relative;
+  }
+
+  .text-field_floating .text-field__input {
+    line-height: 1.25;
+    padding: 1rem 0.75rem;
+  }
+
+  .text-field_floating .text-field__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 1rem .75rem;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+    transition: opacity .15s ease-in-out, transform .15s ease-in-out;
+    font-size: 14pt;
+  }
+
+  .text-field_floating .text-field__input::-moz-placeholder {
+    color: transparent;
+  }
+
+  .text-field_floating .text-field__input::placeholder {
+    color: transparent;
+  }
+
+  .text-field_floating .text-field__input:focus,
+  .text-field_floating .text-field__input:not(:placeholder-shown) {
+    padding-top: 1.625rem;
+    padding-bottom: .425rem;
+  }
+
+  .text-field_floating .text-field__input:focus~.text-field__label,
+  .text-field_floating .text-field__input:not(:placeholder-shown)~.text-field__label {
+    opacity: .65;
+    transform: scale(.85) translateY(-.75rem) translateX(.15rem);
+}
+
+.text-field, .text-field__input {
+    align-self: flex-start;
+    width: 97%;
+    border-color: transparent;
+    font-size: 12pt;
+    background-color: #f0f1f2;
+    border-radius: 0.2ch;
+}
+
+.text-field__input {
+    padding-bottom: 10px;
+}
+
+.label-star {
+    color: red;
+}
+
+.text-field__label {
+    display: flex;
+    .label-star {
+        margin-left: 2px;
+    }
+}
+
+.checkbox {
+    font-size: 14pt;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:initial;
+    justify-content: center;
+    .label-star {
+        font-weight: bold;
+        margin-left: 4px;
+    }
+    margin-bottom: 10px;
+}
+
+.form-message {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .custom-checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+  }
+
+  .custom-checkbox+label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+  }
+
+  .custom-checkbox:not(:disabled):not(:checked)+label:hover::before {
+    border-color: #b3d7ff;
+  }
+
+  .custom-checkbox:not(:disabled):active+label::before {
+    background-color: #b3d7ff;
+    border-color: #b3d7ff;
+  }
+
+  .custom-checkbox:focus+label::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .custom-checkbox:focus:not(:checked)+label::before {
+    border-color: #80bdff;
+  }
+
+  .custom-checkbox:checked+label::before {
+    border-color: #0b76ef;
+    background-color: #0b76ef;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+  }
+
+  .custom-checkbox:disabled+label::before {
+    background-color: #e9ecef;
+  }
+
+.singup-title {
+    margin-bottom: 7px;
+    color: #6e6e6e;
+    align-self: flex-start;
+    div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 17px;
+        svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            color: #adb5bd;
+            cursor: pointer;
+        }
+    }
+    p {
+        font-size: 15pt;
+        color: #494949;
+    }
+}
+
+.sings-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 15pt;
+    margin-top: 0px;
+    button {
+        background-color: rgba($color: #ff6740, $alpha: 0.1);
+        border-color: transparent;
+        border-radius: 0.4ch;
+        width: 100%;
+        padding: 0.85rem 0.75rem;
+        margin-bottom: 16px;
+        color: white;
+        font-size: 12pt;
+        font-weight: 550;
+        cursor: pointer;
+    }
+    button:last-child {
+        margin-bottom: 0px;
+        background-color: transparent;
+        color: red;
+    }
+    button:last-child:hover {
+        background-color: rgba($color: #ff6740, $alpha: 0.15);
+    }
+    margin-bottom: 16px;
+}

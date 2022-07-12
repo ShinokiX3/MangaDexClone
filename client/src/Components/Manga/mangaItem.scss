@@ -1,0 +1,127 @@
+$manga-item-width: 180px;
+$manga-details-width: $manga-item-width * 1.7;
+$manga-item-p-size: 1rem;
+
+.manga-items {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.manga-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+    img {
+        width: $manga-item-width;
+        // width: 220px;
+        // max-height: 400px;
+        // height: 350px;
+        border-radius: 2%; 
+        z-index: 1;
+    }
+    p {
+        // font-size: 15pt;
+        font-size: $manga-item-p-size;
+        position: absolute;
+        bottom: 8%;
+        color: white;
+        width: 80%;
+        text-align: center;
+        background-color:rgba(8, 8, 8, 0.5);
+        border-radius: 3%;
+        padding: 10px;
+        z-index: 10;
+    }
+}
+
+.fast-description {
+    position: absolute;
+    width: $manga-details-width;
+    // width: 350px;
+    // height: 400px;
+    z-index: 100;
+    border-radius: 1%;
+    background-color:rgba(8, 8, 8, 0.9);
+    display: none;
+    padding: 15px;
+    color: white;
+    p {
+        position: initial;
+        display: block;
+        margin-top: 10px;
+        padding: 0;
+        top:0;
+        background-color: transparent;
+        text-align: start;
+        width: 100%;
+    }
+    h2 {
+        color: white;
+    }
+    h3 {
+        color: grey;
+    }
+    div {
+        display: flex;
+        p {
+            display:ruby-text;
+            margin: 0;
+            padding: 0;
+            margin: 2px 0 2px 0;
+        }
+        .question {
+            max-width: 100px;
+        }
+        .answer {
+            color: lightgray;
+            width: 100%;
+        }
+    }
+    .named-details {
+        margin-top: 20px;
+    }
+}
+
+.fade {
+    display: block;
+}
+
+.left-oriental {
+    right: 100%;
+    margin-right: 20px;
+}
+
+.right-oriental {
+    left: 100%;
+    margin-left: 20px;
+}
+
+.answer {
+    color: lightgray;
+}
+
+.score {
+    margin-top: 15px;
+    padding: 7px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    p {
+        color: white;
+        font-weight: bold;
+        font-size: 16pt
+    }
+    i {
+        padding-top: 6px;
+        &:last-child {
+            margin-right: 10px;
+        }
+    }
+    div {
+        margin-right: 2px;
+    }
+    margin-bottom: 10px;
+}

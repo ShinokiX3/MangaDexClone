@@ -1,0 +1,93 @@
+.side-menu {
+    margin: 0;
+    padding: 0;
+    top: 0px;
+    height: 100vh;
+    width: fit-content;
+    display: flex;
+    position: fixed;
+    z-index: 1030;
+    background-color: #f0f1f2;
+    flex-direction: column;
+    padding: 15px 10px;
+    overflow: hidden;
+    transition: 0.4s all ease;
+}
+
+.links-block {
+    font-size: 14pt;
+    .svg-link {
+        font-weight: bold;
+    }
+    width: 90%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 10px;
+        padding-left: 10px;
+    }
+    a {
+        padding-left: 20px;
+        font-size: 12pt;
+        width: calc(100% - 20px);
+    }
+    margin-bottom: 10px;
+    &:last-child {
+        padding-bottom: 50px;
+    }
+}
+
+.link {
+    width: 100%;
+    padding: 0.2rem;
+    cursor: pointer;
+    color: #242424;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    a {
+        padding-left: 20px;
+        width: calc(100% - 20px);
+    }
+    &:hover {
+        background-color: rgb(235, 235, 235);
+        border-radius: 0.5ch;
+    }
+}
+
+.a-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu-active {
+    left: 0px;
+    overflow: scroll;
+}
+
+.side-menu-disable {
+    left: -300px;
+    overflow: hidden;
+}
+
+.side-menu-add-block {
+    position: static;
+    min-width: 0px;
+    transition: 0.4s all;
+    z-index: 1000;
+}
+
+.side-menu-block-active {
+    top: 0px;
+    min-width: calc(270px + 7px);
+    transition: 0.4s all;
+}
+
+.side-shadow {
+    box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.2);
+}
+
+// transform: translate(-300px, 0px);
+// transition:

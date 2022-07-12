@@ -1,0 +1,62 @@
+.login-modal {
+    font-size: 14pt;
+    .login-settings {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: #4d4d4d;
+        div {
+            display: flex;
+            margin-right: 10px;
+        }
+        svg {
+            margin-right: 10px;
+            height: 24px;
+            width: 24px;
+            color: #b4b4b4;
+        }
+        // cursor: pointer;
+        // margin-right: 20px;
+        font-size: 15pt;
+    }
+    button {
+        padding: 10px 25px 10px 25px;
+        background-color: orange;
+        border-radius: 0.4ch;
+        margin-right: 20px;
+        border-color: transparent;
+        cursor: pointer;
+        // font-weight: bold;
+        color: white;
+        font-size: 14pt;
+    }
+    button:last-child {
+        margin-right: 0px;
+        color: black;
+        background-color: aliceblue;
+    }
+    hr {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-top-width: 1px;
+    }
+}
+
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+    height: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+}
