@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MangaDexApi from '../../../Services/MangaDexApi';
-import Spinner from '../../LoadComponents/Spiner/Spinner';
+import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 import SearchItems from './SearchItems';
 
 const SearchModal = ({setActive}) => {

@@ -9,8 +9,8 @@ import { faMagnifyingGlass, faArrowRightToBracket } from '@fortawesome/free-soli
 import { useSelector, useDispatch } from 'react-redux';
 import { setHeaderRef, setMainMenuStatus } from '../../Store/userReducer';
 
-import Modal from '../Modal/Modal';
-import Logo from '../Logo/Logo';
+import Modal from '../../Features/Modal/Modal';
+import Logo from '../../SharedUI/Logo/Logo';
 
 const Header = memo(() => {
     const [active, setActive] = useState(false);

@@ -2,25 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import MangaDexApi from '../../Services/MangaDexApi';
 import './mangaPage.scss';
-import { useObserver } from '../../Hooks/useObserver';
+import { useObserver } from '../../Hooks/observer';
 
-import { Rating, Follows, Seen } from '../../Components/Statistics';
+import { Rating, Follows, Seen } from '../../SharedUI/Statistics';
 
 import { BookIcon, ShareIcon, ReportIcon } from '../../Assets/Svg/Manga';
-import Cover from '../../Components/StyledComponents/Cover/Cover';
 import { ExploreIco } from '../../Assets/Svg/Covers';
+import Cover from '../../SharedUI/StyledComponents/Cover/Cover';
 
 import MangaStatus from '../../Components/Manga/MangaStatus';
-import TagsStatus from '../../Components/Statistics/TagsStatus/TagsStatus';
+import TagsStatus from '../../SharedUI/Statistics/TagsStatus/TagsStatus';
 
-import ChaptersTab from '../../Tabs/Manga/Chapters/ChaptersTab';
-import ArtTab from '../../Tabs/Manga/Art/ArtTab';
-import RelatedTab from '../../Tabs/Manga/Related/RelatedTab';
+import ChaptersTab from './MangaTabs/Chapters/ChaptersTab';
+import ArtTab from './MangaTabs/Art/ArtTab';
+import RelatedTab from './MangaTabs/Related/RelatedTab';
 
-import LoadingWrapp from '../../Components/LoadComponents/LoadingWrapp/LoadingWrapp';
+import LoadingWrapp from '../../SharedUI/LoadComponents/LoadingWrapp/LoadingWrapp';
 
-import { filterSomeAttribute } from '../../Commons/filterAttribute';
-import { filterSomeAttributes } from '../../Commons/filterSomeAttributes';
+import { filterSomeAttribute } from '../../Utils/filterAttribute';
+import { filterSomeAttributes } from '../../Utils/filterSomeAttributes';
 
 const Manga = () => {
     const navigate = useNavigate();

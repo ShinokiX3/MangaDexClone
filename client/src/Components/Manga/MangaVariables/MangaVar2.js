@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { flags } from '../../../Assets/Svg/Flags';
 import MangaDexApi from '../../../Services/MangaDexApi';
-import Img from '../../StyledComponents/Img/Img';
+import Img from '../../../SharedUI/StyledComponents/Img/Img';
 import './mangaVariables.scss';
 
 const MangaVar2 = ({ manga }) => {

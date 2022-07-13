@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MangaDexApi from '../../../Services/MangaDexApi';
 import MangaStatus from '../../Manga/MangaStatus';
-import { Comments, Follows, Rating, Seen } from '../../Statistics';
-import Img from '../../StyledComponents/Img/Img';
+import { Comments, Follows, Rating, Seen } from '../../../SharedUI/Statistics';
+import Img from '../../../SharedUI/StyledComponents/Img/Img';
 import './searchPannel.scss';
 
 const SearchItem = ({item, type, setActive}) => {

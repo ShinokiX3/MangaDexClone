@@ -2,10 +2,10 @@ import { React, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './main.scss';
 
-import Sidebar from '../../Components/Sidebar/Sidebar';
+import Sidebar from '../../Features/Sidebar/Sidebar';
 import MangaItems from '../../Components/Manga/MangaItems';
-import { fetchManga } from '../../Actions/manga';
-import { fetchFilterData } from '../../Actions/manga';
+import { fetchManga } from '../../Store/Actions/manga';
+import { fetchFilterData } from '../../Store/Actions/manga';
 
 const Main = () => {
 

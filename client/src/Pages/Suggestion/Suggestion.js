@@ -5,8 +5,8 @@ import MangaItems from '../../Components/Manga/MangaVariables/MangaItems';
 import LatestUpdates from '../../Components/Suggestions/LatestUpdates/LatestUpdates';
 import './suggestion.scss';
 
-import Slider from '../../Components/Slider/Slider';
-import SliderItem from '../../Components/Slider/SliderItem';
+import Slider from '../../Features/Slider/Slider';
+import SliderItem from '../../Features/Slider/SliderItem';
 
 import MangaDexApi from '../../Services/MangaDexApi';
 import MangaVar1 from '../../Components/Manga/MangaVariables/MangaVar1';

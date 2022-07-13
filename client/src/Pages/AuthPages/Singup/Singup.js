@@ -1,10 +1,10 @@
 import React from 'react';
 import './singup.scss';
 
-import Form from '../../../Components/Form/Form';
-import Input from '../../../Components/Form/Input';
-import CheckBox from '../../../Components/Form/CheckBox';
-import Buttons from '../../../Components/Form/Buttons';
+import Form from '../../../SharedUI/Form/Form';
+import Input from '../../../SharedUI/Form/Input';
+import CheckBox from '../../../SharedUI/Form/CheckBox';
+import Buttons from '../../../SharedUI/Form/Buttons';
 import { useNavigate } from 'react-router-dom';
 
 const Singup = () => {

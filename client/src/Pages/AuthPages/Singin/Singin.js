@@ -1,10 +1,10 @@
 import React from 'react';
 // import '../AuthPages/Singup/singup.scss';
 
-import Form from '../../../Components/Form/Form';
-import Input from '../../../Components/Form/Input';
-import Buttons from '../../../Components/Form/Buttons';
-import CheckBox from '../../../Components/Form/CheckBox';
+import Form from '../../../SharedUI/Form/Form';
+import Input from '../../../SharedUI/Form/Input';
+import Buttons from '../../../SharedUI/Form/Buttons';
+import CheckBox from '../../../SharedUI/Form/CheckBox';
 import { useNavigate } from 'react-router-dom';
 
 const Singin = () => {

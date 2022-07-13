@@ -8,9 +8,9 @@ import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setChapterMenuStatus } from '../../Store/userReducer';
 
-import SideMenu from '../../Components/SideMenu/SideMenu';
-import SideChapters from '../../Components/SideMenus/SIdeChapters/SideChapters';
-import useSideMenu from '../../Hooks/useSideMenu';
+import SideMenu from '../../Features/SideMenu/SideMenu';
+import SideChapters from './SIdeChapters/SideChapters';
+import useSideMenu from '../../Hooks/sideMenu';
 
 const Read = () => {
     const params = useParams();

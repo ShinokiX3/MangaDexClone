@@ -5,8 +5,8 @@ import './app.scss';
 import Header from './Header/Header';
 import { Main, Favorites, Manga, Chapter, Singup, Singin, Suggestion } from '../Pages';
 
-import SideMenu from './SideMenu/SideMenu';
-import SideMain from './SideMenus/SideMain/SideMain';
+import SideMenu from '../Features/SideMenu/SideMenu';
+import SideMain from '../Pages/Main/SideMain/SideMain';
 import Titles from './../Pages/Titles/Titles';
 
 const App = () => {

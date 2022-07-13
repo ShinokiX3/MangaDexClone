@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './latest-updates.module.scss';
-import Img from '../../StyledComponents/Img/Img';
-import { filterSomeAttribute } from '../../../Commons/filterAttribute';
-import { cutString } from '../../../Commons/cutString';
+import Img from '../../../SharedUI/StyledComponents/Img/Img';
+import { filterSomeAttribute } from '../../../Utils/filterAttribute';
+import { cutString } from '../../../Utils/cutString';
 import { flags } from '../../../Assets/Svg/Flags';
-import Scanlation from '../../Community/Scanlation/Scanlation';
-import { compareDates } from '../../../Commons/compareDates';
+import Scanlation from '../../../SharedUI/Community/Scanlation/Scanlation';
+import { compareDates } from '../../../Utils/compareDates';
 
 const LatestUpdates = ({ chapters }) => {
     console.log(chapters);
