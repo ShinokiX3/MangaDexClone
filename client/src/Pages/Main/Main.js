@@ -4,8 +4,8 @@ import './main.scss';
 
 import Sidebar from '../../Features/Sidebar/Sidebar';
 import MangaItems from '../../Components/Manga/MangaItems';
-import { fetchManga } from '../../Store/Actions/manga';
-import { fetchFilterData } from '../../Store/Actions/manga';
+import { fetchManga } from '../../OldStore/Actions/manga';
+import { fetchFilterData } from '../../OldStore/Actions/manga';
 
 const Main = () => {
 

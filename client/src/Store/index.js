@@ -1,13 +1,9 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import menuReducer from './Slices/menuSlice';
+import mangaReducer from './Slices/mangaSlice';
 
-import { mangaReducer } from './mangaReducer';
-import { userReducer } from './userReducer';
+const rootReducer = combineReducers({menu: menuReducer, manga: mangaReducer})
 
-const rootReducer = combineReducers({
-    manga: mangaReducer,
-    user: userReducer
+export default configureStore({
+    reducer: rootReducer
 })
-
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

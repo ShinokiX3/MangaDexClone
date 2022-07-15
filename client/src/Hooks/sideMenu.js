@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setMainMenuStatus, setChapterMenuStatus } from '../Store/userReducer';
+import { setMainMenuStatus, setChapterMenuStatus } from '../OldStore/userReducer';
 
 const useSideMenu = (sideMenu) => {
     const [menuStatus, setMenuStatus] = useState();

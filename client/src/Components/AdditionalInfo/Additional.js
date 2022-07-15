@@ -2,18 +2,23 @@ import React, { useEffect, useState } from 'react';
 import Keyvalues from './Keyvalues/Keyvalues';
 import { configureTags } from './configureTags';
 import AlternativeTitles from './AlternativeTitles/AlternativeTitles';
+import { useSelector } from 'react-redux';
 
-const Additional = ({ mangaInfo }) => {
+const Additional = () => {
     const [tagsArr, setTagsArr] = useState([]);
     const [altTitles, setAltTitles] = useState([]);
 
-    useEffect(() => {
-        if (mangaInfo) {
-            setTagsArr(configureTags(mangaInfo));
-            setAltTitles(mangaInfo?.altTitles);
-        }
-    }, [mangaInfo]);
+    const mangaInfo = useSelector(state => state.manga.mangaInfo);
 
+    useEffect(() => {
+        if (mangaInfo.load.status === 'resolved') {
+            setTagsArr(configureTags(mangaInfo.data.attributes));
+            setAltTitles(mangaInfo.data.attributes.altTitles);
+        }
+    }, [mangaInfo.load.status]);
+
+
+    // mangaInfo={mangaInfo?.data?.attributes}
     return (
         <div style={{display: 'flex', flexWrap: 'wrap', width: '95%'}}>
             {

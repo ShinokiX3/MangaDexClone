@@ -1,51 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import SideMain from '../../Pages/Main/SideMain/SideMain';
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import './sideMenu.scss';
-import useSideMenu from '../../Hooks/sideMenu';
 
 const SideMenu = ({ children, options }) => {
-    const [menuType, setMenuType] = useState();
+    const menu = useSelector(state => state.menu[options.menuType+'Menu']);
 
-    const user = useSelector(state => state.user);
+    const classList = useMemo(() => determineClassList(menu.title, menu.status), [menu])
 
-    useEffect(() => {
-        if (options) {
-            if (options.menuType === 'main') {
-                setMenuType('main');
-            } else if (options.menuType === 'chapter') {
-                setMenuType('chapter');
+    function determineClassList(type, status) {
+        const variablesStyles = [
+            {
+                type: 'mainMenu',
+                active: 'side-menu side-menu-active',
+                disable: 'side-menu side-menu-disable'
+                
+            },
+            {
+                type: 'readerMenu',
+                active: 'side-menu side-menu-active side-menu-color side-chapter-active side-shadow',
+                disable: 'side-menu side-chapter-disable'
             }
-        }
-    }, [options]);
-
-    const setClassList = (status) => {
-        if (menuType === 'main') {
-            if (status === false) {
-                return `side-menu side-menu-disable`;
-            } else if (status === true) {
-                return `side-menu side-menu-active`;
-            }
-        }
-        if (menuType === 'chapter') {
-            if (status === false) {
-                return `side-menu side-chapter-disable`;
-            } else if (status === true) {
-                return `side-menu side-menu-active side-menu-color side-chapter-active side-shadow`;
-            }
-        }
+        ]
+        const currentType = variablesStyles.filter(el => el.type === type)[0];
+        return status ? currentType.active : currentType.disable;
     }
 
     return (
         <>
-            <div className={setClassList(user.menuStatus[menuType])}>
-                <div className="side_wrapp">
-                    {
-                        children
-                    }
-                </div>
+            <div className={classList}>
+                <div className="side_wrapp"> { children } </div>
             </div>
-            <div className={!user.menuStatus[menuType] ? "side-menu-add-block" : "side-menu-add-block side-menu-block-active"}></div>
+            <div className={!menu?.status ? "side-menu-add-block" : "side-menu-add-block side-menu-block-active"}></div>
         </>
     );
 };

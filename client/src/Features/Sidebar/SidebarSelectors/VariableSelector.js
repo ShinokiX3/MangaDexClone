@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { setFilters } from '../../../Store/Actions/manga';
+import { setFilters } from '../../../OldStore/Actions/manga';
 
 const VariableSelector = (props) => {
     const dispatch = useDispatch();

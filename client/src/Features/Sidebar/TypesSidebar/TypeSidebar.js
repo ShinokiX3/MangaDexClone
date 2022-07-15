@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setFilters } from '../../../Store/Actions/manga';
+import { setFilters } from '../../../OldStore/Actions/manga';
 import './typeSidebar.scss'
 
 const TypeSidebar = (props) => {

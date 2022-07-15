@@ -3,7 +3,7 @@ import About from "./About/About";
 import Basket from "./Basket/Basket";
 import Favorites from "./Favorites/Favorites";
 import Manga from "./Manga/Manga";
-import Chapter from "./Chapter/Chapter";
+import Chapter from "./Reader/Reader";
 import Suggestion from "./Suggestion/Suggestion";
 import { Singup, Singin } from "./AuthPages";
 

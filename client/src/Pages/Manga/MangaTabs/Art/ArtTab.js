@@ -4,8 +4,10 @@ import Cover from '../../../../SharedUI/StyledComponents/Cover/Cover';
 import Pagination from '../../../../Components/Pagination/Pagination';
 import MangaDexApi from '../../../../Services/MangaDexApi';
 import styles from './alttab.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMangaCovers } from '../../../../Store/Slices/mangaSlice';
 
-const ArtTab = memo(({ covers, mangaId }) => {
+const ArtTab = memo(({ mangaId }) => {
 
     const [coversFeed, setCoversFeed] = useState([]);
     const [pages, setPages] = useState(1);
@@ -13,26 +15,40 @@ const ArtTab = memo(({ covers, mangaId }) => {
     const [step, setStep] = useState(32);
     const [currPage, setCurrPage] = useState(1);
 
+    const dispatch = useDispatch();
+    const covers = useSelector(state => state.manga.covers);
+
+    // useEffect(() => {
+    //     if (!covers.data) {
+    //         dispatch(fetchMangaCovers({mangaId}));
+    //     }
+    // }, []);
+
     useEffect(() => {
-        setCoversFeed(covers?.array);
-        setPages(Math.ceil(covers?.total / step));
-        console.log(covers);
-    }, [covers])
+        if (covers.data.total) {
+            setPages(Math.ceil(covers?.data?.total / step));
+        }
+    }, [covers.data])
 
     useEffect(() => {
         setOffset((currPage - 1) * step);
-        (async() => {
-            const covers = await MangaDexApi.getMangaCoversByVolumes(mangaId, offset);
-            setCoversFeed(covers?.array);
-        })();
-    }, [currPage])
+        dispatch(fetchMangaCovers({mangaId, offset}));
+    }, [currPage]);
+
+    // useEffect(() => {
+    //     setOffset((currPage - 1) * step);
+    //     (async() => {
+    //         const covers = await MangaDexApi.getMangaCoversByVolumes(mangaId, offset);
+    //         setCoversFeed(covers?.array);
+    //     })();
+    // }, [currPage])
 
     return (
         <>
             <p className={styles.name}>Covers</p>
             <div className={styles.alt_block_settings}>
                 {
-                    coversFeed?.map(cover => (
+                    covers?.data?.array?.map(cover => (
                         <Cover
                             src={cover?.filePath}
                             alt={'Volume cover ' + cover?.volume}
@@ -50,7 +66,7 @@ const ArtTab = memo(({ covers, mangaId }) => {
                     ))
                 }
             </div>
-            <Pagination pages={pages} currPage={currPage} step={step} setOffset={setOffset} setCurrPage={setCurrPage} />
+            {/* <Pagination pages={pages} currPage={currPage} step={step} setOffset={setOffset} setCurrPage={setCurrPage} /> */}
         </>
     );
 });

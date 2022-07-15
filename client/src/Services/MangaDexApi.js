@@ -46,7 +46,6 @@ class MangaDexApi {
 
     getMangaInfo = async (mangaId) => {
         return await fetch(`${this.BaseManga}/${mangaId}?includes[]=cover_art`)
-            .then(data => data.json())
     }
     
     getMangaChapters = async (mangaId) => {
@@ -111,10 +110,8 @@ class MangaDexApi {
     }
 
     getMangaFeed = async (mangaId, offset = 0, orderBy = 'asc', limit = 500) => {
-        // return await fetch(`${this.BaseManga}/${mangaId}/feed?order[chapter]=${orderBy}&limit=${limit}`) 
-        //return await fetch(`${this.BaseManga}/${mangaId}/aggregate`)
         return await fetch(`${this.BaseManga}/${mangaId}/feed?limit=96&includes[]=scanlation_group&includes[]=user&order[volume]=asc&order[chapter]=asc&offset=${offset}&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`)
-            .then(data => data.json());
+            // .then(data => data.json());
     }
 
     getScanlationGroup = async (groupId) => {
@@ -148,7 +145,6 @@ class MangaDexApi {
 
     getAuthorInfo = async(authorId) => {
         return await fetch(`${this.BaseAuthor}/${authorId}/`)
-            .then(data => data.json())
     }
 
     // Group requests
@@ -169,7 +165,6 @@ class MangaDexApi {
 
     getMangaStatistics = async(mangaId) => {
         return await fetch(`${this.BaseStatistics}/manga/${mangaId}`)
-            .then(data => data.json())
     }
 }
 

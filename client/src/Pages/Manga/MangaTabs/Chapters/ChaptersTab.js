@@ -3,11 +3,11 @@ import Additional from '../../../../Components/AdditionalInfo/Additional';
 import Volumes from '../../../../Components/VolumesFeed/Volumes';
 import styles from './chapters_tab.module.scss';
 
-const ChaptersTab = memo(({ mangaInfo, mangaId }) => {
+const ChaptersTab = memo(({ mangaId }) => {
     return (
         <div className={styles.wrapp}>
             <div className="more-info">
-                <Additional mangaInfo={mangaInfo?.data?.attributes} />
+                <Additional />
             </div>
             <div className="chapters-choose">
                 <Volumes mangaId={mangaId}/>
