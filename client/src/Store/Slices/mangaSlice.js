@@ -39,10 +39,6 @@ export const fetchMangaCovers = createAsyncThunk(
     async function({ mangaId, offset = 0 }, {rejectWithValue, dispatch}) {
         try {
             const response = await MangaDexApi.getMangaCoversByVolumes(mangaId, offset);
-            // if (!response.ok) {
-            //     throw new Error('Something is going wrong...');
-            // }
-            // const data = await response.json();
             dispatch(setCovers(response));
         } catch (error) {
             return rejectWithValue(error.message);

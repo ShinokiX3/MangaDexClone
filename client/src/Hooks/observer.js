@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export const useObserver = (options) => {
     const [ref, setRef] = useState(null);
+    // const setRef = useRef(null);
     const [stickyStatus, setstickyStatus] = useState(false);
     
     useEffect(() => {
