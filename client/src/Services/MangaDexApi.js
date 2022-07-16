@@ -45,7 +45,7 @@ class MangaDexApi {
     }
 
     getMangaInfo = async (mangaId) => {
-        return await fetch(`${this.BaseManga}/${mangaId}?includes[]=cover_art`)
+        return await fetch(`${this.BaseManga}/${mangaId}?includes[]=artist&includes[]=author&includes[]=cover_art`)
     }
     
     getMangaChapters = async (mangaId) => {

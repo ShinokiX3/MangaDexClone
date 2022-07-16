@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MangaItems from '../../Components/Manga/MangaVariables/MangaItems';
@@ -12,10 +12,10 @@ import MangaDexApi from '../../Services/MangaDexApi';
 import MangaVar1 from '../../Components/Manga/MangaVariables/MangaVar1';
 import MangaVar2 from '../../Components/Manga/MangaVariables/MangaVar2';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import MainContainer from '../../Layouts/MainContainer/MainContainer';
+import SuggestItem from './SuggestItem';
 
-const Suggestion = () => {
+const Suggestion = memo(() => {
     const navigate = useNavigate();
 
     const [seasonal, setSeasonal] = useState([]);
@@ -59,62 +59,34 @@ const Suggestion = () => {
     const getMangasIds = (arr) => {
         return arr.map(({ id }) => `&ids[]=${id}`);
     }
-
+    
     return (
-        <main className="suggestion-page">
-            <div className="suggest-content">
-                <div className="suggest-item">
-                    <div className="suggest-name">
-                        <div href="" onClick={() => handleNavigate('seasonal')}>
-                            <h1>Seasonal</h1>
-                            <FontAwesomeIcon icon={faArrowRight} />
-                        </div>
-                    </div>
-                    <div className="suggest-item-content">
-                        {
-                            <Slider>
-                                <MangaItems mangas={seasonal} 
-                                    Variant={MangaVar1} 
-                                    Wrapp={SliderItem}
-                                    styles={{display: "flex", height: "228px"}}
-                                />
-                            </Slider>
-                        }
-                    </div>
-                </div>
-                <div className="suggest-item">
-                    <div className="suggest-name">
-                        <div href="">
-                            <h1>Latest Updates</h1>
-                            <FontAwesomeIcon icon={faArrowRight} />
-                        </div>
-                    </div>
-                    <div className="suggest-item-content">
-                       <LatestUpdates chapters={latestUpdates} />
-                    </div>
-                </div>
-                <div className="suggest-item">
-                    <div className="suggest-name">
-                        <div href="">
-                            <h1>Recently added</h1>
-                            <FontAwesomeIcon icon={faArrowRight} />
-                        </div>
-                    </div>
-                    <div className="suggest-item-content">
-                        {
-                            <Slider>
-                                <MangaItems mangas={recentlyAdded} 
-                                    Variant={MangaVar2} 
-                                    Wrapp={SliderItem} 
-                                    styles={{display: "flex", width: "128px", height: "180px"}} 
-                                />
-                            </Slider>
-                        }
-                    </div>
-                </div>
-            </div>
-        </main>
+        <MainContainer mainClasses='suggestion-page' containerClasses='suggest-content' isHeaderBlack >
+            <SuggestItem title='Seasonal' handleNavigate={handleNavigate} >
+                <Slider>
+                    <MangaItems mangas={seasonal} 
+                        Variant={MangaVar1} 
+                        Wrapp={SliderItem}
+                        styles={{display: "flex", height: "228px"}}
+                    />
+                </Slider>
+            </SuggestItem>
+
+            <SuggestItem title='Latest Updates' handleNavigate={handleNavigate} >
+                <LatestUpdates chapters={latestUpdates} />
+            </SuggestItem>
+
+            <SuggestItem title='Recently added' handleNavigate={handleNavigate} >
+                <Slider>
+                    <MangaItems mangas={recentlyAdded} 
+                        Variant={MangaVar2} 
+                        Wrapp={SliderItem} 
+                        styles={{display: "flex", width: "128px", height: "180px"}} 
+                    />
+                </Slider>
+            </SuggestItem>
+        </MainContainer>    
     );
-};
+});
 
 export default Suggestion;

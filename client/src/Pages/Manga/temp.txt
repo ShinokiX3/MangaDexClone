@@ -60,3 +60,6 @@
     //     const selectors = ['colored', 'preserialization', 'doujinshi'];
     //     return <RelatedTab mangaRelations={filterSomeAttributes(mangaInfo?.data?.relationships, selectors)} />
     // }
+
+    // logo.classList.remove('logo-dark');
+    // rightLinks.classList.remove('right-links_wrapp-dark');

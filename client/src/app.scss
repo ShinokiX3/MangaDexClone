@@ -125,6 +125,32 @@ input[type="button"]:hover {
 
 .header-transparent {
     background-color: transparent;
+    #logo {
+        color: white;
+        h1 {
+            color: white;
+        }
+    }
+    .right-links_wrapp {
+        .login-block svg {
+            color: white;
+        }
+    }
+}
+
+.header-transparent-black {
+    background-color: transparent;
+    #logo {
+        color: black;
+        h1 {
+            color: black;
+        }
+    }
+    .right-links_wrapp {
+        .login-block svg {
+            color: white;
+        }
+    }
 }
 
 .header-white {

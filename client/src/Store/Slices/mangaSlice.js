@@ -62,22 +62,6 @@ export const fetchMangaFeed = createAsyncThunk(
     }
 )
 
-export const fetchMangaAuthor = createAsyncThunk(
-    'manga/fetchMangaAuthor',
-    async function({ authorId }, {rejectWithValue, dispatch}) {
-        try {
-            const response = await MangaDexApi.getAuthorInfo(authorId);
-            if (!response.ok) {
-                throw new Error('Something is going wrong...');
-            }
-            const data = await response.json();
-            dispatch(setAuthor(data.data));
-        } catch (error) {
-            return rejectWithValue(error.message);
-        }
-    }
-)
-
 const initialState = {
     mangaInfo: {
         load: {
@@ -87,13 +71,6 @@ const initialState = {
         data: null
     },
     statistics: {
-        load: {
-            status: '',
-            error: null
-        },
-        data: null
-    },
-    authors: {
         load: {
             status: '',
             error: null
@@ -147,9 +124,6 @@ const mangaSlice = createSlice({
         setFeed(state, action) {
             state.feed.data = action.payload;
         },
-        setAuthor(state, action) {
-            state.authors.data = action.payload;
-        }
     },
     extraReducers: {
         [fetchMangaInfo.pending]: (state, action) => setLoading(state, action, 'mangaInfo'),
@@ -163,10 +137,6 @@ const mangaSlice = createSlice({
         [fetchMangaCovers.pending]: (state, action) => setLoading(state, action, 'covers'),
         [fetchMangaCovers.fulfilled]: (state, action) => setResolved(state, action, 'covers'),
         [fetchMangaCovers.rejected]: (state, action) => setError(state, action, 'covers'),
-
-        [fetchMangaAuthor.pending]: (state, action) => setLoading(state, action, 'authors'),
-        [fetchMangaAuthor.fulfilled]: (state, action) => setResolved(state, action, 'authors'),
-        [fetchMangaAuthor.rejected]: (state, action) => setError(state, action, 'authors'),
 
         [fetchMangaFeed.pending]: (state, action) => setLoading(state, action, 'feed'),
         [fetchMangaFeed.fulfilled]: (state, action) => setResolved(state, action, 'feed'),

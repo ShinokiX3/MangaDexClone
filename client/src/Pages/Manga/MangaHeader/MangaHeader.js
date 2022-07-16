@@ -13,7 +13,7 @@ import { filterSomeAttribute } from '../../../Utils/filterAttribute';
 
 // TODO: will have to do it with redux.
 
-const MangaHeader = memo(({ mangaInfo = {}, authors = [] }) => {
+const MangaHeader = memo(({ mangaInfo = {} }) => {
     const [mangaCoverUrl, setMangaCoverUrl] = useState('');
 
     const backImage = useMemo(() => {
@@ -26,9 +26,7 @@ const MangaHeader = memo(({ mangaInfo = {}, authors = [] }) => {
         }
     }, [mangaInfo])
 
-    const author = useMemo(() => {
-        return filterSomeAttribute(authors, 'author');
-    }, [authors])
+    console.log(mangaInfo.data);
 
     return (
         <>
@@ -38,14 +36,17 @@ const MangaHeader = memo(({ mangaInfo = {}, authors = [] }) => {
                 style={{zIndex: '105', gridArea: 'manga-cover', margin: '10px', alignSelf: 'flex-start', width: '200px'}} 
                 countryIco={mangaInfo?.data?.attributes?.originalLanguage}
             />
-            <MangaTitle mangaInfo={mangaInfo} authorName={author?.name} />
+            <MangaTitle mangaInfo={mangaInfo} />
             <MangaIntroduction mangaInfo={mangaInfo} />
             <div className="banner-image" style={backImage}></div>
         </>
     );
 });
 
-const MangaTitle = memo(({ mangaInfo, authorName = '' }) => {
+const MangaTitle = memo(({ mangaInfo }) => {
+
+    // TODO: seems like unusefull 
+
     const enTitle = useMemo(() => mangaInfo?.data?.attributes?.title?.en, [mangaInfo]);
     const alternative = useMemo(() => (mangaInfo?.data?.attributes?.altTitles?.filter(el => el.en)[0])?.en, [mangaInfo]);
     
@@ -58,7 +59,7 @@ const MangaTitle = memo(({ mangaInfo, authorName = '' }) => {
                 <p style={{fontSize: "1.25rem", lineHeight: "1.25rem"}}>{alternative}</p>
             </div>
             <div>
-                <p className='sub-title'>{authorName}</p>
+                <p className='sub-title'>{filterSomeAttribute(mangaInfo?.data?.relationships, 'author', 'name')}</p>
             </div>
         </div>
     );
