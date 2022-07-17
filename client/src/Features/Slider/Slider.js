@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import './slider.scss';
 
-const Slider = ({children}) => {
+const Slider = memo(({children}) => {
     const [xCurr, setXCurr] = useState(0);
     const [currentLeft, setCurrentLeft] = useState(0);
     const [secArr, setSecArr] = useState([]);
@@ -15,6 +15,20 @@ const Slider = ({children}) => {
     }
 
     useEffect(() => {
+        // const leftT = +sliderContent.current.style.left.match(/\d*/g)[0];
+        // const leftT = +sliderContent.current.style.left.split('px')[0];
+        // const styleRight = +window.getComputedStyle(sliderContent.current).getPropertyValue("right").split('px')[0];
+        // console.log(styleRight);
+        // if (xCurr >= 0 && leftT >= 0) {
+        //     console.log(xCurr, leftT);
+        //     sliderContent.current.style.left = `${+currentLeft + xCurr / 2.5}px`;
+        // } else if (xCurr < 0 && styleRight >= 0) {
+        //     console.log('right');
+        //     sliderContent.current.style.left = `${+currentLeft + xCurr / 2.5}px`;
+        // } else {
+        //     console.log('other');
+        //     sliderContent.current.style.left = `${+currentLeft + xCurr}px`;
+        // }
         sliderContent.current.style.left = `${+currentLeft + xCurr}px`;
     }, [xCurr])
 
@@ -159,6 +173,6 @@ const Slider = ({children}) => {
             </div>
         </div>
     );
-};
+});
 
 export default Slider;

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import LoadingWrapp from '../../LoadComponents/LoadingWrapp/LoadingWrapp';
 
 const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true}) => {
+    
     const [isLoading, setIsLoading] = useState(true);
+    
     useEffect(() => {
         const img = new Image();
         img.src = src;
@@ -10,11 +12,14 @@ const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true
             setIsLoading(false);
         }
     }, [src]);
+
+    const shadowSetting = useMemo(() => ({boxShadow: '0px 0px 30px 2px rgba(34, 60, 80, 0.12)'}), [])
+
     return (
         isLoading ?
         <LoadingWrapp height={height} width={width} />
         :
-        <img src={src} alt={alt} className={classes} draggable={draggable} />
+        <img src={src} alt={alt} className={classes} draggable={draggable} style={shadowSetting} />
     );
 };
 

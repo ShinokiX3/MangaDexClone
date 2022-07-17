@@ -3,8 +3,6 @@
     overflow: hidden;
     width: inherit;
     height: inherit;
-    // width: 200px;
-    // height: 320px;
 }
 
 .loading_animation_block {
@@ -13,7 +11,7 @@
     height: 100%;
     top: 0px;
     left: -100%;
-    z-index: 2000;
+    z-index: 100;
     background: rgb(240,241,242);
     background: linear-gradient(90deg,hsla(0,0%,100%,0) 0,#fff 50%,hsla(0,0%,100%,0));
     animation: loading-wrapp 1s cubic-bezier(.4,0,.2,1) 0s infinite alternate forwards;

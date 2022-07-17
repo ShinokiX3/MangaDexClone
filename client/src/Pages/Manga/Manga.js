@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './mangaPage.scss';
 
@@ -28,8 +28,6 @@ const Manga = memo(() => {
         dispatch(fetchMangaFeed({mangaId}));
     }, [mangaId])
 
-    // TODO: create layout for main attribute, like current container.
-
     return (
         <MainContainer mainClasses='manga-page' containerClasses='manga-container'>
             <MangaHeader mangaInfo={mangaInfo} />
@@ -37,7 +35,6 @@ const Manga = memo(() => {
             <MangaContent mangaId={mangaId} mangaInfo={mangaInfo} />
         </MainContainer>
     );
-
 });
 
 export default Manga;

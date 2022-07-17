@@ -9,6 +9,7 @@ import Slider from '../../Features/Slider/Slider';
 import SliderItem from '../../Features/Slider/SliderItem';
 
 import MangaDexApi from '../../Services/MangaDexApi';
+
 import MangaVar1 from '../../Components/Manga/MangaVariables/MangaVar1';
 import MangaVar2 from '../../Components/Manga/MangaVariables/MangaVar2';
 

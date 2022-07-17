@@ -16,7 +16,7 @@ const MangaVar1 = ({manga}) => {
     return (
         <div style={{display: "flex"}} ref={ref}>
             <div className="manga-img">
-                <img src={mangaCover} alt="" />
+                <img src={mangaCover} alt="" draggable={false} />
             </div>
             <div className="manga-de">
                 <p>{manga?.attributes?.title?.en?.slice(0, 25)}</p>

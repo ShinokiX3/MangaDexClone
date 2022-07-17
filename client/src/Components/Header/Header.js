@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, memo } from 'react';
 import './header.scss';
 
 import { SearchModal, LoginModal } from '../Modals';
@@ -11,8 +11,6 @@ import { setMainStatus } from '../../Store/Slices/menuSlice';
 
 import Modal from '../../Features/Modal/Modal';
 import Logo from '../../SharedUI/Logo/Logo';
-
-import { useObserver } from '../../Hooks/observer';
 
 const Header = memo(() => {
     const [active, setActive] = useState(false);

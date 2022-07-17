@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './modal.scss';
 
-const Modal = ({active, setActive, children, styleModal = {}, styleModalContent = {}, modalContentAdd = ''}) => {
+const Modal = memo(({active, setActive, children, styleModal = {}, styleModalContent = {}, modalContentAdd = ''}) => {
     return (
         <div className={active ? "modal-window active-modal" : "modal-window"} 
             onClick={() => { 
@@ -19,6 +19,6 @@ const Modal = ({active, setActive, children, styleModal = {}, styleModalContent 
             </div>
         </div>
     );
-};
+});
 
 export default Modal;
