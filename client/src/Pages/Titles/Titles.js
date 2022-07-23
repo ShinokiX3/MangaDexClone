@@ -8,7 +8,11 @@ import MainContainer from '../../Layouts/MainContainer/MainContainer';
 import PageArrowLink from '../../SharedUI/PagesLinks/PageArrowLink';
 import FilterTitles from './FilterTitles/FilterTitles';
 import SortTitles from './SortTitles/SortTitles';
+
 import { findOutUniqGroups } from '../../Utils/groupElemsBy';
+import { compose } from '../../Utils/compose';
+import { sortByTagsLength } from './Utils/SortByLength';
+import { sortTagsByAlphabet } from './Utils/SortByAlphabet';
 
 const Titles = memo(() => {
     const [groupedTags, setGroupedTags] = useState([]);
@@ -27,8 +31,12 @@ const Titles = memo(() => {
 
     useEffect(() => {
         if (filterTags.data) {
-            const uniq = findOutUniqGroups(filterTags.data, 'group');
-            setGroupedTags(uniq);
+            compose(
+                setGroupedTags,
+                sortTagsByAlphabet,
+                sortByTagsLength,
+                findOutUniqGroups
+            )(filterTags.data);
         }
     }, [filterTags.data]);
 

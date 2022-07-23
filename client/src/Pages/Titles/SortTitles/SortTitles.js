@@ -30,7 +30,7 @@ const SortTitles = () => {
     return (
         <div className={styles.wrapp}>
             <div>
-                <Select values={sortValues} selected={selected} setSelected={setSelected} />
+                <Select values={sortValues} selected={selected} setSelected={setSelected} selectTitle='Sort By' />
             </div>
             <div>
                 <CardControls setRefControls={setRef} handleControls={handleControl}  />

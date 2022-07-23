@@ -1,4 +1,4 @@
-export const findOutUniqGroups = (array, selector) => {
+export const findOutUniqGroups = (array, selector = 'group') => {
     const newArray = [];
     for (let idx = 0; idx < array.length; idx++) {
         if (!newArray.some(el => el.type === array[idx]?.attributes[selector])) {

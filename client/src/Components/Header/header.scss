@@ -15,7 +15,8 @@ $header-bg-color: #fff;
             transition: .4s ease-in-out;
         }
     }
-    transition: 0.3s all;
+    // transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
 }
 
 // w100%

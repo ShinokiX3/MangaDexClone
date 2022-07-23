@@ -6,6 +6,7 @@
     height: fit-content;
     input {
         margin-top: 0px;
+        width: 100%;
     }
     div {
         display: flex;
@@ -42,16 +43,18 @@
         cursor: pointer; 
         height: 50px;
         border: 0px;
-        font-size: 13.5pt;
+        font-size: 12.5pt;
         font-weight: 600;
     } 
 }
 
 .first_button {
-    color: white;
     margin-right: 10px;
     border-radius: 0.25rem;
     background-color: #ff6740;
+    button {
+        color: white;
+    }
 }
 
 .second_button {

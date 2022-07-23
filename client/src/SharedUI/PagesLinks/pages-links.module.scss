@@ -20,11 +20,12 @@
 
 .arrow_link_reverse {
     div {
+        margin-bottom: 0px;
         justify-content: flex-start;
         svg {
             transform-origin: center center;
             transform: rotate(180deg);
-            margin-right: 25px;
+            margin-right: 20px;
             width: 20px;
             height: 20px;
         }

@@ -1,11 +1,10 @@
-import React, { useMemo, useState } from 'react';
-import FilterItems from '../../../SharedUI/Filter/FilterItems';
+import { useMemo, useState } from 'react';
 import Select from '../../../SharedUI/StyledComponents/Select/Select';
-import { strToUpper } from '../../../Utils/stringToUpperCase';
-import styles from './filter-titles.module.scss'
+import styles from './filter-titles.module.scss';
+import Tags from './Tags';
 
-const FilterModal = ({ tags = [] }) => {    
-    const [appliedFilters, setAppliedFilters] = useState(['One, Two, Three, Four, Five']);
+const FilterModal = ({ tags = [] }) => {
+    const [selected, setSelected] = useState(['All Languages']);
     
     const specificTags = useMemo(() => [
         { type: 'Demographic', tags: ['Shounen', 'Shoujo', 'Seinen', 'Josei', 'None'] }, 
@@ -26,27 +25,12 @@ const FilterModal = ({ tags = [] }) => {
             </div>
             <div className={styles.select}>
                 <p>Original Language</p>
-                <Select values={['']} />
+                <Select values={['Other', 'Something']} selected={selected} setSelected={setSelected} />
             </div>
             <Tags tags={specificTags} isFlexBox />
             <Tags tags={tags} />
         </div>
     );
 };
-
-const Tags = ({ tags = [], isFlexBox = false }) => {
-    return (
-        <div className={styles.tags} style={isFlexBox ? {display: 'flex'} : {}} >
-            {tags.map(tag => {
-                return (
-                    <div className={styles.tag}>
-                        <h3>{strToUpper(tag.type)}</h3>
-                        <FilterItems items={tag.tags} />
-                    </div>
-                )
-            })}
-        </div>
-    )
-}
 
 export default FilterModal;

@@ -20,7 +20,7 @@ const FilterTitles = ({ tags = [] }) => {
     return (
         <>
         <div className={styles.wrapp}>
-            <div>
+            <div style={{width: '100%', marginRight: '15px'}}>
                 <input type="text" 
                     className="search-block search-input" 
                     placeholder='Search' 
@@ -32,7 +32,7 @@ const FilterTitles = ({ tags = [] }) => {
                 <p>Filter</p>
             </div>
         </div>
-        <Modal active={active} setActive={setActive} styleModalContent={{width: '90vw', borderRadius: '0px'}} >
+        <Modal active={active} setActive={setActive} styleModalContent={{width: '87vw', borderRadius: '0px'}} >
             <FilterModal tags={tags} />
         </Modal>
         </>
