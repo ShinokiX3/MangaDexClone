@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import LoadingWrapp from '../../LoadComponents/LoadingWrapp/LoadingWrapp';
 
-const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true}) => {
+const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true, customStyles = {}}) => {
     
     const [isLoading, setIsLoading] = useState(true);
     
@@ -19,7 +19,7 @@ const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true
         isLoading ?
         <LoadingWrapp height={height} width={width} />
         :
-        <img src={src} alt={alt} className={classes} draggable={draggable} style={shadowSetting} />
+        <img src={src} alt={alt} className={classes} draggable={draggable} style={{...customStyles, ...shadowSetting}} />
     );
 };
 

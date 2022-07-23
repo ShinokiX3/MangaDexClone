@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useObserver = (options) => {
     const [observerRef, setObserverRef] = useState(null);
@@ -6,9 +6,7 @@ export const useObserver = (options) => {
     
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            console.log(entry);
             if (!entry.isIntersecting) {
-                console.log('out of');
                 setObserveStatus(true);
             } else {
                 console.log('inn');

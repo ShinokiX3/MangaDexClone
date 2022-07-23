@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import MangaDexApi from '../../Services/MangaDexApi';
 import styles from './card.module.scss';
 
@@ -9,15 +9,16 @@ import Seen from '../../SharedUI/Statistics/Seen/Seen';
 import Comments from '../../SharedUI/Statistics/Comments/Comments';
 import MangaStatus from '../../Components/Manga/MangaStatus';
 
-import { BlocksIcon, EaseRowIcon, RowIcon } from '../../Assets/Svg/CardTypes';
+// import { BlocksIcon, EaseRowIcon, RowIcon } from '../../Assets/Svg/CardTypes';
 
 import Img from '../../SharedUI/StyledComponents/Img/Img';
 
-import { cutString } from './../../Utils/cutString';
-import { strToUpper } from './../../Utils/stringToUpperCase';
-import { filterSomeAttribute } from './../../Utils/filterAttribute';
+import { cutString } from '../../Utils/cutString';
+import { strToUpper } from '../../Utils/stringToUpperCase';
+import { filterSomeAttribute } from '../../Utils/filterAttribute';
+import CardControls from './CardControls';
 
-const Card = memo(({ mangasArr }) => {
+const Cards = memo(({ mangasArr }) => {
     const [refControls, setRefControls] = useState(null);
     const [refContent, setRefContent] = useState(null);
     const [currentControl, setCurrentControl] = useState('row');
@@ -39,11 +40,7 @@ const Card = memo(({ mangasArr }) => {
         <div className={styles.wrapp} style={{paddingBottom: '48px'}}>
             <div className={styles.controls_wrapp}>
                 <p>Related Titles</p>
-                <div ref={setRefControls} className={styles.controls} onClick={handleControls}>
-                    <div data-control="row" className={styles.active}><RowIcon /></div>
-                    <div data-control="e-row"><EaseRowIcon /></div>
-                    <div data-control="blocks"><BlocksIcon /></div>
-                </div>
+                <CardControls setRefControls={setRefControls} handleControls={handleControls} />
             </div>
             <div ref={setRefContent} className={styles.content}>
                 {
@@ -56,9 +53,8 @@ const Card = memo(({ mangasArr }) => {
     );
 });
 
-const CardItem = ({ manga, currentControl, refContent }) => {
+const CardItem = memo(({ manga, currentControl, refContent }) => {
     const [mangaInfo, setMangaInfo] = useState({});
-
     const [refTitle, setRefTitle] = useState(null);
     const [refCover, setRefCover] = useState(null);
     const [refDescription, setRefDescription] = useState(null);
@@ -66,7 +62,7 @@ const CardItem = ({ manga, currentControl, refContent }) => {
     useEffect(() => {
         if (manga) {
             (async() => {
-                const mangaInfo = await MangaDexApi.getMangaInfo(manga?.id);
+                const mangaInfo = await MangaDexApi.getMangaInfo(manga?.id).then(data => data.json());
                 setMangaInfo(mangaInfo);
             })()
         }
@@ -133,6 +129,6 @@ const CardItem = ({ manga, currentControl, refContent }) => {
             </div>
         </div>
     )
-}
+});
 
-export default Card;
+export default Cards;

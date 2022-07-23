@@ -1,0 +1,82 @@
+.wrapp {
+    cursor: pointer;
+    position: relative;
+    min-height: 53px;
+    min-width: 280px;
+    background-color: #f0f1f2;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    user-select: none;
+}
+
+.wrapp.active {
+    border: 1px solid red;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    .content {
+        display: block;
+        position: absolute;
+        top: 102%;
+        left: -2px;
+        width: 100%;
+    }
+    .select {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.title {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    font-size: 0.90rem;
+    line-height: 1rem;
+}
+
+.select {
+    font-size: 12.5pt;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 1px solid transparent;
+    svg {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        right: 5%;
+        top: calc(50% - 10px);
+        transition: all 0.4s ease;
+    }
+}
+
+.content {
+    height: fit-content;
+    position: absolute;
+    bottom: 0px;
+    display: none;
+    width: 100%;
+    max-height: 50vh;
+    overflow-y: auto;
+    border: 1px solid transparent;
+    div {
+        width: calc(100% - 15px);
+        height: 40px;
+        background-color: #f0f1f2;
+        display: flex;
+        align-items: center;
+        padding-left: 15px;
+        cursor: pointer;
+    }
+    div:hover {
+        background-color: #cecece;
+    }
+}
+
+.selected {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translate(0%, -18%);
+}

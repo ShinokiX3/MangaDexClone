@@ -35,7 +35,4 @@ const TagsStatus = ({ tags, amount, customStyles = {} }) => {
     );
 };
 
-// 'ONGOING': '#04D000',
-// 'COMPLETED': '#00C9F5'
-
 export default TagsStatus;

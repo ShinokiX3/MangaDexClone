@@ -65,28 +65,28 @@ export const fetchMangaFeed = createAsyncThunk(
 const initialState = {
     mangaInfo: {
         load: {
-            status: '',
+            status: 'loading',
             error: null
         },
         data: null
     },
     statistics: {
         load: {
-            status: '',
+            status: 'loading',
             error: null
         },
         data: null
     },
     feed: {
         load: {
-            status: '',
+            status: 'loading',
             error: null
         },
         data: null
     },
     covers: {
         load: {
-            status: '',
+            status: 'loading',
             error: null
         },
         data: null

@@ -88,18 +88,10 @@ const Read = () => {
 
     useEffect(() => {
         const fetchVolumes = async () => {
-            // const mangaInfo = await MangaDexApi.getMangaInfo(mangaId);
-            // console.log(mangaInfo);
-            // const findManga = await MangaDexApi.findManga(mangaInfo?.data?.attributes?.title?.en);
-            // console.log(findManga);
-            
             const volumes = await MangaDexApi.getMangaChapters(mangaId);
             const mangaName = (await MangaDexApi.getMangaInfo(mangaId))?.data?.attributes?.title?.en;
             setMangaTitle(mangaName);
             if (!volumes?.volumes || Object.keys(volumes?.volumes).length === 0) {
-
-                // Нужно искать мангу другую при переадресации на страницу манги
-
                 const someOtherIds = (await MangaDexApi.getMangaInfo(mangaId))?.data?.relationships;
                 const newMangaId = someOtherIds[someOtherIds?.findIndex(el => el?.related === 'colored')]?.id;
                 const volumes = await MangaDexApi.getMangaChapters(newMangaId);
@@ -210,11 +202,11 @@ const Read = () => {
                     <div className='c-vol'>{`Vol. ${currentChapter?.volume}
                         Ch. ${currentChapter.chapter}`}</div>
                     <div className='c-pg'>{`Pg. ${currentChapter.currImg}/${currentChapter.maxImg}`}</div>
-                    <div className='c-menu' onClick={() => handleMenu()}>Menu</div>
+                    <div className='c-menu' onClick={handleMenu}>Menu</div>
                 </div>
                 <p className="translator">Lazy Ass Scans</p>
             </div>
-            <div className="chapter-content" style={{maxHeight: clientHeight}} onClick={(e) => mangaContentDelegate(e)}>
+            <div className="chapter-content" style={{maxHeight: clientHeight}} onClick={mangaContentDelegate}>
                 {
                     images?.map((el, idx) => {
                         if (idx+1 === currentChapter.currImg) {

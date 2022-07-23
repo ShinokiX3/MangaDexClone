@@ -1,0 +1,90 @@
+.wrapp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    input {
+        margin-top: 0px;
+    }
+    div {
+        display: flex;
+        p {
+            font-size: 15pt; 
+            margin-left: 10px;
+        }
+    }
+}
+
+.modal_wrapp {
+    display: grid; 
+    gap: 1rem;
+    h1 {
+        color: #242424; 
+        font-weight: 650;
+    }
+}
+
+.applied {
+    p {
+        font-size: 14pt; 
+        color: #242424; 
+        font-weight: 570;
+    }
+}
+
+.controls {
+    display: grid; 
+    grid-template-columns: 1fr 0.20fr;
+    button {
+        width: 100%; 
+        background-color: transparent; 
+        cursor: pointer; 
+        height: 50px;
+        border: 0px;
+        font-size: 13.5pt;
+        font-weight: 600;
+    } 
+}
+
+.first_button {
+    color: white;
+    margin-right: 10px;
+    border-radius: 0.25rem;
+    background-color: #ff6740;
+}
+
+.second_button {
+    color: black;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    &:hover {
+        background-color: rgba($color: #f0f1f2, $alpha: 1);
+    }
+}
+
+.select {
+    width: 10vw;
+    p {
+        font-size: 14pt; 
+        font-weight: 600; 
+        color: #242424; 
+        margin-bottom: 5px;
+    }
+}
+
+.tags {
+    display: grid; 
+    gap: 15px;
+    .tag {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        h3 { 
+            color: #242424;
+            margin-bottom: 5px;
+            font-size: 14pt
+        }
+    }
+}

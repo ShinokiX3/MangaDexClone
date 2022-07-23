@@ -6,7 +6,7 @@ const ArtTab = lazy(() => import('../MangaTabs/Art/ArtTab'));
 const ChaptersTab = lazy(() => import('../MangaTabs/Chapters/ChaptersTab'));
 const RelatedTab = lazy(() => import('../MangaTabs/Related/RelatedTab'));
 
-const MangaContent = memo(({ mangaId = '', mangaInfo = {} }) => {
+const MangaContent = memo(({ mangaId = '' }) => {
     const [currentTab, setCurrentTab] = useState('Chapters');
 
     const handleTabs = (e) => {
@@ -27,25 +27,23 @@ const MangaContent = memo(({ mangaId = '', mangaInfo = {} }) => {
             </div>
             <div className="variable-content">
             <Suspense fallback={<Spinner customStyle={{width: '30px', height: '30px'}} />}>
-                <ChangeTab currentTab={currentTab} mangaId={mangaId} mangaInfo={mangaInfo} />
+                <ChangeTab currentTab={currentTab} mangaId={mangaId} />
             </Suspense>
             </div>
         </div>
     );
 });
 
-const ChangeTab = memo(({ currentTab, mangaId, mangaInfo }) => {
-    const selectors = useMemo(() => ['colored', 'preserialization', 'doujinshi'], []);
-
+const ChangeTab = memo(({ currentTab, mangaId }) => {
     switch(currentTab) {
         case 'Chapters':
-            return <ChaptersTab mangaId={mangaId} mangaInfo={mangaInfo} />;
+            return <ChaptersTab mangaId={mangaId} />;
         case 'Art':
             return <ArtTab mangaId={mangaId} />;
         case 'Related':
-            return <RelatedTab mangaRelations={filterSomeAttributes(mangaInfo?.data?.relationships, selectors)} />;
+            return <RelatedTab />;
         default: 
-            return <ChaptersTab mangaId={mangaId} mangaInfo={mangaInfo} />;
+            return <ChaptersTab mangaId={mangaId} />;
     }
 });
 

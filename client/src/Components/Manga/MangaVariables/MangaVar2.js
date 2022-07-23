@@ -18,8 +18,7 @@ const MangaVar2 = ({ manga }) => {
     return (
         <div style={{display: "block"}} ref={ref}>
             <div className="manga-img-var2">
-                {/* <Img src={mangaCover} alt='' draggable={false} /> */}
-                <img src={mangaCover} alt="" draggable="false" />
+                <Img src={mangaCover} alt='' draggable={false} />
                 <div className="flag-img-var2">
                     <img src={flags[manga?.attributes?.originalLanguage]} alt="" />
                 </div>

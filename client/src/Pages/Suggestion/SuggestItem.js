@@ -1,16 +1,10 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import PageArrowLink from '../../SharedUI/PagesLinks/PageArrowLink';
 
-const SuggestItem = ({ children, title = '', handleNavigate }) => {
+const SuggestItem = ({ children, title = '', link = '' }) => {
     return (
         <div className="suggest-item">
-            <div className="suggest-name">
-                <div href="" onClick={() => handleNavigate('seasonal')}>
-                    <h1>{title}</h1>
-                    <FontAwesomeIcon icon={faArrowRight} />
-                </div>
-            </div>
+            <PageArrowLink title={title} link={link} />
             <div className="suggest-item-content">
                 { children }
             </div>

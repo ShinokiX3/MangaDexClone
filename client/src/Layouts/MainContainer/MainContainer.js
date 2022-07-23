@@ -1,12 +1,12 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import { memo, useEffect } from 'react';
 import { useObserver } from '../../Hooks/observer';
 
 const MainContainer = memo(({ children, mainClasses = '', containerClasses = '', isHeaderBlack = false }) => {
     const [observerStatus, setObserverRef] = useObserver({threshold: 0});
     
     useEffect(() => {
-        const headerTemp = document.querySelector('.header-plug');
-        setObserverRef(headerTemp);        
+        const headerPlug = document.querySelector('.header-plug');
+        setObserverRef(headerPlug);        
     }, []);
 
     useEffect(() => {

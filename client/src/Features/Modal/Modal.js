@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import './modal.scss';
 
 const Modal = memo(({active, setActive, children, styleModal = {}, styleModalContent = {}, modalContentAdd = ''}) => {
