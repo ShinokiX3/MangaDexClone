@@ -164,6 +164,13 @@ class MangaDexApi {
     getFilterTags = async() => {
         return await fetch(`${this.BaseManga}/tag`)
     }
+
+    getFilteredData = async(includeIds = [], excludeIds = [], limit = 32, offset = 0) => {
+        const includeTags = includeIds?.map(tag => `&includedTags[]=${tag}`).join('');
+        const excludeTags = excludeIds?.map(tag => `&excludedTags[]=${tag}`).join('');
+        return await fetch(`${this.BaseManga}?limit=${limit}&offset=${offset}&includes[]=cover_art&includes[]=author&includes[]=artist&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${includeTags}${excludeTags}&order[relevance]=desc`)
+    }
+    // https://api.mangadex.org/manga?limit=32&offset=0&includes[]=cover_art&includes[]=author&includes[]=artist&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&includedTags[]=f4122d1c-3b44-44d0-9936-ff7502c39ad3&includedTags[]=51d83883-4103-437c-b4b1-731cb73d786c&excludedTags[]=0a39b5a1-b235-4886-a747-1d05d216532d&excludedTags[]=b13b2a48-c720-44a9-9c77-39c9979373fb&order[relevance]=desc
 }
 
 export default new MangaDexApi();

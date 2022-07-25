@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import Card from '../../../../Features/Cards/Cards';
+import Cards from '../../../../Features/Cards/Cards';
 import { filterSomeAttributes } from '../../../../Utils/filterSomeAttributes';
 
 const RelatedTab = memo(() => {
@@ -15,7 +15,9 @@ const RelatedTab = memo(() => {
 
     return ( 
         mangaInfo.load.status === 'resolved' ?
-        <Card mangasArr={mangasArr} />
+        <Cards mangasArr={mangasArr} >
+            <p style={{fontWeight: '700', fontSize: '14.5pt', color: '#242424'}}>Related Titles</p>
+        </Cards>
         :
         null
     )

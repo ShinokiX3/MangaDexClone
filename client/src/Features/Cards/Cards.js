@@ -18,7 +18,7 @@ import { strToUpper } from '../../Utils/stringToUpperCase';
 import { filterSomeAttribute } from '../../Utils/filterAttribute';
 import CardControls from './CardControls';
 
-const Cards = memo(({ mangasArr }) => {
+const Cards = memo(({ mangasArr, children }) => {
     const [refControls, setRefControls] = useState(null);
     const [refContent, setRefContent] = useState(null);
     const [currentControl, setCurrentControl] = useState('row');
@@ -39,7 +39,7 @@ const Cards = memo(({ mangasArr }) => {
     return (
         <div className={styles.wrapp} style={{paddingBottom: '48px'}}>
             <div className={styles.controls_wrapp}>
-                <p>Related Titles</p>
+                { children }
                 <CardControls setRefControls={setRefControls} handleControls={handleControls} />
             </div>
             <div ref={setRefContent} className={styles.content}>
@@ -103,6 +103,7 @@ const CardItem = memo(({ manga, currentControl, refContent }) => {
                     <div ref={setRefTitle} className={styles.title}>
                         <div>{mangaInfo?.data?.attributes?.title?.en}</div>
                         <div className={styles.statistics}>
+                            {/* TODO: Create new component to compose these statistic's items */}
                             <Rating statistic={[]} />
                             <Follows statistic={[]} />
                             <Seen statistic={[]} />
@@ -122,7 +123,7 @@ const CardItem = memo(({ manga, currentControl, refContent }) => {
                     </div>
                     <div className={styles.main_title}>
                         {
-                            cutString(mangaInfo?.data?.attributes?.description?.en, 1000)
+                            cutString(mangaInfo?.data?.attributes?.description?.en, 600)
                         }
                     </div>
                 </div>

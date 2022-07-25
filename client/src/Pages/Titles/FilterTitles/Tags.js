@@ -1,15 +1,18 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import FilterItems from '../../../SharedUI/Filter/FilterItems';
+import { setSelectedTags } from '../../../Store/Slices/titlesSlice';
 import { strToUpper } from '../../../Utils/stringToUpperCase';
 import styles from './filter-titles.module.scss';
 
 const Tags = ({ tags = [], isFlexBox = false }) => {
+
     return (
         <div className={styles.tags} style={isFlexBox ? {display: 'flex'} : {}} >
-            {tags.map(tag => {
+            {tags?.map(tag => {
                 return (
                     <div className={styles.tag}>
-                        <h3>{strToUpper(tag.type)}</h3>
-                        <FilterItems items={tag.tags} isSpecific={isFlexBox} />
+                        <FilterItems items={tag.tags} isSpecific={isFlexBox} type={tag.type} />
                     </div>
                 )
             })}

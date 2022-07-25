@@ -24,6 +24,7 @@ const FilterTitles = ({ tags = [] }) => {
                 <input type="text" 
                     className="search-block search-input" 
                     placeholder='Search' 
+                    style={{paddingLeft: '15px'}}
                     {...filterInput} 
                 />
             </div>
@@ -33,7 +34,7 @@ const FilterTitles = ({ tags = [] }) => {
             </div>
         </div>
         <Modal active={active} setActive={setActive} styleModalContent={{width: '87vw', borderRadius: '0px'}} >
-            <FilterModal tags={tags} />
+            <FilterModal tags={tags} setActive={setActive} />
         </Modal>
         </>
     );
