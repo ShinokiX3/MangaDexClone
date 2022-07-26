@@ -1,6 +1,7 @@
 .wrapp {
     width: 100%;
     height: 100%;
+    display: grid;
 }
 
 .controls_wrapp {
@@ -52,8 +53,8 @@
 }
 
 .content_blocks {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    // gap: 1rem;
     .item_content {
         padding: 0;
         margin-bottom: 25px;
@@ -69,6 +70,10 @@
     display: grid;
     grid-template-columns: auto 1fr;
     background-color: #f0f1f2;
+
+    max-height: 214px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .cover, .cover img {
@@ -89,7 +94,7 @@
 
 .description {
     display: grid;
-    grid-template-rows: 0.25fr 0.25fr 1fr;
+    grid-template-rows: 0.25fr 0.21fr 1fr;
     margin-left: 0.5rem;
 }
 
@@ -113,13 +118,12 @@
         display: flex;
         justify-content: space-between;
         // font-size: 14pt;
-        // font-weight: 800;
     }
 }
 
 .statistics {
     display: flex;
-    font-weight: 400;
+    font-weight: 650;
     font-size: .875rem;
     div {
         align-items: center;
@@ -134,4 +138,81 @@
         padding-right: 5px;
         color: #4d4d4d;
     }
+}
+
+.flex_covers_wrapp {
+    display: flex;
+    flex-wrap: wrap;
+
+    // grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grid_blocks_wrapp {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 0.5rem;
+    column-gap: 0.5rem;
+    .name {
+        margin-bottom: 0px;
+    }
+    img {
+        height: 100%;
+        width: 100%;
+    }
+    @media (max-width: 1040px) {
+        & {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.img_settings, .alt_wrapp_settings span {
+    border-radius: 0.25rem;
+    width: inherit;
+}
+
+.alt_wrapp_settings {
+    display: flex;
+    position: relative;
+    cursor: pointer;
+
+    margin-right: 15px;
+
+    // height: 300px;
+    // width: 300px;
+   
+    width: inherit;
+    height: inherit;
+
+    // width: fit-content;
+    span {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 10%;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        background: linear-gradient(180deg,transparent,rgba(0,0,0,.8));
+        p {
+            color: white;
+            font-size: 14pt;
+            padding-bottom: 10px;
+            padding-left: 10px;
+        }
+    }
+    img {
+        width: 14.75vw;
+    }
+}
+
+.couldnt_find {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+    height: 45px; 
+    font-size: 14pt; 
+    background-color: #f0f1f2; 
+    border-radius: 0.5rem; 
 }

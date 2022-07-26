@@ -14,11 +14,11 @@ import { sortByTagsLength } from './Utils/SortByLength';
 import { sortTagsByAlphabet } from './Utils/SortByAlphabet';
 import Cards from '../../Features/Cards/Cards';
 import Select from '../../SharedUI/StyledComponents/Select/Select';
+import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
 
 const Titles = memo(() => {
     const [groupedTags, setGroupedTags] = useState([]);
     const [selected, setSelected] = useState('Best Match');
-    const [ref, setRef] = useState(null);
 
     const params = useParams();
     const titlesId = params['*'];
@@ -63,23 +63,34 @@ const Titles = memo(() => {
         }
     }, [filterTags.data]);
 
-    useEffect(() => {
-        console.log(filteredManga);
-    }, [filteredManga]);
+    // TODO: paint some tags in different colors 
 
     return (
         <MainContainer mainClasses={styles.wrapp} containerClasses={styles.container} isHeaderBlack >
             <PageArrowLink title='Advanced search' link='' arrowReDirection />        
             <FilterTitles tags={groupedTags} />
-            {filteredManga.load.status === 'resolved' ?
-                <Cards mangasArr={filteredManga.data}>
-                    <Select values={sortValues} selected={selected} setSelected={setSelected} selectTitle='Sort By' />
-                </Cards>
-                :
-                null
-            }
+            <ComponentByStatus filteredManga={filteredManga} sortValues={sortValues} selected={selected} setSelected={setSelected} />
         </MainContainer>
     );
 });
+
+const ComponentByStatus = memo(({ filteredManga, sortValues, selected, setSelected }) => {
+    switch(filteredManga.load.status) {
+        case 'loading': return (
+            <Spinner customStyle={{width: '35px', height: '35px', marginTop: '15px'}} />
+        )
+        case 'resolved': return (
+            <Cards mangasArr={filteredManga.data}>
+                <Select values={sortValues} selected={selected} setSelected={setSelected} selectTitle='Sort By' />
+            </Cards>
+        )
+        case 'error': return (
+            <div>Error...</div>
+        )
+        default: return (
+            <></>
+        )
+    }
+})
 
 export default Titles;

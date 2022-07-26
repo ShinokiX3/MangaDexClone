@@ -165,10 +165,19 @@ class MangaDexApi {
         return await fetch(`${this.BaseManga}/tag`)
     }
 
-    getFilteredData = async(includeIds = [], excludeIds = [], limit = 32, offset = 0) => {
-        const includeTags = includeIds?.map(tag => `&includedTags[]=${tag}`).join('');
-        const excludeTags = excludeIds?.map(tag => `&excludedTags[]=${tag}`).join('');
-        return await fetch(`${this.BaseManga}?limit=${limit}&offset=${offset}&includes[]=cover_art&includes[]=author&includes[]=artist&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${includeTags}${excludeTags}&order[relevance]=desc`)
+    getFilteredData = async(includeIds = [], excludeIds = [], pubDemographic = [], rating = [], status = [], title = '', limit = 32, offset = 0) => {
+    
+        // TODO: rework that three last tag types comes as one object  
+
+        const includeTags = includeIds.length > 0 ? includeIds?.map(tag => `&includedTags[]=${tag}`).join('') : '';
+        const excludeTags = excludeIds.length > 0 ? excludeIds?.map(tag => `&excludedTags[]=${tag}`).join('') : '';
+        
+        const pubDemographics = pubDemographic.length > 0 ? pubDemographic?.map(el => `&publicationDemographic[]=${el}`).join('') : ''; 
+        const contentRating = rating.length > 0 ? rating?.map(el => `&contentRating[]=${el}`).join('') : ''; 
+        const statusElems = status.length > 0 ? status?.map(el => `&status[]=${el}`).join('') : ''; 
+
+        console.log(includeTags);
+        return await fetch(`${this.BaseManga}?limit=${limit}&offset=${offset}&includes[]=cover_art&includes[]=author&includes[]=artist${contentRating}${statusElems}${pubDemographics}${includeTags}${excludeTags}${title.length > 0 ? `&title=${title}` : ''}&order[relevance]=desc`)
     }
     // https://api.mangadex.org/manga?limit=32&offset=0&includes[]=cover_art&includes[]=author&includes[]=artist&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&includedTags[]=f4122d1c-3b44-44d0-9936-ff7502c39ad3&includedTags[]=51d83883-4103-437c-b4b1-731cb73d786c&excludedTags[]=0a39b5a1-b235-4886-a747-1d05d216532d&excludedTags[]=b13b2a48-c720-44a9-9c77-39c9979373fb&order[relevance]=desc
 }

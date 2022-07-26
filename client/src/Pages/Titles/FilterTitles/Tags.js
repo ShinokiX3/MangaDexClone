@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import FilterItems from '../../../SharedUI/Filter/FilterItems';
-import { setSelectedTags } from '../../../Store/Slices/titlesSlice';
-import { strToUpper } from '../../../Utils/stringToUpperCase';
 import styles from './filter-titles.module.scss';
 
 const Tags = ({ tags = [], isFlexBox = false }) => {

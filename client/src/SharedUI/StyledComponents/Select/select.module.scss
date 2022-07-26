@@ -47,7 +47,7 @@
         position: absolute;
         right: 5%;
         top: calc(50% - 10px);
-        transition: all 0.4s ease;
+        transition: transform 0.2s ease;
     }
 }
 
@@ -60,6 +60,7 @@
     max-height: 50vh;
     overflow-y: auto;
     border: 1px solid transparent;
+    z-index: 2030;
     div {
         width: calc(100% - 15px);
         height: 40px;

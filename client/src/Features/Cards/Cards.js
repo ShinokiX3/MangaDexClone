@@ -1,27 +1,37 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import MangaDexApi from '../../Services/MangaDexApi';
 import styles from './card.module.scss';
 
-import TagsStatus from '../../SharedUI/Statistics/TagsStatus/TagsStatus';
-import Rating from '../../SharedUI/Statistics/Rating/Rating';
-import Follows from '../../SharedUI/Statistics/Follows/Follows';
-import Seen from '../../SharedUI/Statistics/Seen/Seen';
-import Comments from '../../SharedUI/Statistics/Comments/Comments';
-import MangaStatus from '../../Components/Manga/MangaStatus';
-
 // import { BlocksIcon, EaseRowIcon, RowIcon } from '../../Assets/Svg/CardTypes';
 
-import Img from '../../SharedUI/StyledComponents/Img/Img';
-
-import { cutString } from '../../Utils/cutString';
-import { strToUpper } from '../../Utils/stringToUpperCase';
 import { filterSomeAttribute } from '../../Utils/filterAttribute';
 import CardControls from './CardControls';
+import Cover from '../../SharedUI/StyledComponents/Cover/Cover';
+import Card from './Card';
 
 const Cards = memo(({ mangasArr, children }) => {
     const [refControls, setRefControls] = useState(null);
     const [refContent, setRefContent] = useState(null);
     const [currentControl, setCurrentControl] = useState('row');
+
+    useEffect(() => {
+        if (refContent) {
+            if (currentControl === 'row') {                
+                refContent.classList.remove(styles.content_blocks);
+                refContent.classList.remove(styles.flex_covers_wrapp);
+                refContent.classList.remove(styles.grid_blocks_wrapp);
+            }
+            if (currentControl === 'e-row') {
+                refContent.classList.remove(styles.content_blocks);
+                refContent.classList.remove(styles.flex_covers_wrapp);
+                refContent.classList.add(styles.grid_blocks_wrapp);
+            }
+            if (currentControl === 'blocks') {
+                refContent.classList.remove(styles.grid_blocks_wrapp);
+                refContent.classList.add(styles.flex_covers_wrapp);
+            }
+        }    
+    }, [currentControl]);
 
     const handleControls = (e) => {
         if (refControls) {
@@ -43,21 +53,22 @@ const Cards = memo(({ mangasArr, children }) => {
                 <CardControls setRefControls={setRefControls} handleControls={handleControls} />
             </div>
             <div ref={setRefContent} className={styles.content}>
-                {
+                {mangasArr.length > 0 ?
                     mangasArr.map(manga => manga !== undefined ? 
-                        <CardItem manga={manga} currentControl={currentControl} refContent={refContent} /> : null
+                        <CardItem manga={manga} currentControl={currentControl} /> : null
                     )
+                    :
+                    <div className={styles.couldnt_find} style={{width: '100%', height: '50px', backgroundColor: '#f0f1f2', borderRadius: '0.5rem', fontSize: '14pt', textAlign: 'center'}}>No Data Found</div>
                 }
             </div>
         </div>
     );
 });
 
-const CardItem = memo(({ manga, currentControl, refContent }) => {
+const CardItem = memo(({ manga, currentControl }) => {
     const [mangaInfo, setMangaInfo] = useState({});
-    const [refTitle, setRefTitle] = useState(null);
+    const [blockView, setBlockView] = useState(false);
     const [refCover, setRefCover] = useState(null);
-    const [refDescription, setRefDescription] = useState(null);
 
     useEffect(() => {
         if (manga) {
@@ -69,67 +80,47 @@ const CardItem = memo(({ manga, currentControl, refContent }) => {
     }, [manga]);
 
     useEffect(() => {
-        if (refTitle) {
-            if (currentControl === 'row') {
-                refDescription.classList.remove(styles.disable);
-                refContent.classList.remove(styles.content_blocks);
-                refTitle.classList.remove(styles.title_e_row);
-                refCover.classList.remove(styles.cover_e_row);
-            }
-            if (currentControl === 'e-row') {
-                refDescription.classList.remove(styles.disable);
-                refContent.classList.remove(styles.content_blocks);
-                refTitle.classList.add(styles.title_e_row);
-                refCover.classList.add(styles.cover_e_row);
-            }
-            if (currentControl === 'blocks') {
-                refDescription.classList.add(styles.disable);
-                refContent.classList.add(styles.content_blocks);
-            }
-        }    
-    }, [currentControl]);
+        console.log(blockView);
+    }, [blockView]);
 
     return (
-        <div className={styles.item}>
-            <p className={styles.name}>{strToUpper(manga.related)}</p>
-            <div className={styles.item_content}>
-                <div ref={setRefCover} className={styles.cover}>
-                    <Img 
-                        src={`https://uploads.mangadex.org/covers/${mangaInfo?.data?.id}/${filterSomeAttribute(mangaInfo?.data?.relationships, 'cover_art', 'fileName')}`} 
-                        alt='' 
-                    />
-                </div>
-                <div ref={setRefDescription} className={styles.description}>
-                    <div ref={setRefTitle} className={styles.title}>
-                        <div>{mangaInfo?.data?.attributes?.title?.en}</div>
-                        <div className={styles.statistics}>
-                            {/* TODO: Create new component to compose these statistic's items */}
-                            <Rating statistic={[]} />
-                            <Follows statistic={[]} />
-                            <Seen statistic={[]} />
-                            <Comments statistic={[]} />
-                            <MangaStatus 
-                                status={mangaInfo?.data?.attributes?.status} 
-                                styles={{textStyles: { fontSize: '.9rem' }, blockStyles: {padding: '5.5px 10px'}}}
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <TagsStatus 
-                            tags={mangaInfo?.data?.attributes?.tags} 
-                            amount={20}
-                            customStyles={{backgroundColor: 'white'}}
-                        />
-                    </div>
-                    <div className={styles.main_title}>
-                        {
-                            cutString(mangaInfo?.data?.attributes?.description?.en, 600)
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ChooseCardViewType type={currentControl} manga={manga} mangaInfo={mangaInfo} setRefCover={setRefCover} />
     )
 });
+
+const ChooseCardViewType = ({ type, manga, mangaInfo, setRefCover, setRefTitle, setRefDescription }) => {
+    
+    switch(type) {
+        case 'row': return (
+            <Card 
+                manga={manga} 
+                mangaInfo={mangaInfo} 
+                setRefCover={setRefCover} 
+            />
+        )
+        case 'e-row': return (
+            <Card 
+                manga={manga} 
+                mangaInfo={mangaInfo} 
+                setRefCover={setRefCover} 
+                setRefTitle={setRefTitle} 
+                setRefDescription={setRefDescription} 
+                refCoverStyle={styles.cover_e_row}
+                refTitleStyle={styles.title_e_row}
+            />
+        )
+        case 'blocks': return (
+            <Cover
+                src={`https://uploads.mangadex.org/covers/${mangaInfo?.data?.id}/${filterSomeAttribute(mangaInfo?.data?.relationships, 'cover_art', 'fileName')}`}
+                alt={''}
+                stylesList={{height: '360px', width: '250px'}}
+                classLists={{wrapp: styles.alt_wrapp_settings, img: styles.img_settings}}
+            >
+                <span><p>{mangaInfo?.data?.attributes?.title?.en}</p></span>
+            </Cover>
+        )
+        default: return <></>
+    }
+}
 
 export default Cards;

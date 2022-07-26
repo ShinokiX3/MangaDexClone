@@ -22,9 +22,9 @@ export const fetchFilterTags = createAsyncThunk(
 
 export const fetchFilteredData = createAsyncThunk(
     'title/fetchFilteredData',
-    async function({includeIds = [], excludeIds = []}, {rejectWithValue, dispatch}) {
+    async function({includeIds = [], excludeIds = [], pubDemographic = [], rating = [], status = [], title = ''}, {rejectWithValue, dispatch}) {
         try {
-            const response = await MangaDexApi.getFilteredData(includeIds, excludeIds);
+            const response = await MangaDexApi.getFilteredData(includeIds, excludeIds, pubDemographic, rating, status, title);
 
             if (!response.ok) {
                 throw new Error('Something is going wrong...');

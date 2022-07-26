@@ -46,23 +46,49 @@ const FilterModal = ({ tags = [], setActive }) => {
         dispatch(setSelectedTags(newObj));
     }
 
+    // TODO: create other way to compose, or function that will be compiling these tags values
+
     const handleSearch = () => {
         const includeIds = [];
         const excludeIds = [];
 
+        const pubDemographic = [];
+        const rating = [];
+        const status = []; 
+
         selectedTags.forEach(el => {
             el.tags.forEach(tag => {
-                if (tag?.status === 'include') {
+                if (tag?.status === 'include' && tag?.id) {
                     includeIds.push(tag?.id);
                 }
-                if (tag?.status === 'exclude') {
+                if (tag?.status === 'exclude' && tag?.id) {
                     excludeIds.push(tag?.id);
                 }
             })
+            if (el.type === 'Demographic') {
+                pubDemographic.push(...el.tags.map(tag => tag.value.toLowerCase()));
+            }
+            if (el.type === 'Content Rating') {
+                rating.push(...el.tags.map(tag => tag.value.toLowerCase()));
+            }
+            if (el.type === 'Publication Status') {
+                status.push(...el.tags.map(tag => tag.value.toLowerCase()));
+            }
         })
         
-        dispatch(fetchFilteredData({includeIds, excludeIds}));
+        dispatch(fetchFilteredData({includeIds, excludeIds, pubDemographic, rating, status}));
         setActive(false);
+    }
+
+    const handleReset = () => {
+        const includeIds = [];
+        const excludeIds = [];
+
+        const pubDemographic = [];
+        const rating = [];
+        const status = []; 
+
+        dispatch(fetchFilteredData({includeIds, excludeIds, pubDemographic, rating, status}));
     }
     
     return (
@@ -88,7 +114,7 @@ const FilterModal = ({ tags = [], setActive }) => {
             </div>
             <div className={styles.controls}>
                 <div className={styles.first_button}><button onClick={handleSearch}>Search</button></div>
-                <div className={styles.second_button}><button>Reset Filters</button></div>
+                <div className={styles.second_button}><button onClick={handleReset}>Reset Filters</button></div>
             </div>
             <hr style={{margin: '0.25rem 0px', borderTop: '1px solid #e5e7eb'}}></hr>
             <div className={styles.select}>
