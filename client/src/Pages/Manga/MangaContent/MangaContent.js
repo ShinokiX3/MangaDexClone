@@ -1,6 +1,6 @@
-import React, { lazy, memo, Suspense, useMemo, useState } from 'react';
+import React, { lazy, memo, Suspense, useState } from 'react';
+import Tabs from '../../../Features/Tabs/Tabs';
 import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
-import { filterSomeAttributes } from '../../../Utils/filterSomeAttributes';
 
 const ArtTab = lazy(() => import('../MangaTabs/Art/ArtTab'));
 const ChaptersTab = lazy(() => import('../MangaTabs/Chapters/ChaptersTab'));
@@ -20,15 +20,11 @@ const MangaContent = memo(({ mangaId = '' }) => {
 
     return (
         <div className="content">
-            <div className="selectors" onClick={handleTabs}>
-                <span className="select-tab active">Chapters</span>
-                <span className="select-tab">Art</span>
-                <span className="select-tab">Related</span>
-            </div>
+            <Tabs handleTabs={handleTabs} />
             <div className="variable-content">
-            <Suspense fallback={<Spinner customStyle={{width: '30px', height: '30px'}} />}>
-                <ChangeTab currentTab={currentTab} mangaId={mangaId} />
-            </Suspense>
+                <Suspense fallback={<Spinner customStyle={{width: '30px', height: '30px'}} />}>
+                    <ChangeTab currentTab={currentTab} mangaId={mangaId} />
+                </Suspense>
             </div>
         </div>
     );

@@ -4,12 +4,16 @@ import MangaDexApi from '../../../Services/MangaDexApi';
 import MangaStatus from '../../Manga/MangaStatus';
 import { Comments, Follows, Rating, Seen } from '../../../SharedUI/Statistics';
 import Img from '../../../SharedUI/StyledComponents/Img/Img';
+import avatar from '../../../Assets/Images/avatar.png';
 import './searchPannel.scss';
 import { filterSomeAttribute } from '../../../Utils/filterAttribute';
+import MangaItem from '../../../Features/SearchItems/MangaItem';
 
 const SearchItem = ({item, type, setActive}) => {
     const [data, setData] = useState({title: '', img: '', status: ''});
     const navigate = useNavigate();
+
+    console.log(item);
     
     useEffect(() => {
         (async() => {
@@ -20,11 +24,9 @@ const SearchItem = ({item, type, setActive}) => {
                 imgUrl = /undefined$/gi.test(imgUrl) ? 'https://desu.shikimori.one/assets/globals/missing_x48.jpg' : imgUrl;
                 setData({title: info?.data?.attributes?.title?.en, img: imgUrl, status: info?.data?.attributes?.status});
             } else if (type === 'Group') {
-                info = await MangaDexApi.getGroupInfo(item?.id);
-                setData({title: info?.data?.attributes?.name, img: 'https://mangadex.org/avatar.png'});
+                setData({title: item?.attributes?.name, img: avatar});
             } else {
-                info = await MangaDexApi.getAuthorInfo(item?.id);
-                setData({title: info?.data?.attributes?.name, img: 'https://mangadex.org/avatar.png'});
+                setData({title: item?.attributes?.name, img: avatar});
             }
         })()
     }, [item])
@@ -32,13 +34,18 @@ const SearchItem = ({item, type, setActive}) => {
     const handleSearchItem = () => {
         navigate(`/manga/${item?.id}`);
         setActive(false);
-        document.location.reload();
-        // Временное решение, не отрисовывается страница
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "0px";
+    }
+
+    const handleUser = () => {
+        navigate(`/user/${item?.id}`);
+        setActive(false);
     }
 
     return (
         <div className={type === 'Manga' ? "sch-item-block" : ( type === 'Group' ? "sch-item-block srch-group-block" : "sch-item-block srch-author-block")} 
-            onClick={handleSearchItem}
+            onClick={type === 'Manga' ? handleSearchItem : handleUser}
         >
             {
                 type === 'Manga' ?
@@ -49,22 +56,12 @@ const SearchItem = ({item, type, setActive}) => {
                 <img src={data.img} alt="title" className="img-srch" />
             }
             <div className="title-srch">
-                <div>{data.title}</div>
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    {
-                        data?.status ? <MangaStatus status={data?.status} /> : true 
-                    }
-                    {
-                        type !== 'Manga' ? null 
-                        :
-                        <div className="search-modal-statistics" style={{display: 'flex'}}>
-                            <Rating statistic={[]} />
-                            <Follows statistic={[]} />
-                            <Seen statistic={[]} />
-                            <Comments statistic={[]} />
-                        </div>
-                    }
-                </div> 
+                <div>{data.title ?? 'Untitled'}</div>
+                {
+                    type === 'Manga' ? <MangaItem status={data?.status} />
+                    :
+                    null
+                }
             </div>
         </div>
     );

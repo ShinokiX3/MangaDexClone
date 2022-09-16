@@ -9,7 +9,6 @@ export const useObserver = (options) => {
             if (!entry.isIntersecting) {
                 setObserveStatus(true);
             } else {
-                console.log('inn');
                 setObserveStatus(false);
             }
         }, options);

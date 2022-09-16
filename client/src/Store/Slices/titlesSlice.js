@@ -22,9 +22,9 @@ export const fetchFilterTags = createAsyncThunk(
 
 export const fetchFilteredData = createAsyncThunk(
     'title/fetchFilteredData',
-    async function({includeIds = [], excludeIds = [], pubDemographic = [], rating = [], status = [], title = ''}, {rejectWithValue, dispatch}) {
+    async function({includeIds = [], excludeIds = [], pubDemographic = [], rating = [], status = [], title = '', order = '', mangaIds = []}, {rejectWithValue, dispatch}) {
         try {
-            const response = await MangaDexApi.getFilteredData(includeIds, excludeIds, pubDemographic, rating, status, title);
+            const response = await MangaDexApi.getFilteredData(includeIds, excludeIds, pubDemographic, rating, status, title, order, mangaIds);
 
             if (!response.ok) {
                 throw new Error('Something is going wrong...');
@@ -37,7 +37,38 @@ export const fetchFilteredData = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-)
+);
+
+const selectedTagsInitial = [
+    {
+        type: 'Demographic',
+        tags: []
+    },
+    {
+        type: 'Content Rating',
+        tags: []
+    },
+    {
+        type: 'Publication Status',
+        tags: []
+    },
+    {
+        type: 'content',
+        tags: []
+    },
+    {
+        type: 'format',
+        tags: []
+    },
+    {
+        type: 'genre',
+        tags: []
+    },
+    {
+        type: 'theme',
+        tags: []
+    }
+]
 
 const initialState = {
     filterTags: {
@@ -55,36 +86,20 @@ const initialState = {
         data: null
     },
     selectedTags: {
-        data: [
-        {
-            type: 'Demographic',
-            tags: []
+        data: [...selectedTagsInitial]
+    },
+    title: {
+        data: ''
+    },
+    order: {
+        data: 'relevance.desc'
+    },
+    ids: {
+        load: {
+            status: 'loading',
+            error: null
         },
-        {
-            type: 'Content Rating',
-            tags: []
-        },
-        {
-            type: 'Publication Status',
-            tags: []
-        },
-        {
-            type: 'content',
-            tags: []
-        },
-        {
-            type: 'format',
-            tags: []
-        },
-        {
-            type: 'genre',
-            tags: []
-        },
-        {
-            type: 'theme',
-            tags: []
-        },
-        ]
+        data: []
     }
 }
 
@@ -114,9 +129,25 @@ const titleSlice = createSlice({
             state.filteredData.data = action.payload;
         },
         setSelectedTags(state, action) {
-            // state.selectedTags.data = [...state.selectedTags.data, action.payload];
             const index = state.selectedTags.data.findIndex(val => val.type === action.payload.type);
             state.selectedTags.data[index].tags = action.payload.tags;
+        },
+        setSearchValue(state, action) {
+            state.title.data = action.payload;
+        },
+        setOrderType(state, action) {
+            state.order.data = action.payload;
+        },
+        resetSelectedTags(state, action) {
+            state.selectedTags.data = [...selectedTagsInitial];
+        },
+        setMangaIds(state, action) {
+            state.ids.data = [...action.payload];
+            state.ids.load.status = 'resolved';
+        },
+        setMangaIdsToInitial(state, action) {
+            state.ids.data = [];
+            state.ids.load.status = 'loading';
         }
     },
     extraReducers: {
@@ -130,6 +161,6 @@ const titleSlice = createSlice({
     }
 })
 
-export const { setFilterTags, setSelectedTags, setFilteredData } = titleSlice.actions;
+export const { setFilterTags, setSelectedTags, setFilteredData, setSearchValue, setOrderType, resetSelectedTags, setMangaIds, setMangaIdsToInitial } = titleSlice.actions;
 
 export default titleSlice.reducer;

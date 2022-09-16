@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import MangaDexApi from '../../Services/MangaDexApi';
 import styles from './card.module.scss';
 
@@ -54,8 +54,8 @@ const Cards = memo(({ mangasArr, children }) => {
             </div>
             <div ref={setRefContent} className={styles.content}>
                 {mangasArr.length > 0 ?
-                    mangasArr.map(manga => manga !== undefined ? 
-                        <CardItem manga={manga} currentControl={currentControl} /> : null
+                    mangasArr.map((manga, index) => manga !== undefined ? 
+                        <CardItem key={index} manga={manga} currentControl={currentControl} /> : null
                     )
                     :
                     <div className={styles.couldnt_find} style={{width: '100%', height: '50px', backgroundColor: '#f0f1f2', borderRadius: '0.5rem', fontSize: '14pt', textAlign: 'center'}}>No Data Found</div>
@@ -67,7 +67,6 @@ const Cards = memo(({ mangasArr, children }) => {
 
 const CardItem = memo(({ manga, currentControl }) => {
     const [mangaInfo, setMangaInfo] = useState({});
-    const [blockView, setBlockView] = useState(false);
     const [refCover, setRefCover] = useState(null);
 
     useEffect(() => {
@@ -79,17 +78,12 @@ const CardItem = memo(({ manga, currentControl }) => {
         }
     }, [manga]);
 
-    useEffect(() => {
-        console.log(blockView);
-    }, [blockView]);
-
     return (
         <ChooseCardViewType type={currentControl} manga={manga} mangaInfo={mangaInfo} setRefCover={setRefCover} />
     )
 });
 
 const ChooseCardViewType = ({ type, manga, mangaInfo, setRefCover, setRefTitle, setRefDescription }) => {
-    
     switch(type) {
         case 'row': return (
             <Card 

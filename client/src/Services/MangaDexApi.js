@@ -29,7 +29,6 @@ class MangaDexApi {
     getSeasonalInfo = async (mangasIds) => {
         const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
         return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=60`)
-            // .then(data => data.json())
     }
 
     getMangaChaptersFeed = async (mangaId, limit = 700) => {
@@ -80,14 +79,6 @@ class MangaDexApi {
         return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art${ids}&limit=24&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`)
     }
 
-    // getLatestUpdateInfo = async (mangasIds) => {
-    //     const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
-    //     return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=60`)
-    //         .then(data => data.json())
-    // }
-
-    // Chapters requests
-
     getInfoAboutChapter = async (chapters) => {
         return await Promise.all(chapters.map(async (el) => {
             return await fetch(`${this.BaseChapter}/${el}`)
@@ -114,10 +105,9 @@ class MangaDexApi {
         return await fetch(`${this.BaseGroup}/${groupId}`)
             .then(data => data.json());
     }
-    // Cutsom lists requests
 
     getSeasonal = async() => {
-        return await fetch(`https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user`)
+        return await fetch(`https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`)
     }
 
     getRecentlyAdded = async() => {
@@ -130,8 +120,6 @@ class MangaDexApi {
             .then(data => data.json())
     } 
 
-    // Author requests
-    
     getSearcedAuthor = async (title) => {
         return await fetch(`${this.BaseAuthor}?name=${title}`)
             .then(data => data.json())
@@ -140,8 +128,6 @@ class MangaDexApi {
     getAuthorInfo = async(authorId) => {
         return await fetch(`${this.BaseAuthor}/${authorId}/`)
     }
-
-    // Group requests
 
     getSearcedGroup = async (title) => {
         return await fetch(`${this.BaseGroup}?name=${title}`)
@@ -155,8 +141,6 @@ class MangaDexApi {
         }));
     }
 
-    // Statistics
-
     getMangaStatistics = async(mangaId) => {
         return await fetch(`${this.BaseStatistics}/manga/${mangaId}`)
     }
@@ -165,7 +149,7 @@ class MangaDexApi {
         return await fetch(`${this.BaseManga}/tag`)
     }
 
-    getFilteredData = async(includeIds = [], excludeIds = [], pubDemographic = [], rating = [], status = [], title = '', limit = 32, offset = 0) => {
+    getFilteredData = async(includeIds = [], excludeIds = [], pubDemographic = [], rating = [], status = [], title = '', order = '', mangaIds = [], limit = 32, offset = 0) => {
     
         // TODO: rework that three last tag types comes as one object  
 
@@ -176,10 +160,17 @@ class MangaDexApi {
         const contentRating = rating.length > 0 ? rating?.map(el => `&contentRating[]=${el}`).join('') : ''; 
         const statusElems = status.length > 0 ? status?.map(el => `&status[]=${el}`).join('') : ''; 
 
-        console.log(includeTags);
-        return await fetch(`${this.BaseManga}?limit=${limit}&offset=${offset}&includes[]=cover_art&includes[]=author&includes[]=artist${contentRating}${statusElems}${pubDemographics}${includeTags}${excludeTags}${title.length > 0 ? `&title=${title}` : ''}&order[relevance]=desc`)
+        const tmp = order.length > 0 ? order?.split('.') : [];
+        const orderValue = order.length > 0 ? `&order[${tmp[0]}]=${tmp[1]}` : `&order[relevance]=desc`;
+
+        const ids = mangaIds.length > 0 ? mangaIds.reduce((accu, curr) => `&ids[]=${curr}` + accu, '') : '';
+
+        return await fetch(`${this.BaseManga}?limit=${limit}&offset=${offset}&includes[]=cover_art&includes[]=author&includes[]=artist${contentRating}${statusElems}${pubDemographics}${includeTags}${excludeTags}${title.length > 0 ? `&title=${title}` : ''}${orderValue}${ids}`)
     }
-    // https://api.mangadex.org/manga?limit=32&offset=0&includes[]=cover_art&includes[]=author&includes[]=artist&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&includedTags[]=f4122d1c-3b44-44d0-9936-ff7502c39ad3&includedTags[]=51d83883-4103-437c-b4b1-731cb73d786c&excludedTags[]=0a39b5a1-b235-4886-a747-1d05d216532d&excludedTags[]=b13b2a48-c720-44a9-9c77-39c9979373fb&order[relevance]=desc
+
+    getRandomManga = async() => {
+        return await fetch(`https://api.mangadex.org/manga/random?contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&includes[]=artist&includes[]=author&includes[]=cover_art`).then(data => data.json());
+    }
 }
 
 export default new MangaDexApi();

@@ -19,12 +19,12 @@ const Select = memo(({ values = [], selected, setSelected, selectTitle = '' }) =
         <div ref={refSelect} className={styles.wrapp} onClick={handleSelect}>
             <div className={styles.select}>
                 <p className={styles.title}>{selectTitle}</p>
-                <p className={`${styles.selected} ${!selectTitle ? styles.centered : ''}`}>{selected}</p>
+                <p className={`${styles.selected} ${!selectTitle ? styles.centered : ''}`}>{selected.name}</p>
                 <SelectIcon />
                 <div className={styles.content}>
                     {
                         values.map(val => (
-                            <div onClick={() => handleSelected(val)}>{val}</div>
+                            <div key={val.name ?? val} onClick={() => handleSelected(val)}>{ val.name }</div>
                         ))
                     }
                 </div>

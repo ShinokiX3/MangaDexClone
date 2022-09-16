@@ -1,0 +1,32 @@
+.selectors {
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #f0f1f2;
+    padding: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 2px;
+    span {
+        color: #808080;
+        border-radius: 2px;
+        font-size: 15pt;
+        font-weight: bold;
+        min-height: 32px;
+        margin-right: 15px;
+        &:last-child{
+            margin-right: 0;
+        }
+        padding: 4px 8px 4px 8px;
+        cursor: pointer;
+        position: relative;
+        transition: all .5s cubic-bezier(.2,.6,.1,1.2),color .2s cubic-bezier(.2,.6,.1,1.2);
+        opacity: 0.4;
+    }
+    span.active {
+        color: white;
+        background-color: #242424;
+        opacity: 1;
+    }
+}

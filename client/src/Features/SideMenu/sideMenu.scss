@@ -47,13 +47,23 @@
     height: 1.75rem;
     display: flex;
     align-items: center;
+    transition: background-color 0.2s ease;
     a {
         padding-left: 20px;
         width: calc(100% - 20px);
     }
     &:hover {
-        background-color: rgb(235, 235, 235);
+        background-color: rgb(211, 211, 211);
         border-radius: 0.5ch;
+    }
+}
+
+.active-link {
+    color: white;
+    background-color: #ff6740;
+    border-radius: 0.24rem;   
+    &:hover {
+        background-color: rgba($color: #ff6740, $alpha: 0.8);   
     }
 }
 
@@ -88,6 +98,3 @@
 .side-shadow {
     box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.2);
 }
-
-// transform: translate(-300px, 0px);
-// transition:

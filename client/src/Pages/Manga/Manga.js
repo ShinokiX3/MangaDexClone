@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './mangaPage.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,14 +11,10 @@ import MangaContent from './MangaContent/MangaContent';
 import MainContainer from '../../Layouts/MainContainer/MainContainer';
 
 const Manga = memo(() => {
-    const navigate = useNavigate();
-    
     const params = useParams();
     const mangaId = useMemo(() => params.id, [params])
 
     const dispatch = useDispatch();
-    const manga = useSelector(state => state.manga);
-
     const mangaInfo = useSelector(state => state.manga.mangaInfo);
 
     useEffect(() => {

@@ -26,8 +26,6 @@ const MangaHeader = memo(({ mangaInfo = {} }) => {
         }
     }, [mangaInfo])
 
-    console.log(mangaInfo.data);
-
     return (
         <>
             <Cover 

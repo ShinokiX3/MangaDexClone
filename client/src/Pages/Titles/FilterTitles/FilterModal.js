@@ -1,11 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import FilterItems from '../../../SharedUI/Filter/FilterItems';
+import { useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';         
 import FilterItemsViev from '../../../SharedUI/Filter/FilterItemsViev';
 import Select from '../../../SharedUI/StyledComponents/Select/Select';
-import { fetchFilteredData, setSelectedTags } from '../../../Store/Slices/titlesSlice';
+import { resetSelectedTags, setSelectedTags } from '../../../Store/Slices/titlesSlice';
 
 import styles from './filter-titles.module.scss';
+import filterStyles from '../../../SharedUI/Filter/filter-items.module.scss'
+
 import stylesFilter from '../../../SharedUI/Filter/filter-items.module.scss';
 
 import Tags from './Tags';
@@ -49,46 +50,20 @@ const FilterModal = ({ tags = [], setActive }) => {
     // TODO: create other way to compose, or function that will be compiling these tags values
 
     const handleSearch = () => {
-        const includeIds = [];
-        const excludeIds = [];
-
-        const pubDemographic = [];
-        const rating = [];
-        const status = []; 
-
-        selectedTags.forEach(el => {
-            el.tags.forEach(tag => {
-                if (tag?.status === 'include' && tag?.id) {
-                    includeIds.push(tag?.id);
-                }
-                if (tag?.status === 'exclude' && tag?.id) {
-                    excludeIds.push(tag?.id);
-                }
-            })
-            if (el.type === 'Demographic') {
-                pubDemographic.push(...el.tags.map(tag => tag.value.toLowerCase()));
-            }
-            if (el.type === 'Content Rating') {
-                rating.push(...el.tags.map(tag => tag.value.toLowerCase()));
-            }
-            if (el.type === 'Publication Status') {
-                status.push(...el.tags.map(tag => tag.value.toLowerCase()));
-            }
-        })
-        
-        dispatch(fetchFilteredData({includeIds, excludeIds, pubDemographic, rating, status}));
         setActive(false);
     }
 
+    // TODO: remove active styles in select items and search by close modal window
+
     const handleReset = () => {
-        const includeIds = [];
-        const excludeIds = [];
+        const tags = document.querySelectorAll('.filter-tag');
+        tags.forEach(el => { 
+            el.classList.remove(filterStyles.exclude); 
+            el.classList.remove(filterStyles.include);
+            el.classList.remove('filter-tag');
+        })
 
-        const pubDemographic = [];
-        const rating = [];
-        const status = []; 
-
-        dispatch(fetchFilteredData({includeIds, excludeIds, pubDemographic, rating, status}));
+        dispatch(resetSelectedTags());
     }
     
     return (
@@ -101,6 +76,7 @@ const FilterModal = ({ tags = [], setActive }) => {
                         tag.tags.map(item => {
                             return (
                                 <FilterItemsViev 
+                                    key={item.value}
                                     title={item.value} 
                                     include={item.status === 'include'} 
                                     exclude={item.status === 'exclude'} 
@@ -119,7 +95,7 @@ const FilterModal = ({ tags = [], setActive }) => {
             <hr style={{margin: '0.25rem 0px', borderTop: '1px solid #e5e7eb'}}></hr>
             <div className={styles.select}>
                 <p>Original Language</p>
-                <Select values={['Other', 'Something']} selected={langSelect} setSelected={setLangSelect} />
+                {/* <Select values={['Other', 'Something']} selected={langSelect} setSelected={setLangSelect} /> */}
             </div>
             <Tags tags={specificTags} isFlexBox />
             <Tags tags={tags} />

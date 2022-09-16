@@ -1,0 +1,75 @@
+.content {
+    width: calc(100% - 128px);
+    display: grid;
+    grid-template-areas: 
+        'userimage userintro'
+        'usercontrols userinfo';
+    grid-template-columns: 1fr 6fr;
+    padding: 64px;
+    padding-top: calc(64px + 3rem);
+    z-index: 5;
+    gap: 20px;
+}
+
+.userinfo {
+    grid-area: userinfo;
+    padding-top: 9rem;
+    .title {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+    .userid, .roles, .groups, .uploads {
+        font-size: 12.9pt;
+        p:first-child {
+            font-weight: 900;
+            margin-bottom: .9rem;
+        }
+        margin-bottom: 1.5rem;
+    }
+}
+
+.userintro {
+    grid-area: userintro;
+    padding-top: 9rem;
+    .title {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.userimage {
+    grid-area: userimage;
+    img {
+        border-radius: 50%;
+        border: 2px solid;
+        border-color: white;
+        width: 13rem;
+        height: auto;
+    }
+}
+
+.usercontrols {
+    grid-area: usercontrols;
+    display: flex;
+    flex-direction: column;
+    align-self:initial;
+    button {
+        min-height: 48px;
+        min-width: 95%;
+        font-weight: 500;
+        font-size: 12pt;
+        margin-bottom: 10px;
+    }
+}
+
+.userpagewrapp {
+    width: 100%;
+}
+
+.userpagecontainer {
+    width: 100%;
+}

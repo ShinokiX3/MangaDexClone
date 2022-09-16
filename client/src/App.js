@@ -8,6 +8,7 @@ import { Main, Favorites, Manga, Chapter, Singup, Singin, Suggestion } from './P
 import SideMenu from './Features/SideMenu/SideMenu';
 import SideMain from './Components/SideMain/SideMain';
 import Titles from './Pages/Titles/Titles';
+import UserPage from './Pages/User/UserPage';
 
 const App = () => {
   return (
@@ -27,7 +28,9 @@ const App = () => {
 
           <Route path='/titles/*' element={<Titles />} />
           <Route path='/manga/:id' element={<Manga />} />
+          <Route path='/user/:id' element={<UserPage />} />
           <Route path='/chapter/*' element={<Chapter />} />
+          
           <Route path='*' element={<Main />} />
         </Routes>
         </div>

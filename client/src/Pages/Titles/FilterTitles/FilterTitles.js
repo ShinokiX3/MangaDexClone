@@ -5,7 +5,8 @@ import Modal from '../../../Features/Modal/Modal';
 import FilterModal from './FilterModal';
 import { useDispatch, useSelector } from 'react-redux';
 import useDebounce from '../../../Hooks/debounce';
-import { fetchFilteredData } from '../../../Store/Slices/titlesSlice';
+import { fetchFilteredData, setSearchValue } from '../../../Store/Slices/titlesSlice';
+import useFetchByFilters from '../Hooks/useFetchByFilters';
 
 // TODO: perhaps create united component for Titles & Suggestion page controls 
 // Modal, that will be create for filter search, take to wrapp React Lazy, and when the modal closed don't load it's on the page   
@@ -14,50 +15,35 @@ const FilterTitles = memo(({ tags = [] }) => {
     const [active, setActive] = useState(false);
 
     const dispatch = useDispatch();
-    const selectedTags = useSelector(state => state.title.selectedTags.data);
     const filteredData = useSelector(state => state.title.filteredData.load);
+    const title = useSelector(state => state.title.title.data);
 
     const filterInput = useInput('');
+    const fetchByFilters = useFetchByFilters();
     const debouncedValue = useDebounce(filterInput.value, 1000, true);
 
     // TODO: create other way to compose, or function that will be compiling these tags values
 
     useEffect(() => {
+        // TODO: if data status resolved or error
         if (filteredData.status === 'resolved') {
-            handleSearch(debouncedValue);
+            dispatch(setSearchValue(debouncedValue));
         }
     }, [debouncedValue]);
 
-    const handleSearch = (title) => {
-        const includeIds = [];
-        const excludeIds = [];
+    // fetch by close modal
 
-        const pubDemographic = [];
-        const rating = [];
-        const status = []; 
+    useEffect(() => {
+        if (filteredData.status === 'resolved' && active === false) {
+            fetchByFilters();
+        }
+    }, [active])
 
-        selectedTags.forEach(el => {
-            el.tags.forEach(tag => {
-                if (tag?.status === 'include' && tag?.id) {
-                    includeIds.push(tag?.id);
-                }
-                if (tag?.status === 'exclude' && tag?.id) {
-                    excludeIds.push(tag?.id);
-                }
-            })
-            if (el.type === 'Demographic') {
-                pubDemographic.push(...el.tags.map(tag => tag.value.toLowerCase()));
-            }
-            if (el.type === 'Content Rating') {
-                rating.push(...el.tags.map(tag => tag.value.toLowerCase()));
-            }
-            if (el.type === 'Publication Status') {
-                status.push(...el.tags.map(tag => tag.value.toLowerCase()));
-            }
-        })
-
-        dispatch(fetchFilteredData({includeIds, excludeIds, pubDemographic, rating, status, title: title}));
-    }
+    useEffect(() => {
+        if (filteredData.status === 'resolved' && active === false) {
+            fetchByFilters();
+        }
+    }, [title]);
 
     const handleModal = () => {
         setActive(!active);

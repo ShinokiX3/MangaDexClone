@@ -6,8 +6,11 @@ import { setMainStatus } from '../../Store/Slices/menuSlice';
 
 import { faHouseUser, faBookmark, faBookOpen, faUserGroup, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import MangaDexApi from '../../Services/MangaDexApi';
 
 const SideMain = () => {
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const menu = useSelector(state => state.menu.mainMenu);
@@ -16,8 +19,25 @@ const SideMain = () => {
         dispatch(setMainStatus(false));
     }
 
+    const handleRandom = async(e) => {
+        e.preventDefault();
+        const randomManga = await MangaDexApi.getRandomManga();
+        navigate(`/manga/${randomManga.data.id}`);
+    }
+
+    const handleLinkClick = (e) => {
+        const target = e.target;
+        if (target.classList.contains('link')) {
+            const elems = document.querySelectorAll('.link');
+            elems.forEach(elem => {
+                elem.classList.remove('active-link');
+            });
+            target.classList.add('active-link');
+        }
+    }
+
     return (
-        <div >
+        <div onClick={handleLinkClick}>
             <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px', minWidth: '250px', justifyContent: 'center'}}>
                 <Logo handleMenu={handleMenu} ico={{side: 'right', type: 'close'}} />
             </div>
@@ -29,13 +49,13 @@ const SideMain = () => {
                 <a className="link" href="dsad">Reading History</a>
             </LinkList>
             <LinkList ico={faBookOpen} title={"Titles"}>
-                <a className="link" href="dsad">Advanced Search</a>
-                <a className="link" href="dsad">Recently Added</a>
-                <a className="link" href="dsad">Latest Updates</a>
-                <a className="link" href="dsad">Random</a>
+                <Link className="link" to="/titles">Advanced Search</Link>
+                <Link className="link" to="/titles/recently">Recently Added</Link>
+                <Link className="link" to="/titles/latest">Latest Updates DI</Link>
+                <a className="link" href='/' onClick={handleRandom}>Random</a>
             </LinkList>
             <LinkList ico={faUserGroup} title={"Community"}>
-                <a className="link" href="dsad">Groups</a>
+                <Link className="link" to="">Groups</Link>
                 <a className="link" href="dsad">Users</a>
             </LinkList>
             <LinkList ico={faThumbTack} title={"MangaLive"}>

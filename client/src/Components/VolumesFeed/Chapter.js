@@ -8,8 +8,9 @@ import { groupIcons } from '../../Assets/Svg/Groups';
 import { dateIcons } from '../../Assets/Svg/Dates';
 import { filterSomeAttribute } from '../../Utils/filterAttribute';
 import Scanlation from '../../SharedUI/Community/Scanlation/Scanlation';
+import { useNavigate } from 'react-router-dom';
 
-const Chapter = ({chapter}) => {
+const Chapter = ({ chapter, byUser = false }) => {
     const [chName, setChName] = useState('');
     const contentBlock = useRef(null);
 
@@ -23,12 +24,14 @@ const Chapter = ({chapter}) => {
 
     return (
         <div className={styles.chapters_block}>
-            <div className={styles.title}
-                onClick={() => handleChapter()}>
-                {Object.keys(chapter)[0]}
-                <div>{`>`}</div>
-            </div>
-            <div className={styles.content_wrapp} ref={contentBlock}>
+            {!byUser ? null :
+                <div className={styles.title}
+                    onClick={() => handleChapter()}>
+                    {Object.keys(chapter)[0]}
+                    <div>{`>`}</div>
+                </div>
+            }
+            <div className={styles.content_wrapp} ref={contentBlock} style={byUser ? {marginBottom: '0px'} : {}}>
                 {
                     chapter[chName]?.map((item, index) => (
                         <ChapterEl key={item?.attributes?.title + index} 
@@ -42,6 +45,13 @@ const Chapter = ({chapter}) => {
 };
 
 const ChapterEl = ({ item, index, chapter, chName }) => {
+
+    const navigate = useNavigate();
+    
+    const handleUser = (item) => {
+        navigate(`/user/${filterSomeAttribute(item?.relationships, 'user')?.id}`);
+    }
+
     return (
         <div className={styles.content}>
             <div className={index === chapter.length - 1 ? 
@@ -54,14 +64,14 @@ const ChapterEl = ({ item, index, chapter, chName }) => {
                         !(item?.attributes?.title) ? chName
                         : (item?.attributes?.title).length > 20 ? 
                         (item?.attributes?.title).substring(0, 20) + '...' 
-                        : item?.attributes?.title 
+                        : item?.attributes?.title
                     }
                 </p>
             </div>
                 <Scanlation name={filterSomeAttribute(item?.relationships, 'scanlation_group', 'name')} />
             <div className={styles.user}>
                 <img src={groupIcons.groups} alt=""></img>
-                <p style={{marginLeft: '4px'}}>
+                <p style={{marginLeft: '4px', cursor: 'pointer'}} onClick={() => handleUser(item)}>
                     {
                         filterSomeAttribute(item?.relationships, 'user', 'username')
                     }

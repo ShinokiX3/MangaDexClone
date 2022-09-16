@@ -1,7 +1,7 @@
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchFilteredData, fetchFilterTags } from '../../Store/Slices/titlesSlice';
+import { fetchFilterTags, setMangaIds, setOrderType } from '../../Store/Slices/titlesSlice';
 import styles from './titles.module.scss';
 
 import MainContainer from '../../Layouts/MainContainer/MainContainer';
@@ -12,63 +12,96 @@ import { findOutUniqGroups } from '../../Utils/groupElemsBy';
 import { compose } from '../../Utils/compose';
 import { sortByTagsLength } from './Utils/SortByLength';
 import { sortTagsByAlphabet } from './Utils/SortByAlphabet';
+
 import Cards from '../../Features/Cards/Cards';
 import Select from '../../SharedUI/StyledComponents/Select/Select';
 import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
+import useFetchByFilters from './Hooks/useFetchByFilters';
+
+import fetchTitleVariable from './Utils/fetchTitleVariable';
+import setTitle from './Utils/setTitle';
 
 const Titles = memo(() => {
-    const [groupedTags, setGroupedTags] = useState([]);
-    const [selected, setSelected] = useState('Best Match');
-
     const params = useParams();
-    const titlesId = params['*'];
+    const [groupedTags, setGroupedTags] = useState([]);
+    const [selected, setSelected] = useState({name: 'Best Match', val: 'relevance.desc'});
 
     const dispatch = useDispatch();
+    
     const filterTags = useSelector(state => state.title.filterTags);
     const filteredManga = useSelector(state => state.title.filteredData);
+    const order = useSelector(state => state.title.order.data);
+    const titleIds = useSelector(state => state.title.ids);
+
+    const fetchByFilters = useFetchByFilters();
+
+    const title = params['*'];
+    const pageTitle = useMemo(() => setTitle(title), [title])
 
     // TODO: take data from global titles page state to children component
+    
+    // TODO: take to redux's global state
 
     const sortValues = useMemo(() => [
-        'Best Match',
-        'Latest Upload',
-        'Oldest Upload',
-        'Title Ascending',
-        'Title Descending',
-        'Highest Rating',
-        'Lowest Rating',
-        'Most Follows',
-        'Fewest Follows',
-        'Recently Added',
-        'Oldest Added',
-        'Year Ascending',
-        'Year Descending'
+        {name: 'Best Match', val: 'relevance.desc'},
+        {name: 'Latest Upload', val: 'latestUploadedChapter.desc'},
+        {name: 'Oldest Upload', val: 'latestUploadedChapter.asc'},
+        {name: 'Title Ascending', val: 'title.asc'},
+        {name: 'Title Descending', val: 'title.desc'},
+        {name: 'Highest Rating', val: 'rating.desc'},
+        {name: 'Lowest Rating', val: 'rating.asc'},
+        {name: 'Most Follows', val: 'followedCount.desc'},
+        {name: 'Fewest Follows', val: 'followedCount.asc'},
+        {name: 'Recently Added', val: 'createdAt.desc'},
+        {name: 'Oldest Added', val: 'createdAt.asc'},
+        {name: 'Year Ascending', val: 'year.asc'},
+        {name: 'Year Descending', val: 'year.desc'}
     ], [])
 
     useEffect(() => {
-        dispatch(fetchFilterTags());
-        const includeIds = [];
-        const excludeIds = []; 
-        dispatch(fetchFilteredData({includeIds, excludeIds}));
+        (async() =>{
+            const data = await fetchTitleVariable(params['*']);
+            dispatch(setMangaIds(data.data.map(item => item.id) ?? []));
+        })();
     }, []);
 
     useEffect(() => {
-        if (filterTags.data) {
+        if (titleIds.load.status === 'resolved') {
+            dispatch(fetchFilterTags());
+        }
+    }, [titleIds.load.status]);
+
+    useEffect(() => {
+        if (filterTags.load.status === 'resolved') {
             compose(
                 setGroupedTags,
                 sortTagsByAlphabet,
                 sortByTagsLength,
                 findOutUniqGroups
             )(filterTags.data);
+            fetchByFilters();
         }
-    }, [filterTags.data]);
+    }, [filterTags.load.status]);
+
+    useEffect(() => {
+        dispatch(setOrderType(selected.val));
+    }, [selected]);
+
+    useEffect(() => {
+        if (filteredManga.load.status === 'resolved') {
+            fetchByFilters();
+        }
+    }, [order]);
 
     // TODO: paint some tags in different colors 
 
     return (
         <MainContainer mainClasses={styles.wrapp} containerClasses={styles.container} isHeaderBlack >
-            <PageArrowLink title='Advanced search' link='' arrowReDirection />        
-            <FilterTitles tags={groupedTags} />
+            <PageArrowLink title={pageTitle} link='' arrowReDirection />   
+            {pageTitle === 'Advanced Search' ?
+            <FilterTitles tags={groupedTags} selected={selected} />
+            :
+            null}     
             <ComponentByStatus filteredManga={filteredManga} sortValues={sortValues} selected={selected} setSelected={setSelected} />
         </MainContainer>
     );
