@@ -1,0 +1,12 @@
+.wrapp {
+    display: grid; 
+    grid-template-columns: 1fr 2.6fr;
+}
+
+@media (max-width: 900px)  {
+    .wrapp {
+        grid-template-columns: 1fr;
+    }
+}
+
+// @media (max-width: 12450px)

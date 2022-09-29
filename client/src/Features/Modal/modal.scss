@@ -1,0 +1,48 @@
+.modal-window {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);	
+    backdrop-filter: blur(4px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1030;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    transition: 0.1s all;
+
+    pointer-events: none;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 22px;
+    border-radius: 0.5ch;
+
+    transform: scale(0);
+    transition: 0.2s all;
+
+    max-width: calc(100% - 1rem); 
+    max-height: calc(100% - 5rem);
+
+    width: fit-content;
+    overflow: auto;
+}
+
+.active-modal {
+    pointer-events: all;
+}
+
+.modal-window.active-modal {
+    opacity: 1;
+    
+}
+
+.modal-content.active-modal {
+    transform: scale(1);
+}

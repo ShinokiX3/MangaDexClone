@@ -1,0 +1,65 @@
+ <Cover 
+                    src={mangaCoverUrl} 
+                    alt='manga cover' 
+                    style={{zIndex: '105', gridArea: 'manga-cover', margin: '10px', alignSelf: 'flex-start', width: '200px'}} 
+                    countryIco={mangaInfo?.data?.attributes?.originalLanguage}
+                />
+                <div className="manga-title" style={{zIndex: '105'}}>
+                    <div>
+                        <p className="main-title">{mangaInfo?.data?.attributes?.title?.en}</p>
+                        <p style={{fontSize: "1.25rem", lineHeight: "1.25rem"}}>{alternative}</p>
+                    </div>
+                    <div>
+                        {/* mangaInfo.data.attributes.author.attributes.name */}
+                        <p className='sub-title'>{}</p>
+                    </div>
+                </div>
+                <div ref={setRef} className="banner-image" style={backImage}></div>
+                <div className="introduction" style={{zIndex: '105'}}>
+                    <div className="buttons_wrapp">
+                        <button className="add-butt">
+                            <p>Add To Library</p>
+                        </button>
+                        <button className="read-butt" onClick={() => redirectToReader()}>
+                            <BookIcon />
+                            <p className="butt-with-ico">Start Reading</p>
+                        </button>
+                        <button className="report-butt">
+                            <ReportIcon />
+                        </button>
+                        <button className="share-butt">
+                            <ShareIcon />
+                        </button>
+                    </div>
+                    {/* className="manga-tags" style={{display: 'flex', alignItems: 'center'}} */}
+                    <div style={{display: 'flex', alignItems: 'center', marginTop: '15px'}}>
+                        <TagsStatus tags={manga?.mangainfo?.data?.attributes?.tags} amount={20} />
+                        <MangaStatus 
+                            status={manga?.mangainfo?.data?.attributes?.status} 
+                            additionalInfo={`Publication: ${manga?.mangainfo?.data?.attributes?.year},`}
+                            styles={{
+                                textStyles: {textTransform: 'uppercase', fontWeight: 'bold', fontSize: '12px'},
+                                blockStyles: {backgroundColor: 'transparent', marginBottom: '5px'}
+                            }}
+                        />
+                    </div>
+                    <div className="manga-statistics">
+                        <Rating statistic={statistics} />
+                        <Follows statistic={statistics} />
+                        <Seen statistic={statistics} />
+                    </div>
+                </div>
+
+
+
+    // if (currentTab === 'Chapters') {
+    //     return <ChaptersTab mangaId={mangaId} mangaInfo={mangaInfo} />
+    // } else if (currentTab === 'Art') {
+    //     return <ArtTab mangaId={mangaId} />
+    // } else {
+    //     const selectors = ['colored', 'preserialization', 'doujinshi'];
+    //     return <RelatedTab mangaRelations={filterSomeAttributes(mangaInfo?.data?.relationships, selectors)} />
+    // }
+
+    // logo.classList.remove('logo-dark');
+    // rightLinks.classList.remove('right-links_wrapp-dark');
