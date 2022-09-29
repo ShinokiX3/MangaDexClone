@@ -1,5 +1,5 @@
 import React from 'react';
-import Spinner from '../../Components/LoadComponents/Spiner/Spinner';
+import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
 
 const Favorites = () => {
     return (

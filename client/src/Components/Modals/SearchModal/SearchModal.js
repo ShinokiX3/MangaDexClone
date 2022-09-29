@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
+import useDebounce from '../../../Hooks/debounce';
 import MangaDexApi from '../../../Services/MangaDexApi';
-import Spinner from '../../LoadComponents/Spiner/Spinner';
+import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 import SearchItems from './SearchItems';
 
-const SearchModal = ({setActive}) => {
+const SearchModal = memo(({setActive}) => {
     const [value, setValue] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [searchValue, setSearchValue] = useState({
@@ -12,11 +13,27 @@ const SearchModal = ({setActive}) => {
         authors: []
     })
 
+    const debouncedValue = useDebounce(value, 400); 
+
+    useEffect(() => {
+        if (debouncedValue) {
+            searchData();
+        } else {
+            setSearchValue({
+                mangas: [],
+                groups: [],
+                authors: []
+            })
+        }
+    }, [debouncedValue]);
+
     const handleSearchInput = (e) => {
+        setIsLoading(true);
         setValue(e.target.value);
     }
 
-    const searchData = async() => {
+    async function searchData() {
+        console.log('searched data');
         const mangas = await MangaDexApi.getSearcedManga(value);
         const authors = await MangaDexApi.getSearcedAuthor(value);
         const groups = await MangaDexApi.getSearcedGroup(value);
@@ -24,22 +41,6 @@ const SearchModal = ({setActive}) => {
         setSearchValue({mangas: mangas?.data.slice(0, 5), groups: groups?.data.slice(0, 5), authors: authors?.data.slice(0, 5)})
         setIsLoading(false);
     }
-
-    useEffect(() => {
-        if (isLoading !== true) {
-            setIsLoading(true);
-            // Change useState isLoading to useMemo
-        }
-        const timeout = setTimeout(() => {
-            if (value.length >= 1) {
-                setIsLoading(true);
-                searchData();
-            }
-        }, 500)
-        return () => {
-            clearTimeout(timeout);
-        }
-    }, [value]);
 
     return (
         <div className="seach-modal">
@@ -65,6 +66,6 @@ const SearchModal = ({setActive}) => {
             }
         </div>
     );
-};
+});
 
 export default SearchModal;

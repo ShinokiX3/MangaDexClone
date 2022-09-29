@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, memo } from 'react';
 import './header.scss';
 
 import { SearchModal, LoginModal } from '../Modals';
@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setHeaderRef, setMainMenuStatus } from '../../Store/userReducer';
+import { setMainStatus } from '../../Store/Slices/menuSlice';
 
-import Modal from '../Modal/Modal';
-import Logo from '../Logo/Logo';
+import Modal from '../../Features/Modal/Modal';
+import Logo from '../../SharedUI/Logo/Logo';
 
 const Header = memo(() => {
     const [active, setActive] = useState(false);
@@ -18,54 +18,50 @@ const Header = memo(() => {
     const [ref, setRef] = useState(null);
 
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
+    const menu = useSelector(state => state.user);
 
     const handleModal = () => {
         setActive(true);
-        dispatch(setMainMenuStatus(false));
+        dispatch(setMainStatus(false));
         document.body.style.overflow = "hidden";
         document.body.style.paddingRight = "5px";
     }
 
     const handleAnouthorizeModal = () => {
         setLogModal(true);
-        dispatch(setMainMenuStatus(false));
+        dispatch(setMainStatus(false));
         document.body.style.overflow = "hidden";
         document.body.style.paddingRight = "5px";
     }
 
-    const handleMenu = (status) => {
-        dispatch(setMainMenuStatus(status));
+    const handleMenu = () => {
+        dispatch(setMainStatus(true));
     }
 
     return (
         <>
-        <div ref={setRef} className="header-block header-white">
-            <Logo handleMenu={() => handleMenu(true)} ico={{side: 'left', type: 'open'}} />
-            <div className="right-links_wrapp">
-                <div className="search-block" onClick={handleModal}>
-                    <span className="">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        Search
-                    </span>
+            <div ref={setRef} className="header-block header-white">
+                <Logo handleMenu={handleMenu} ico={{side: 'left', type: 'open'}} />
+                <div className="right-links_wrapp">
+                    <div className="search-block" onClick={handleModal}>
+                        <span className="">
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            Search
+                        </span>
+                    </div>
+                    <div className="login-block" onClick={handleAnouthorizeModal}>
+                        <FontAwesomeIcon icon={faArrowRightToBracket} />
+                    </div>
                 </div>
-                <div className="login-block" onClick={handleAnouthorizeModal}>
-                    <FontAwesomeIcon icon={faArrowRightToBracket} />
-                </div>
+                <Modal active={active} setActive={setActive}>
+                    <SearchModal setActive={setActive}/>
+                </Modal>
+                
+                <Modal active={logModal} setActive={setLogModal} styleModalContent={{position: 'fixed', top: '10%', right: '5%'}}>
+                    <LoginModal setActive={setLogModal} />
+                </Modal>
             </div>
-            <Modal active={active} 
-                setActive={setActive}
-            >
-                <SearchModal setActive={setActive}/>
-            </Modal>
-            
-            <Modal active={logModal} 
-                setActive={setLogModal} 
-                styleModalContent={{position: 'fixed', top: '10%', right: '5%'}}
-            >
-                <LoginModal setActive={setLogModal} />
-            </Modal>
-        </div>
+            <div className='header-plug' style={{postion: 'fixed', top: '0px', height: '1px'}} />
         </>
     );
 });

@@ -4,10 +4,12 @@ import styles from '../Keyvalues/keyvalues.module.scss';
 import { flags } from '../../../Assets/Svg/Flags';
 import { lanScripts } from '../../../Assets/Svg/LangScripts';
 
-const AlternativeTitles = ({ titles = [] }) => {
+const AlternativeTitles = ({ titles = [], byUser = false }) => {
     return (
         <div className={styles.alt_title_block}>
-            <div className={styles.name}>Alternative Titles</div>
+            {byUser ? null :
+                <div className={styles.name}>Alternative Titles</div>
+            }
             {
                 titles.map((item, index) => {
                     const flagName = Object.keys(item)[0].split('-');

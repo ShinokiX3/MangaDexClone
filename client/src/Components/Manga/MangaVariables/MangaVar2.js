@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { flags } from '../../../Assets/Svg/Flags';
 import MangaDexApi from '../../../Services/MangaDexApi';
-import Img from '../../StyledComponents/Img/Img';
+import Img from '../../../SharedUI/StyledComponents/Img/Img';
 import './mangaVariables.scss';
 
 const MangaVar2 = ({ manga }) => {
@@ -19,7 +19,6 @@ const MangaVar2 = ({ manga }) => {
         <div style={{display: "block"}} ref={ref}>
             <div className="manga-img-var2">
                 <Img src={mangaCover} alt='' draggable={false} />
-                {/* <img src={mangaCover} alt="" draggable="false" /> */}
                 <div className="flag-img-var2">
                     <img src={flags[manga?.attributes?.originalLanguage]} alt="" />
                 </div>

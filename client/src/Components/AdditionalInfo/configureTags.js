@@ -1,6 +1,6 @@
-import { filterObjForTags } from "../../Commons/filterObjForTags";
-import { filterTags } from "../../Commons/filterTags";
-import { strToUpper } from "../../Commons/stringToUpperCase";
+import { filterObjForTags } from "../../Utils/filterObjForTags";
+import { filterTags } from "../../Utils/filterTags";
+import { strToUpper } from "../../Utils/stringToUpperCase";
 
 export const configureTags = (mangaInfo) => {
     const author = filterObjForTags(mangaInfo, 'author');

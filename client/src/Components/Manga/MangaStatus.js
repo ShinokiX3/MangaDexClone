@@ -1,5 +1,5 @@
 import React from 'react';
-import { strToUpper } from '../../Commons/stringToUpperCase';
+import { strToUpper } from '../../Utils/stringToUpperCase';
 
 const MangaStatus = ({ status, additionalInfo = null, styles = { textStyles: {}, blockStyles: {} } }) => {
     const colorage = (status) => {
