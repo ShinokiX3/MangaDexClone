@@ -6,7 +6,7 @@ const MangaItems = (props) => {
     return (
         <div className='manga-items'>
             {
-                mangaList.map((el, idx) => {
+                mangaList?.map((el, idx) => {
                     return <MangaItem manga={el} key={el.title + idx} />
                 })
             }
