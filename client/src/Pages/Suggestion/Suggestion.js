@@ -1,5 +1,4 @@
 import { memo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLatestUpdates, fetchRecentlyAdded, fetchSeasonal } from '../../Store/Slices/suggestSlice';

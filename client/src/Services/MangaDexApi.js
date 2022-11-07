@@ -28,7 +28,7 @@ class MangaDexApi {
 
     getSeasonalInfo = async (mangasIds) => {
         const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
-        return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=60`)
+        return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=14`)
     }
 
     getMangaChaptersFeed = async (mangaId, limit = 700) => {
