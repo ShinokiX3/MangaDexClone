@@ -28,8 +28,9 @@ class MangaDexApi {
 
     getSeasonalInfo = async (mangasIds) => {
         const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
-        return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=14`)
+        return await fetch(`/manga?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=14`)
     }
+    // https://api.mangadex.org/
 
     getMangaChaptersFeed = async (mangaId, limit = 700) => {
         return await fetch(`${this.BaseManga}/${mangaId}/feed?limit=${limit}`)
@@ -107,8 +108,10 @@ class MangaDexApi {
     }
 
     getSeasonal = async() => {
-        return await fetch(`https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`)
+        return await fetch(`/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`)
     }
+
+    // /https://api.mangadex.org
 
     getRecentlyAdded = async() => {
         return await fetch(`https://api.mangadex.org/manga?limit=20&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[createdAt]=desc&includes[]=cover_art`)
