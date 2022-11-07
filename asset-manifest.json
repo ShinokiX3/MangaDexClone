@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MangaDexClone/static/css/main.678b7d87.css",
-    "main.js": "/MangaDexClone/static/js/main.52ab427d.js",
+    "main.js": "/MangaDexClone/static/js/main.e7fc962f.js",
     "static/css/501.a5a91cd9.chunk.css": "/MangaDexClone/static/css/501.a5a91cd9.chunk.css",
     "static/js/501.9cfd2da0.chunk.js": "/MangaDexClone/static/js/501.9cfd2da0.chunk.js",
     "static/css/997.a4fb9a80.chunk.css": "/MangaDexClone/static/css/997.a4fb9a80.chunk.css",
@@ -61,7 +61,7 @@
     "static/media/ua.svg": "/MangaDexClone/static/media/ua.77a722d78157a1a514e2e68c5e8933b4.svg",
     "static/media/id.svg": "/MangaDexClone/static/media/id.23f37c90465e630109618afdca29ab04.svg",
     "main.678b7d87.css.map": "/MangaDexClone/static/css/main.678b7d87.css.map",
-    "main.52ab427d.js.map": "/MangaDexClone/static/js/main.52ab427d.js.map",
+    "main.e7fc962f.js.map": "/MangaDexClone/static/js/main.e7fc962f.js.map",
     "501.a5a91cd9.chunk.css.map": "/MangaDexClone/static/css/501.a5a91cd9.chunk.css.map",
     "501.9cfd2da0.chunk.js.map": "/MangaDexClone/static/js/501.9cfd2da0.chunk.js.map",
     "997.a4fb9a80.chunk.css.map": "/MangaDexClone/static/css/997.a4fb9a80.chunk.css.map",
@@ -73,6 +73,6 @@
   },
   "entrypoints": [
     "static/css/main.678b7d87.css",
-    "static/js/main.52ab427d.js"
+    "static/js/main.e7fc962f.js"
   ]
 }
