@@ -20,16 +20,16 @@ const App = () => {
           <SideMain />
         </SideMenu>
         <Routes>
-          <Route path='MangaDexClone/' element={<Suggestion />} />
-          <Route path='MangaDexClone/favorites' element={<Favorites />} />
+          <Route path='/MangaDexClone/' element={<Suggestion />} />
+          <Route path='/MangaDexClone/favorites' element={<Favorites />} />
 
-          <Route path='MangaDexClone/singin' element={<Singin />} />
-          <Route path='MangaDexClone/singup' element={<Singup />} />
+          <Route path='/MangaDexClone/singin' element={<Singin />} />
+          <Route path='/MangaDexClone/singup' element={<Singup />} />
 
-          <Route path='MangaDexClone/titles/*' element={<Titles />} />
-          <Route path='MangaDexClone/manga/:id' element={<Manga />} />
-          <Route path='MangaDexClone/user/:id' element={<UserPage />} />
-          <Route path='MangaDexClone/chapter/*' element={<Chapter />} />
+          <Route path='/MangaDexClone/titles/*' element={<Titles />} />
+          <Route path='/MangaDexClone/manga/:id' element={<Manga />} />
+          <Route path='/MangaDexClone/user/:id' element={<UserPage />} />
+          <Route path='/MangaDexClone/chapter/*' element={<Chapter />} />
           
           <Route path='*' element={<Main />} />
         </Routes>
