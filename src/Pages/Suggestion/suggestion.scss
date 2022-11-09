@@ -16,9 +16,15 @@
 
 .suggest-item {
     width: 100%;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .suggest-item-content {
     width: 100%;
+}
+
+@media (max-width: 340px) {
+    .suggest-item {
+        margin-top: 10px;
+    }
 }

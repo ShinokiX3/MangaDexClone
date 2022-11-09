@@ -31,3 +31,14 @@
         }
     }
 }
+
+@media (max-width: 340px) {
+    .arrow_link_reverse, .arrow_link_block {
+        div {
+            svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+}

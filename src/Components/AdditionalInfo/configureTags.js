@@ -1,10 +1,12 @@
+import { filterSomeAttribute } from "../../Utils/filterAttribute";
 import { filterObjForTags } from "../../Utils/filterObjForTags";
 import { filterTags } from "../../Utils/filterTags";
 import { strToUpper } from "../../Utils/stringToUpperCase";
 
-export const configureTags = (mangaInfo) => {
-    const author = filterObjForTags(mangaInfo, 'author');
-    const artist = filterObjForTags(mangaInfo, 'artist');
+export const configureTags = (manga) => {
+    const mangaInfo = manga?.data?.attributes;
+    const author = [filterSomeAttribute(manga?.data?.relationships, 'author')];    
+    const artist = [filterSomeAttribute(manga?.data?.relationships, 'artist')];    
     const tags = filterObjForTags(mangaInfo, 'tags');
     
     const links = filterObjForTags(mangaInfo, 'links', true);

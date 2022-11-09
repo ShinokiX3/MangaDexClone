@@ -6,7 +6,9 @@
 }
 
 form {
+    // min-width: 250px;
     width: 500px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -209,4 +211,57 @@ form {
         background-color: rgba($color: #ff6740, $alpha: 0.15);
     }
     margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  form {
+    width: 350px;
+  }
+}
+
+@media (max-width: 385px) {
+  form {
+    width: 300px;
+  }
+}
+
+@media (max-width: 340px) {
+  form {
+    width: 250px;
+  }
+
+  .singup-title {
+    p {
+      font-size: 12pt;
+    }
+  }
+
+  .text-field, .text-field__input {
+    font-size: 10pt;
+  }
+
+  .text-field_floating .text-field__label {
+    font-size: 12pt;
+  }
+
+  .sings-buttons button, label {
+    font-size: 10pt;
+  }
+
+  .form-message {
+    font-size: 10pt;
+  }
+}
+
+@media (max-width: 290px) {
+  form {
+    width: 215px;
+    margin-right: 7px;
+  }
+}
+
+@media (max-width: 260px) {
+  form {
+    width: 190px;
+  }
 }

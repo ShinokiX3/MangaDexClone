@@ -1,0 +1,19 @@
+.flexcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spansettings {
+    color: red; 
+    font-size: 14pt; 
+    align-self: flex-start; 
+    cursor: pointer; 
+    margin-bottom: 18px;
+}
+
+@media (max-width: 340px) {
+    .spansettings {
+        font-size: 12pt;
+    }
+}

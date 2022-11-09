@@ -136,6 +136,11 @@ input[type="button"]:hover {
             color: white;
         }
     }
+    @media (max-width: 640px) {
+        .serach-block-ico {
+            color: white;
+        }
+    }
 }
 
 .header-transparent-black {
@@ -170,4 +175,20 @@ input[type="button"]:hover {
 
 .display-none {
     display: none;
+}
+
+@media (max-width: 340px) {
+    h1 {
+        font-size: 18pt;
+    }
+
+    input {
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 270px) {
+    h1 {
+        font-size: 16pt;
+    }
 }

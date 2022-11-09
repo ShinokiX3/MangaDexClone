@@ -6,3 +6,9 @@
         color: #4d4d4d;
     }
 }
+
+@media (max-width: 260px) {
+    .wrapp {
+        align-items: center;
+    }
+}

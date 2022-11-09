@@ -16,11 +16,11 @@ const Logo = ({ handleMenu, ico }) => {
                         :
                         <MenuCrossIco onClick={handleMenu} /> 
                     }
-                    <Link to={"/"}><h1>Manga live</h1></Link>
+                    <Link to={"/"}><h1>MangaDex</h1></Link>
                 </>
                 :
                 <>
-                    <Link to={"/"}><h1>Manga live</h1></Link>
+                    <Link to={"/"}><h1>MangaDex</h1></Link>
                     {
                         ico.type === 'close' ?
                         <MenuCrossIco onClick={handleMenu} />

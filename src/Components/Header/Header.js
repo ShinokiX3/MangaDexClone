@@ -44,10 +44,10 @@ const Header = memo(() => {
                 <Logo handleMenu={handleMenu} ico={{side: 'left', type: 'open'}} />
                 <div className="right-links_wrapp">
                     <div className="search-block" onClick={handleModal}>
-                        <span className="">
+                        <span className="serach-block-ico">
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            Search
                         </span>
+                        <p>Search</p>
                     </div>
                     <div className="login-block" onClick={handleAnouthorizeModal}>
                         <FontAwesomeIcon icon={faArrowRightToBracket} />

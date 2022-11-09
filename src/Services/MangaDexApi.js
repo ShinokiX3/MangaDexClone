@@ -1,5 +1,5 @@
 class MangaDexApi {
-    BaseUrl = 'https://api.mangadex.org';
+    BaseUrl = 'https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org';
     BaseUploadUrl = 'https://uploads.mangadex.org';
     AtHomeServer = `${this.BaseUrl}/at-home/server`;
 
@@ -28,7 +28,7 @@ class MangaDexApi {
 
     getSeasonalInfo = async (mangasIds) => {
         const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
-        return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=14`)
+        return await fetch(`${this.BaseManga}?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=14`)
     }
 
     getMangaChaptersFeed = async (mangaId, limit = 700) => {
@@ -71,12 +71,12 @@ class MangaDexApi {
     }
 
     getLatestUpdateChapters = async () => {
-        return await fetch(`https://api.mangadex.org/chapter?includes[]=manga&includes[]=scanlation_group&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[readableAt]=desc&offset=0&limit=24`)
+        return await fetch(`${this.BaseChapter}?includes[]=manga&includes[]=scanlation_group&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[readableAt]=desc&offset=0&limit=24`)
     }
 
     getLatestUpdateMangas = async (mangasIds) => {
         const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
-        return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art${ids}&limit=24&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`)
+        return await fetch(`${this.BaseManga}?includes[]=cover_art${ids}&limit=24&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`)
     }
 
     getInfoAboutChapter = async (chapters) => {
@@ -107,16 +107,16 @@ class MangaDexApi {
     }
 
     getSeasonal = async() => {
-        return await fetch(`https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`)
+        return await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`)
     }
 
     getRecentlyAdded = async() => {
-        return await fetch(`https://api.mangadex.org/manga?limit=20&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[createdAt]=desc&includes[]=cover_art`)
+        return await fetch(`${this.BaseManga}?limit=20&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[createdAt]=desc&includes[]=cover_art`)
     }
 
     getRecentlyCovers = async(mangasIds) => {
         const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
-        return await fetch(`https://api.mangadex.org/manga?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=59`)
+        return await fetch(`${this.BaseManga}?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=59`)
             .then(data => data.json())
     } 
 
@@ -169,7 +169,7 @@ class MangaDexApi {
     }
 
     getRandomManga = async() => {
-        return await fetch(`https://api.mangadex.org/manga/random?contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&includes[]=artist&includes[]=author&includes[]=cover_art`).then(data => data.json());
+        return await fetch(`${this.BaseManga}/random?contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&includes[]=artist&includes[]=author&includes[]=cover_art`).then(data => data.json());
     }
 }
 

@@ -10,6 +10,7 @@
 }
 
 .item {
+    overflow: hidden;
     display: grid;
     grid-template-columns: 56px 1fr;
     gap: 0.5rem;
@@ -51,4 +52,89 @@
     font-size: 14pt;
     font-weight: 550;
     color: #242424;
+}
+
+@media (max-width: 460px) {
+    .wrapp {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .info {
+        grid-template-rows: auto;
+    }
+
+    .title {
+        font-size: 13pt;
+    }
+
+    .translation, .scanlation {
+        font-size: 11pt;
+    }
+}
+
+@media (max-width: 430px) {
+    .item {
+        padding: .8rem;
+    }
+
+    .title {
+        font-size: 12pt;
+    }
+}
+
+@media (max-width: 400px) {
+    .item {
+        padding: .6rem;
+    }
+
+    .translation, .scanlation {
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 340px) {
+    .translation, .scanlation {
+        font-size: 9pt;
+    }
+}
+
+@media (max-width: 300px) {
+    .item {
+        padding: .5rem;
+    }
+}
+
+@media (max-width: 280px) {
+    .item {
+        padding: .4rem;
+    }
+
+    .title {
+        font-size: 11pt;
+    }
+
+    .translation, .scanlation {
+        font-size: 8.5pt;
+    }
+}
+
+@media (max-width: 260px) {
+    .item {
+        padding: .4rem;
+    }
+
+    .title {
+        font-size: 10.5pt;
+    }
+
+    .translation, .scanlation {
+        font-size: 7.5pt;
+    }
+
+    .translation {
+        img {
+            width: 16px;
+            height: 16px;
+        }
+    }
 }
