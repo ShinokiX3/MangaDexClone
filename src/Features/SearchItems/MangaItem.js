@@ -4,7 +4,7 @@ import { Comments, Follows, Rating, Seen } from '../../SharedUI/Statistics';
 
 const MangaItem = ({ status }) => {
     return (
-        <div style={{display: 'flex', alignItems: 'center'}}>
+        <div className="manga-item-wrapper" style={{display: 'flex', alignItems: 'center'}}>
             {
                 status ? <MangaStatus status={status} /> : true 
             }

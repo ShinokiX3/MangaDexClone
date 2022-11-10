@@ -30,7 +30,7 @@ const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle
                             <Comments statistic={[]} />
                             <MangaStatus 
                                 status={mangaInfo?.data?.attributes?.status} 
-                                styles={{textStyles: { fontSize: '.9rem' }, blockStyles: {padding: '5.5px 10px'}}}
+                                styles={{textStyles: { fontSize: '.9rem' }}}
                             />
                         </div>
                     </div>

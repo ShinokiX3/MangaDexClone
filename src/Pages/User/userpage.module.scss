@@ -13,24 +13,29 @@
 
 .userinfo {
     grid-area: userinfo;
+    
     .title {
         font-size: 2.25rem;
         line-height: 2.5rem;
         font-weight: 700;
         margin-bottom: 1.5rem;
     }
+
     .userid, .roles, .groups, .uploads {
         font-size: 12.9pt;
+        
         p:first-child {
             font-weight: 900;
             margin-bottom: .9rem;
         }
+        
         margin-bottom: 1.5rem;
     }
 }
 
 .userimage {
     grid-area: userimage;
+
     img {
         border-radius: 50%;
         border: 2px solid;
@@ -45,6 +50,7 @@
     display: flex;
     flex-direction: column;
     align-self:initial;
+
     button {
         min-height: 48px;
         min-width: 95%;
@@ -64,6 +70,7 @@
 
 .uploads {
     margin-bottom: 0px;
+
     div {
         margin-bottom: 0px;
     }
@@ -78,9 +85,11 @@
     border-top-left-radius: .2rem;
     border-top-right-radius: .2rem;
     position: relative;
+    
     img {
         padding-top: 4px;
     }
+
     &::after {
         content: '';
         position: absolute;
@@ -91,3 +100,16 @@
         bottom: 5px;
     }
 }
+
+.rolesaddition {
+    display: flex;
+    max-width: fit-content;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    span {
+        height: fit-content;
+        margin-bottom: 7px;
+    }
+}
+

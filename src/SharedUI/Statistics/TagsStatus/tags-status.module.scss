@@ -24,6 +24,7 @@
 .manga_tags {
     display: flex;
     flex-wrap: wrap;
+
     span:not(.manga-status-span) {
         display: inline-block;
         border-radius: .25rem;
@@ -39,5 +40,14 @@
         font-size: .625rem;
         font-weight: 700;
         margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 520px) {
+    .manga_tags {
+        margin-bottom: 2px;
+        span:not(.manga-status-span) {
+            margin-bottom: 1px;
+        }
     }
 }

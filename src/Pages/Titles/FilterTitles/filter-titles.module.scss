@@ -37,6 +37,7 @@
 .controls {
     display: grid; 
     grid-template-columns: 1fr 0.20fr;
+    gap: 5px;
     button {
         width: 100%; 
         background-color: transparent; 
@@ -49,7 +50,6 @@
 }
 
 .first_button {
-    margin-right: 10px;
     border-radius: 0.25rem;
     background-color: #ff6740;
     button {
@@ -88,6 +88,45 @@
             color: #242424;
             margin-bottom: 5px;
             font-size: 14pt
+        }
+    }
+}
+
+@media (max-width: 440px) {
+    .first_button, .second_button {
+        button {
+            height: 45px;
+        }
+    }
+}
+
+@media (max-width: 370px) {
+    .tag {
+        h3 {
+            font-size: 12pt!important;
+        }
+    }
+
+    .first_button, .second_button {
+        button {
+            height: 40px;
+        }
+    }
+}
+
+@media (max-width: 300px) {
+    .controls {
+        grid-template-columns: auto;
+        gap: 5px;
+    }
+
+    .tags {
+        flex-direction: column;
+    }
+
+    .tag {
+        h3 {
+            font-size: 11pt!important;
         }
     }
 }

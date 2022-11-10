@@ -41,3 +41,26 @@
     background-color: rgba($color: #ff6740, $alpha: 0.8);
     cursor: auto;
 }
+
+@media (max-width: 600px) {
+    .exemplar {
+        font-size: 12pt!important;
+    }
+}
+
+@media (max-width: 370px) {
+    .exemplar {
+        font-size: 10pt!important;
+    }
+
+    .any {
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 300px) {
+    .exemplar {
+        font-size: 9pt!important;
+    }
+}

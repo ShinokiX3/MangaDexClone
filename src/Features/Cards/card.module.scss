@@ -157,10 +157,12 @@
     .name {
         margin-bottom: 0px;
     }
+
     img {
         height: 100%;
         width: 100%;
     }
+
     @media (max-width: 1040px) {
         & {
             grid-template-columns: 1fr;
@@ -217,4 +219,197 @@
     font-size: 14pt; 
     background-color: #f0f1f2; 
     border-radius: 0.5rem; 
+}
+
+@media (max-width: 1150px) {
+    .title {
+        align-items: center;
+    }
+
+    .title div:first-child {
+        font-size: 13pt;
+    }
+
+    .title div:last-child {
+        p {
+            font-size: 12pt;
+        }
+
+        svg {
+            width: .9rem;
+            height: .9rem;
+        }
+    }
+
+    .description div:last-child {
+        font-size: 11pt;
+    }
+}
+
+@media (max-width: 820px) {
+    .description div:last-child {
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 640px) {
+    .title {
+        flex-direction: column;
+        align-items: initial;
+    }
+
+    .title div:first-child {
+        font-size: 12pt;
+    }
+
+    .title div:last-child {
+        p {
+            font-size: 10pt!important;
+        }
+
+        svg {
+            width: .8rem;
+            height: .8rem;
+        }
+    }
+
+    .statistics {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .description div:last-child {
+        font-size: 9pt;
+    }
+}
+
+@media (max-width: 600px) {
+    span {
+        font-size: 6pt!important;
+    }
+}
+
+@media (max-width: 520px) {
+    .title div:first-child {
+        font-size: 11pt;
+    }
+
+    .title div:last-child {
+        p {
+            font-size: 9pt!important;
+        }
+
+        svg {
+            width: .75rem;
+            height: .75rem;
+        }
+    }
+
+    span {
+        font-size: 6pt!important;
+    }
+
+    .item_content {
+        max-height: 125px;
+    }
+}
+
+@media (max-width: 450px) {
+    .statistics {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 350px) {
+    .item_content {
+        max-height: 120px;
+    }
+
+    .cover_e_row, .cover_e_row img {
+        height: 174px;
+        width: 110px;
+    }
+
+    .controls div {
+        width: 39px;
+        height: 39px;
+    }
+}
+
+@media (max-width: 330px) {
+    .title div:first-child {
+        font-size: 10pt;
+    }
+
+    .cover, .cover img {
+        height: 100px;
+        width: 64px;
+    }
+    
+    .cover_e_row, .cover_e_row img {
+        height: 134px;
+        width: 90px;
+    }
+
+    .item_content {
+        max-height: 120px;
+    }
+
+    .controls div {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 300px) { 
+    .item_content {
+        max-height: 85px;
+        width: 262px;
+    }
+
+    .cover, .cover img {
+        height: 80px;
+        width: 54px;
+    }
+
+    .cover_e_row, .cover_e_row img {
+        height: 90px;
+        width: 60px;
+    }
+
+    .controls div {
+        width: 30px;
+        height: 30px;
+    }
+
+    span {
+        font-size: 5pt!important;
+    }
+
+    .statistics {
+        justify-content: initial;
+    }
+
+    .manga-status-block p:last-child {
+        display: none;
+    }
+}
+
+@media (max-width: 280px) {
+    .item_content {
+        max-height: 85px;
+        max-width: 232px;
+    }
+
+    .controls_wrapp {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 250px) {
+    .item_content {
+        max-height: 85px;
+        max-width: 200px;
+    }
 }

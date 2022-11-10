@@ -73,3 +73,49 @@
 .userpagecontainer {
     width: 100%;
 }
+
+@media (max-width: 640px) {
+    .content {
+        grid-template-areas:
+            'userimage usercontrols'
+            'userintro userintro'
+            'userinfo userinfo';
+    }
+
+    .usercontrols {
+        align-items: center;
+        padding-top: 75px;
+        flex-direction: row;
+        gap: 5px;
+        button {
+            font-size: 10pt;
+            height: fit-content;
+            min-width: 60px;
+            min-height: 40px;
+        }
+    }
+
+    .userimage img {
+        width: 8rem;
+    }
+
+    .userintro {
+        padding-top: 0px;
+    }
+
+    .content {
+        padding-top: 70px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .userpagecontainer .banner-image {
+        background-color: white!important;
+    }
+
+    .content {
+        span {
+            font-size: initial!important;
+        };
+    }
+}

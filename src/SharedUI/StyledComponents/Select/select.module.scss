@@ -13,6 +13,7 @@
     border: 1px solid red;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
+    
     .content {
         display: block;
         position: absolute;
@@ -20,6 +21,7 @@
         left: -2px;
         width: 100%;
     }
+
     .select {
         svg {
             transform: rotate(180deg);
@@ -41,6 +43,7 @@
     height: 100%;
     background-color: transparent;
     border: 1px solid transparent;
+
     svg {
         width: 24px;
         height: 24px;
@@ -61,6 +64,7 @@
     overflow-y: auto;
     border: 1px solid transparent;
     z-index: 999;
+
     div {
         width: calc(100% - 15px);
         height: 40px;
@@ -70,6 +74,7 @@
         padding-left: 15px;
         cursor: pointer;
     }
+    
     div:hover {
         background-color: #cecece;
     }
@@ -86,4 +91,68 @@
     top: 50%;
     left: 10%;
     transform: translate(0%, -50%);
+}
+
+@media (max-width: 455px) {
+    .wrapp {
+        min-height: 45px;
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 425px) {
+    .wrapp {
+        min-width: 210px;
+    }
+
+    .title {
+        top: 2px;
+        font-size: 0.80rem;
+    }
+
+    .select {
+        font-size: 11pt;
+    }
+}
+
+@media (max-width: 350px) {
+    .wrapp {
+        min-width: 175px;
+        min-height: 40px;
+    }
+}
+
+@media (max-width: 330px) {
+    .wrapp {
+        min-width: 170px;
+        min-height: 35px;
+    }
+}
+
+@media (max-width: 300px) {
+    .wrapp {
+        min-width: 170px;
+        min-height: 32px;
+    }
+
+    .title {
+        top: 1px;
+        font-size: 0.70rem;
+    }
+
+    .select {
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 280px) {
+    .wrapp {
+        min-width: 240px;
+    }
+}
+
+@media (max-width: 250px) {
+    .wrapp {
+        min-width: 210px;
+    }
 }

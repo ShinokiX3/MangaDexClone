@@ -11,7 +11,9 @@ const Info = ({ userId = '', userRoles = [] }) => {
             </div>
             <div className={styles.roles}>
                 <p>Roles:</p>
-                {userRoles.map(role => <Role title={role} />)}
+                <div className={styles.rolesaddition}>
+                    {userRoles.map(role => <Role title={role} />)}
+                </div>
             </div>
             <div className={styles.groups}>
                 <p>Groups:</p>

@@ -131,6 +131,8 @@
 
 .manga-status-block {
     width: fit-content;
+    height: fit-content;
+
     padding-left: 7px;
     padding-right: 7px;
     span {
@@ -149,6 +151,8 @@
     p {
         margin-left: 5px;
     }
+
+    padding: 5.5px 10px;
 }
 
 .search-modal-statistics {
@@ -168,5 +172,117 @@
     p {
         font-size: 1rem;
         font-weight: 600;
+    }
+}
+
+@media (max-width: 640px) {
+    .search-input {
+        background-color: #f0f1f2;
+    }
+}
+
+@media (max-width: 450px) {
+    .manga-status-block {
+        padding: 3px 7px;
+    }
+}
+
+@media (max-width: 470px) {
+    .search-input {
+        background-color: #f0f1f2;
+        width: 80vw;
+    }
+
+    .manga-item-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: initial!important;
+    }
+
+    .modal-content {
+        height: 100%;
+    }
+
+    .title-srch div:first-child {
+        font-size: 12.5pt;
+    }
+
+    .search-modal-statistics div p {
+        font-size: 11pt!important;
+        font-weight: 550;
+    }
+}
+
+@media (max-width: 360px) {
+    .search-input {
+        background-color: #f0f1f2;
+        width: 99%;
+    }
+    
+    .title-srch div:first-child {
+        font-size: 11.5pt;
+    }
+
+    .search-modal-statistics div p {
+        font-size: 10pt!important;
+        font-weight: 550;
+    }
+
+    .modal-content {
+        padding: 19px!important;
+    }
+
+    .search-modal-statistics {
+        gap: 6px;
+    }
+
+    .title-srch div:first-child {
+        line-height: 1;
+    }
+
+    .search-modal-statistics {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 300px) {
+    .modal-content {
+        padding: 15px!important;
+    }
+
+    .title-srch div:first-child {
+        font-size: 10pt;
+    }
+
+    .search-modal-statistics div p {
+        font-size: 8.5pt!important;
+        font-weight: 550;
+    }
+
+    .search-modal-statistics {
+        gap: 4px;
+    }
+}
+
+@media (max-width: 300px) {
+    .modal-content {
+        padding: 10px!important;
+    }
+
+    .title-srch div:first-child {
+        font-size: 9.5pt;
+    }
+
+    .search-modal-statistics div p {
+        font-size: 8pt!important;
+        font-weight: 550;
+    }
+
+    .search-header, .sch-items-block h2 {
+        font-size: 16pt;
+    }
+    
+    .search-modal-statistics div svg {
+        margin-right: 4px;
     }
 }
