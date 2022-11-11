@@ -58,3 +58,9 @@
         font-size: 10pt;   
     }
 }
+
+@media (max-width: 290px) {
+    .alt_title span {
+        font-size: 9pt;
+    }
+}

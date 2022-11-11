@@ -468,6 +468,28 @@
 }
 
 @media (max-width: 300px) {
+    .manga-statistics {
+        div svg {
+            width: 0.9em;
+        }
+
+        div p {
+            font-size: .8rem;
+        }
+    }
+
+    .manga-title .main-title {
+        font-size: 1.3rem;
+    }
+
+    .manga-title .second-title {
+        font-size: .9rem;
+    }
+
+    .manga-title .sub-title {
+        font-size: .7rem;
+    }
+
     .synopsis {
         max-width: 250px;
 

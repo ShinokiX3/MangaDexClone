@@ -218,11 +218,11 @@
     .chapters_block {
         .content {
             p {
-                font-size: 7.7pt;
+                font-size: 7pt;
             }
 
             .side_item {
-                padding-left: 0px!important;
+                padding-left: .1rem!important;
                 padding-right: 0px!important;
                 margin-left: .4rem;
             }
@@ -230,7 +230,6 @@
             .chapter_name, .user {
                 padding-right: 0px!important;
             }
-
         }
     }
 }
