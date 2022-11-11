@@ -16,31 +16,29 @@
 @media (max-width: 400px) {
     .wrapp {
         // max-width: 100px;
-        width: 90px;
+        width: 120px;
         text-overflow: ellipsis;
         
         p {
+            width: inherit;
             overflow: hidden;
-            text-overflow: ellipsis;
-            padding-right: 1px;
             white-space: nowrap;
+            padding-right: 1px;
+            text-overflow: ellipsis;
         }
     }
 }
 
-// @media (max-width: 340px) {
-//     .wrapp {
-//         max-width: 100px;
-//         text-overflow: ellipsis;
-        
-//         p {
-//             overflow: hidden;
-//             text-overflow: ellipsis;
-//             padding-right: 1px;
-//             white-space: nowrap;
-//         }
-//     }
-// }
+@media (max-width: 340px) {
+    .wrapp {
+        width: 90px;
+        text-overflow: ellipsis;
+    }
+
+    p {
+        width: 90px;
+    }
+}
 
 @media (max-width: 290px) {
     .wrapp {
