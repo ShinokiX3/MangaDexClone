@@ -15,7 +15,8 @@
 
 @media (max-width: 400px) {
     .wrapp {
-        max-width: 100px;
+        // max-width: 100px;
+        width: 90px;
         text-overflow: ellipsis;
         
         p {
