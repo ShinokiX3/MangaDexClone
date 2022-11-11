@@ -1,13 +1,15 @@
 import React from 'react';
 import { groupIcons } from '../../../Assets/Svg/Groups';
-import { filterSomeAttribute } from '../../../Utils/filterAttribute';
+import { cutString } from '../../../Utils/cutString';
 import styles from './scanlation.module.scss';
+
+
 
 const Scanlation = ({ name }) => {
     return (
         <div className={styles.wrapp}>
             <img src={groupIcons.group} alt=""></img>
-            <p style={{marginLeft: '4px', padding: '0px 4px'}}>{name}</p>
+            <p style={{marginLeft: '4px', padding: '0px 4px'}}>{cutString(name, 20)}</p>
         </div>
     );
 };
