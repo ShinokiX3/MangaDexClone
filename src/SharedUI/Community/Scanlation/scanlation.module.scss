@@ -13,7 +13,7 @@
     }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 400px) {
     .wrapp {
         max-width: 100px;
         text-overflow: ellipsis;
@@ -26,6 +26,20 @@
         }
     }
 }
+
+// @media (max-width: 340px) {
+//     .wrapp {
+//         max-width: 100px;
+//         text-overflow: ellipsis;
+        
+//         p {
+//             overflow: hidden;
+//             text-overflow: ellipsis;
+//             padding-right: 1px;
+//             white-space: nowrap;
+//         }
+//     }
+// }
 
 @media (max-width: 290px) {
     .wrapp {
