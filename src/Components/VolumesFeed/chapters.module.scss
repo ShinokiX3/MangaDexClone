@@ -17,15 +17,18 @@
 .volume_title {
     display: flex;
     justify-content: space-between;
+
     p {
         font-size: 14pt;
         color: #4f4f4f;
     }
+    
     margin-bottom: 0.5rem;
 }
 
 .volume_item {
     margin-bottom: 10px;
+
     &:last-child {
         margin-bottom: 10px;
     }
@@ -55,6 +58,7 @@
 
 .last_side_item {
     height: 25%;
+
     &::after {
         content: '';
         height: 1px;
@@ -70,6 +74,7 @@
     background-color: #f0f1f2;
     border-radius: 0.125rem;
     margin-bottom: 5px;
+
     .title {
         padding-top: 0.25rem;
         padding-bottom: 0.25rem;
@@ -79,12 +84,15 @@
         display: flex;
         justify-content: space-between;
     }
+
     .content {
         p, a {
             font-size: 11pt;
         }
+
         display: grid;
         grid-template-columns: 0.1fr 1fr 1.2fr 1fr 0.6fr;
+        
         div:not(.side_item.cnt) {
             padding: 0.2rem;
             padding-left: 0.5rem;
@@ -92,10 +100,12 @@
             display: flex;
             align-items: center;
         }
+
         .title {
             padding-top: 0.25rem;
             padding-bottom: 0.25rem;
         }
+        
         border-bottom: 1px solid #e6e6e6;
         border-left: 2px solid rgb(113, 106, 254);
         border-top-left-radius: 2px;
@@ -113,9 +123,11 @@
         width: 16px;
         height: 16px;
     }
+
     p {
         margin-left: 8px;
     }
+
     p, a {
         font-weight: bold;
     }
@@ -132,4 +144,93 @@
 .timestamp {
     display: flex;
     justify-content: flex-end;
+}
+
+@media (max-width: 640px) {
+    .side_item {
+        grid-row: span 2;
+        border-left: 3px solid red;
+        border-color: #4d4d4d;
+        
+        &::after {
+            height: 2.5px;
+            left: -2px;
+            background-color: #4d4d4d;
+        }
+    }
+
+    .chapters_block {
+        .content {
+            grid-template-columns: 0.1fr auto auto;
+            grid-template-rows: auto auto;
+            justify-content: stretch;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .chapters_block {
+        .content {
+            p {
+                font-size: 9pt;
+            }
+
+            .side_item {
+                padding-left: .1rem!important;
+                padding-right: 0px!important;
+            }
+        }
+    }
+}
+
+@media (max-width: 340px) {
+    .chapters_block {
+        .content {
+            p {
+                font-size: 8.5pt;
+            }
+
+            .side_item {
+                padding-left: .1rem!important;
+                padding-right: 0px!important;
+                margin-left: .5rem;
+            }
+
+            .chapter_name, .user {
+                padding-right: 0px!important;
+            }
+
+        }
+    }
+}
+
+@media (max-width: 300px) {
+    .chapters_block {
+        .content {
+            p {
+                font-size: 8pt;
+            }
+        }
+    }
+}
+
+@media (max-width: 290px) {
+    .chapters_block {
+        .content {
+            p {
+                font-size: 7.7pt;
+            }
+
+            .side_item {
+                padding-left: 0px!important;
+                padding-right: 0px!important;
+                margin-left: .4rem;
+            }
+
+            .chapter_name, .user {
+                padding-right: 0px!important;
+            }
+
+        }
+    }
 }

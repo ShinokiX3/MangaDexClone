@@ -38,7 +38,7 @@ const SideMain = () => {
 
     return (
         <div onClick={handleLinkClick}>
-            <div style={{display: 'flex', alignItems: 'center', marginBottom: '10px', minWidth: '250px', justifyContent: 'center'}}>
+            <div style={{display: 'flex', alignItems: 'center', marginBottom: '15px', minWidth: '250px', justifyContent: 'center'}}>
                 <Logo handleMenu={handleMenu} ico={{side: 'right', type: 'close'}} />
             </div>
             <LinkList ico={faHouseUser} title={"Home"}></LinkList>

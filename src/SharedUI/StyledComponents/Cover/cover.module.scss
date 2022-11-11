@@ -5,11 +5,13 @@
     max-width: fit-content;
     max-height: fit-content;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    
     img {
         width: inherit;
         object-fit: cover;
         border-radius: 0.25rem;
     }
+    
     img[data-svg='flag-img'] {
         position: absolute;
         bottom: 0.575rem;
@@ -17,6 +19,7 @@
         width: 24px;
         height: 24px;
     }
+    
     svg[data-svg='explore-ico'] {
         position: absolute;
         top: 50%;
@@ -27,6 +30,7 @@
         color: white;
         display: none;
     }
+    
     &::before {
         content: '';
         height: 99%;
@@ -40,6 +44,7 @@
         border-radius: 0.25rem;
         transition: 0.2s all ease;
     }
+    
     &:hover {
         &::before {
             background-color: rgba($color: black, $alpha: 0.4);   
@@ -49,13 +54,16 @@
             display: block;
         }
     }
+    
     svg[data-svg='explore-ico'], img[data-svg='flag-img'], &::before {
         cursor: pointer;
     }
 }
 
-// .cover_img {
-//     width: inherit;
-//     object-fit: cover;
-//     border-radius: 0.25rem;
-// }
+@media (max-width: 640px) {
+    .wrapp {
+        min-width: inherit;
+        min-height: inherit;
+        margin-bottom: 5px;
+    }
+}

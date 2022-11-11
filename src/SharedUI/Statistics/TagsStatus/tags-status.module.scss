@@ -43,11 +43,27 @@
     }
 }
 
+@media (max-width: 600px) {
+    .manga_tags span {
+        font-size: 7pt!important;
+    }
+}
+
 @media (max-width: 520px) {
     .manga_tags {
         margin-bottom: 2px;
         span:not(.manga-status-span) {
             margin-bottom: 1px;
         }
+
+        span {
+            font-size: 6pt!important;
+        }
+    }
+}
+
+@media (max-width: 300px) {
+    .manga_tags span {
+        font-size: 5pt!important;
     }
 }

@@ -7,8 +7,37 @@
     }
 }
 
+@media (max-width: 640px) {
+    .wrapp {
+        justify-self: end;
+    }
+}
+
+@media (max-width: 340px) {
+    .wrapp {
+        max-width: 100px;
+        text-overflow: ellipsis;
+        
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 1px;
+            white-space: nowrap;
+        }
+    }
+}
+
+@media (max-width: 290px) {
+    .wrapp {
+        max-width: 85px;
+    }
+}
+
+
+
 @media (max-width: 260px) {
     .wrapp {
         align-items: center;
     }
 }
+

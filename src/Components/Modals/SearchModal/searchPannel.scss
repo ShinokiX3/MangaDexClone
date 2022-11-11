@@ -199,10 +199,6 @@
         align-items: initial!important;
     }
 
-    .modal-content {
-        height: 100%;
-    }
-
     .title-srch div:first-child {
         font-size: 12.5pt;
     }
@@ -216,7 +212,6 @@
 @media (max-width: 360px) {
     .search-input {
         background-color: #f0f1f2;
-        width: 99%;
     }
     
     .title-srch div:first-child {

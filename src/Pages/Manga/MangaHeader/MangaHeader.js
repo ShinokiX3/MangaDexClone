@@ -9,6 +9,8 @@ import MangaStatus from '../../../Components/Manga/MangaStatus';
 import { BookIcon, ReportIcon, ShareIcon } from '../../../Assets/Svg/Manga';
 
 import { Rating, Follows, Seen } from '../../../SharedUI/Statistics';
+import { FollowsIcon } from '../../../Assets/Svg/Manga';
+import { DotsIcon } from '../../../Assets/Svg/Pagination';
 import { filterSomeAttribute } from '../../../Utils/filterAttribute';
 
 // TODO: will have to do it with redux.
@@ -31,7 +33,8 @@ const MangaHeader = memo(({ mangaInfo = {} }) => {
             <Cover 
                 src={mangaCoverUrl} 
                 alt='manga cover' 
-                style={{zIndex: '105', gridArea: 'manga-cover', margin: '10px', alignSelf: 'flex-start', width: '200px'}} 
+                // style={{zIndex: '105', gridArea: 'manga-cover', margin: '10px', alignSelf: 'flex-start', width: '200px'}} 
+                classLists={{wrapp: 'manga-cover-cl', img: ''}}
                 countryIco={mangaInfo?.data?.attributes?.originalLanguage}
             />
             <MangaTitle mangaInfo={mangaInfo} />
@@ -52,9 +55,13 @@ const MangaTitle = memo(({ mangaInfo }) => {
     
     return (
         <div className="manga-title" style={{zIndex: '105'}}>
-            <div>
-                <p className="main-title">{enTitle}</p>
-                <p style={{fontSize: "1.25rem", lineHeight: "1.25rem"}}>{alternative}</p>
+            <div className="manga-title_wrapp">
+                <div>
+                    <p className="main-title">{enTitle}</p>
+                    <p className="second-title">{alternative}</p>
+                    <p className='sub-title main-sub-title'>{filterSomeAttribute(mangaInfo?.data?.relationships, 'author', 'name')}</p>
+                </div>
+                <MangaStatistics statistics={{}} />
             </div>
             <div>
                 <p className='sub-title'>{filterSomeAttribute(mangaInfo?.data?.relationships, 'author', 'name')}</p>
@@ -73,18 +80,22 @@ const MangaIntroduction = memo(({ mangaInfo }) => {
     return (
         <div className="introduction" style={{zIndex: '105'}}>
             <div className="buttons_wrapp">
-                <button className="add-butt">
+                <button className="add-button">
+                    <FollowsIcon />
                     <p>Add To Library</p>
                 </button>
-                <button className="read-butt" onClick={redirectToReader}>
+                <button className="read-button" onClick={redirectToReader}>
                     <BookIcon />
                     <p className="butt-with-ico">Start Reading</p>
                 </button>
-                <button className="report-butt">
+                <button className="report-button">
                     <ReportIcon />
                 </button>
-                <button className="share-butt">
+                <button className="share-button">
                     <ShareIcon />
+                </button>
+                <button className="hide-button">
+                    <DotsIcon />
                 </button>
             </div>
             <MangaVariablesStatus mangaInfo={mangaInfo} />
@@ -116,7 +127,7 @@ const MangaVariablesStatus = memo(({ mangaInfo = {} }) => {
     }, [mangaInfo.data])
 
     return (
-        <div style={{display: 'flex', alignItems: 'center', marginTop: '15px'}}>
+        <div className="manga-var-status">
             <TagsStatus tags={tags} amount={20} />
             <MangaStatus 
                 status={status} 

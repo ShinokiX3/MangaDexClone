@@ -48,3 +48,13 @@
 .alt_title_block {
     width: 100%;
 }
+
+@media (max-width: 495px) {
+    .name {
+        font-size: 12pt;
+    }
+
+    .alt_title span {
+        font-size: 10pt;   
+    }
+}

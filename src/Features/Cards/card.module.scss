@@ -283,12 +283,6 @@
     }
 }
 
-@media (max-width: 600px) {
-    span {
-        font-size: 6pt!important;
-    }
-}
-
 @media (max-width: 520px) {
     .title div:first-child {
         font-size: 11pt;
@@ -303,10 +297,6 @@
             width: .75rem;
             height: .75rem;
         }
-    }
-
-    span {
-        font-size: 6pt!important;
     }
 
     .item_content {
@@ -380,10 +370,6 @@
     .controls div {
         width: 30px;
         height: 30px;
-    }
-
-    span {
-        font-size: 5pt!important;
     }
 
     .statistics {
