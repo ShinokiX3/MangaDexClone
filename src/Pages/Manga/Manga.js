@@ -33,6 +33,7 @@ const Manga = memo(() => {
 
     return (
         <MainContainer mainClasses='manga-page' containerClasses='manga-container'>
+            <img src="https:/uploads.mangadex.org/covers/d2df017b-c003-4de6-9625-4f1fba7aef97/4de979c2-c6e0-438f-b7e7-3a226324a416.png.256.jpg" alt="" />
             <MangaHeader mangaInfo={mangaInfo} />
             <MangaSynopsis description={mangaInfo?.data?.attributes?.description?.en} />
             <MangaContent mangaId={mangaId} mangaInfo={mangaInfo} />
