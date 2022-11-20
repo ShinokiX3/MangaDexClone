@@ -6,7 +6,7 @@ class MangaDexApi {
     BaseManga = `${this.BaseUrl}/manga`;
     BaseAuthor = `${this.BaseUrl}/author`;
     BaseGroup = `${this.BaseUrl}/group`;
-    BaseCover = `${this.BaseUrl}/cover`;
+    BaseCover = `https://api.mangadex.org/cover`;
     BaseChapter = `${this.BaseUrl}/chapter`;
     BaseStatistics = `${this.BaseUrl}/statistics`
 
