@@ -7,8 +7,8 @@ const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true
     
     useEffect(() => {
         const img = new Image();
-        img.src = src;
         img.referrerPolicy = "no-referrer";
+        img.src = src;
         img.onload = () => {
             setIsLoading(false);
         }
