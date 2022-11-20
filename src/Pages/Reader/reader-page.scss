@@ -1,12 +1,10 @@
 .chapter-page {
-    margin: 20px;
-    margin-bottom: 10px;
-    // width: 100%;
+    margin: 20px 20px 0px 20px;
     display: grid;
     grid-template-areas: 
         'chapter-title'
         'chapter-content';
-    gap: 20px;
+    gap: 10px;
     justify-content: start;
     grid-template-columns: 1fr;
 }
@@ -15,18 +13,22 @@
     p:last-child {
         user-select: none
     }
+
     width: 100%;
     grid-area: chapter-title;
     justify-self: start;
+    
     .chapter-name {
         font-size: 16pt;
         margin-bottom: 3px;
     }
+
     .manga-name {
         margin-bottom: 17px;
         font-size: 14pt;
         color: #ff6740;
     }
+
     .translator {
         font-size: 16pt;
         font-weight: bold;
@@ -38,6 +40,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+
     div {
         display: block;
         align-content: center;
@@ -51,8 +54,8 @@
         font-size: 14pt;
         cursor: pointer;
     }
-    min-height: 28px;
 
+    min-height: 28px;
 }
 
 .chapter-content {
@@ -61,6 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     img {
         margin-left: auto;
         margin-right: auto;
