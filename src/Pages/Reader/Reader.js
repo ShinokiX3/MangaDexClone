@@ -210,10 +210,10 @@ const Read = () => {
                 {
                     images?.map((el, idx) => {
                         if (idx+1 === currentChapter.currImg) {
-                            return <img src={el} style={{display: '', maxHeight: clientHeight, maxWidth: clientWidth - 40}} 
+                            return <img referrerPolicy="no-referrer" src={el} style={{display: '', maxHeight: clientHeight, maxWidth: clientWidth - 40}} 
                                 key={el} alt={`img-${idx}`} />
                         } else {
-                            return <img src={el} style={{display: 'none', maxHeight: clientHeight, maxWidth: clientWidth - 40}} 
+                            return <img referrerPolicy="no-referrer" src={el} style={{display: 'none', maxHeight: clientHeight, maxWidth: clientWidth - 40}} 
                                 key={el} alt={`img-${idx}`} />
                         }
                     })
