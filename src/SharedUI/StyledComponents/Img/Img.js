@@ -8,6 +8,7 @@ const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true
     useEffect(() => {
         const img = new Image();
         img.src = src;
+        img.referrerPolicy = "no-referrer";
         img.onload = () => {
             setIsLoading(false);
         }
@@ -19,7 +20,7 @@ const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true
         isLoading ?
         <LoadingWrapp height={height} width={width} />
         :
-        <img referrerpolicy="no-referrer" src={src} alt={alt} className={classes} draggable={draggable} style={{...customStyles, ...shadowSetting}} />
+        <img referrerPolicy="no-referrer" src={src} alt={alt} className={classes} draggable={draggable} style={{...customStyles, ...shadowSetting}} />
     );
 };
 
