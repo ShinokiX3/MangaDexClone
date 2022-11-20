@@ -1,3 +1,5 @@
+import { filterSomeAttribute } from "../Utils/filterAttribute";
+
 class MangaDexApi {
     BaseUrl = 'https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org';
     BaseUploadUrl = 'https://uploads.mangadex.org';
@@ -51,8 +53,9 @@ class MangaDexApi {
     }
 
     getMangaCover = async (mangaId) => {
-        const mangaImageId = ( await fetch(`${this.BaseManga}/${mangaId}/`)
-            .then(data => data.json()) )?.data?.relationships[2]?.id;
+        const mangaImageId = filterSomeAttribute(( await fetch(`${this.BaseManga}/${mangaId}/`)
+            .then(data => data.json()) )?.data?.relationships, 'cover_art')?.id;
+        // find cover art
         const coverId = ( await fetch(`${this.BaseCover}/${mangaImageId}`)
             .then(data => data.json()) )?.data?.attributes?.fileName;
         return `${this.BaseUploadUrl}/covers/${mangaId}/${coverId}`;
