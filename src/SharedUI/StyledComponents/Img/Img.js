@@ -20,7 +20,7 @@ const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true
         isLoading ?
         <LoadingWrapp height={height} width={width} />
         :
-        <img referrerPolicy="no-referrer" src={src} alt={alt} className={classes} draggable={draggable} style={{...customStyles, ...shadowSetting}} />
+        <img src={src} referrerPolicy="no-referrer" alt={alt} className={classes} draggable={draggable} style={{...customStyles, ...shadowSetting}} />
     );
 };
 
