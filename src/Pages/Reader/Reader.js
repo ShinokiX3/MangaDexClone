@@ -10,6 +10,7 @@ import { setReaderStatus } from '../../Store/Slices/menuSlice';
 
 import SideMenu from '../../Features/SideMenu/SideMenu';
 import SideReader from './SideReader/SideReader';
+import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
 
 const Read = () => {
     const params = useParams();
@@ -208,7 +209,8 @@ const Read = () => {
             </div>
             <div className="chapter-content" style={{maxHeight: clientHeight}} onClick={mangaContentDelegate}>
                 {
-                    images?.map((el, idx) => {
+                    images.length > 0 
+                    ? images?.map((el, idx) => {
                         if (idx+1 === currentChapter.currImg) {
                             return <img referrerPolicy="no-referrer" src={el} style={{display: '', maxHeight: clientHeight, maxWidth: clientWidth - 40}} 
                                 key={el} alt={`img-${idx}`} />
@@ -217,6 +219,8 @@ const Read = () => {
                                 key={el} alt={`img-${idx}`} />
                         }
                     })
+                    :
+                    <Spinner />
                 }
             </div>
             <SideMenu options={{menuType: 'reader'}}>
