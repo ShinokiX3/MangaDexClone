@@ -1,12 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './side-reader.scss';
 import LinkList from '../../../SharedUI/Form/LinkList';
 // import { setChapterMenuStatus } from '../../../OldStore/userReducer';
 import { setReaderStatus } from '../../../Store/Slices/menuSlice';
 import { useDispatch } from 'react-redux';
+import Select from '../../../SharedUI/StyledComponents/Select/Select';
 
-const SideReader = ({ data }) => {
+const SideReader = ({ data, handleChapter, currImg, maxImg, handleImage }) => {
+    const [selected, setSelected] = useState('');
+    const [pageSelected, setPageSelected] = useState();
+
+    const [pages, setPages] = useState();
+    const [chapters, setChapters] = useState();
+
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (data) {
+            console.log(data);
+
+            const chapters = [];
+
+            for (let volume in data) {
+                const chaptersNames = Object.keys(data[volume].chapters);
+                for (let ch in data[volume].chapters) {
+                    const name = 'Volume ' + volume + ' Ch. ' + ch;
+                    const idx = chaptersNames.indexOf(ch) + 1;
+
+                    const chapter = {
+                        volume: volume,
+                        chapter: ch,
+                        counter: idx,
+                        name: name
+                    }
+
+                    chapters.push(chapter);
+                }
+            }
+            console.log(chapters);
+            setChapters(chapters);
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (maxImg) {
+            const pages = Array.from({length: maxImg}, ((_, i) => { return {name: i + 1} }));
+            setPages(pages);
+        }
+    }, [maxImg])
+
+    useEffect(() => {
+        if (selected) {
+            handleChapter(selected.volume, selected.chapter, selected.counter);
+        }
+    }, [selected]);
+
+    useEffect(() => {
+        if (pageSelected) {
+            handleImage(pageSelected.name);
+        }
+    }, [pageSelected]);
+
     return (
         <div className="side-chapter-wrapp" style={{backgroundColor: 'white', minWidth: '250px'}}>
             <div className="side-chapter-utils">
@@ -28,6 +82,8 @@ const SideReader = ({ data }) => {
                 </div>
             </div>
             <div className="side-chapter-controls">
+                <Select values={chapters} selected={selected} setSelected={setSelected} selectTitle="Chapter" customStyles={{height: '25px'}} />
+                <Select values={pages} selected={pageSelected} setSelected={setPageSelected} selectTitle="Page" customStyles={{height: '25px'}} />
             </div>
             <hr style={{width: '100%', opacity: '0.4', margin: '1rem 0px'}} />
             <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', marginLeft: '7px'}}>

@@ -223,6 +223,24 @@ const Read = () => {
         dispatch(setReaderStatus(!menu.status));
     }
 
+    const handleChapter = (volume, chapter, counter) => {
+        setCurrentChapter({
+            volume: +volume,
+            chapter: +chapter,
+            counter: +counter,
+            currImg: 1,
+            maxImg: 1
+        })
+        setImages([]);
+    }
+
+    const handleImage = (image) => {
+        setCurrentChapter({
+            ...currentChapter,
+            currImg: image
+        })
+    }
+
     return (
         <main className="chapter-page">
             <div className="chapter-title">
@@ -257,7 +275,7 @@ const Read = () => {
                 }
             </div>
             <SideMenu options={{menuType: 'reader'}}>
-                <SideReader data={mangaVolumes} />
+                <SideReader data={mangaVolumes} handleChapter={handleChapter} currImg={currentChapter.currImg} maxImg={currentChapter.maxImg} handleImage={handleImage} />
             </SideMenu>
         </main>
     );
