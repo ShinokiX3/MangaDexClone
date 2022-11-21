@@ -226,8 +226,10 @@ const Read = () => {
     return (
         <main className="chapter-page">
             <div className="chapter-title">
-                <p className="chapter-name">{chapterTitle}</p>
-                <p className="manga-name">{mangaTitle}</p>
+                <div className="chapter-description">
+                    <p className="chapter-name">{chapterTitle}</p>
+                    <p className="manga-name">{mangaTitle}</p>
+                </div>
                 <div className="read-progress-info">
                     <div className='c-vol'>{`Vol. ${currentChapter?.volume}
                         Ch. ${currentChapter.chapter}`}</div>

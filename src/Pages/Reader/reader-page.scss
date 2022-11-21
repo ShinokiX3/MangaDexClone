@@ -17,7 +17,7 @@
     width: 100%;
     grid-area: chapter-title;
     justify-self: start;
-    
+
     .chapter-name {
         font-size: 16pt;
         margin-bottom: 3px;
@@ -71,5 +71,32 @@
         padding-top: 10px;
         padding-bottom: 10px;
         user-select: none
+    }
+}
+
+@media (max-width: 640px) {
+    .chapter-description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .read-progress-info div {
+        font-weight: lighter;
+        font-size: 12pt;
+    }
+
+    .translator {
+        font-weight: lighter!important;
+    }
+
+    .chapter-content {
+        min-height: 100vh;
+
+        img {
+            position: absolute;
+            max-height: 100%!important;
+            max-width: 100%!important;
+        }
     }
 }
