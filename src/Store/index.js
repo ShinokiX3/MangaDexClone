@@ -4,12 +4,14 @@ import menuReducer from './Slices/menuSlice';
 import mangaReducer from './Slices/mangaSlice';
 import suggestReducer from './Slices/suggestSlice';
 import titleReducer from './Slices/titlesSlice';
+import userReducer from './Slices/userSlice';
 
 const rootReducer = combineReducers({
     menu: menuReducer, 
     manga: mangaReducer,
     suggest: suggestReducer,
-    title: titleReducer
+    title: titleReducer,
+    user: userReducer
 })
 
 export default configureStore({

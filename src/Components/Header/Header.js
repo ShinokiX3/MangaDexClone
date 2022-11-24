@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import './header.scss';
 
 import { SearchModal, LoginModal } from '../Modals';
@@ -9,8 +9,11 @@ import { faMagnifyingGlass, faArrowRightToBracket } from '@fortawesome/free-soli
 import { useSelector, useDispatch } from 'react-redux';
 import { setMainStatus } from '../../Store/Slices/menuSlice';
 
+import avatar from '../../Assets/Images/avatar.png';
+
 import Modal from '../../Features/Modal/Modal';
 import Logo from '../../SharedUI/Logo/Logo';
+import Logged from './LoggStatus/Logged';
 
 const Header = memo(() => {
     const [active, setActive] = useState(false);
@@ -18,7 +21,10 @@ const Header = memo(() => {
     const [ref, setRef] = useState(null);
 
     const dispatch = useDispatch();
-    const menu = useSelector(state => state.user);
+    // const menu = useSelector(state => state.user);
+    const user = useSelector(state => state.user.user);
+
+    console.log(user);
 
     const handleModal = () => {
         setActive(true);
@@ -49,9 +55,12 @@ const Header = memo(() => {
                         </span>
                         <p>Search</p>
                     </div>
-                    <div className="login-block" onClick={handleAnouthorizeModal}>
-                        <FontAwesomeIcon icon={faArrowRightToBracket} />
-                    </div>
+                    {!user.username 
+                        ? <div className="login-block" onClick={handleAnouthorizeModal}>
+                            <FontAwesomeIcon icon={faArrowRightToBracket} />
+                          </div>
+                        : <Logged />
+                    }
                 </div>
                 <Modal active={active} setActive={setActive}>
                     <SearchModal setActive={setActive}/>

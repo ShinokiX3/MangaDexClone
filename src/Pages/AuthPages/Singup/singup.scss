@@ -190,8 +190,10 @@ form {
     width: 100%;
     font-size: 15pt;
     margin-top: 0px;
+
     button {
-        background-color: rgba($color: #ff6740, $alpha: 0.1);
+        // background-color: rgba($color: #ff6740, $alpha: 0.1);
+        background-color: #ff6740;
         border-color: transparent;
         border-radius: 0.4ch;
         width: 100%;
@@ -202,6 +204,7 @@ form {
         font-weight: 550;
         cursor: pointer;
     }
+
     button:last-child {
         margin-bottom: 0px;
         background-color: transparent;

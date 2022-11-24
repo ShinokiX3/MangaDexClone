@@ -44,8 +44,6 @@ const Read = () => {
         })()
     }, [])
 
-    // const [menuStatus, setMenuStatus] = useSideMenu('chapter');
-
     const fetchChapterHash = async (volume, chapter, counter) => {
         const chaptersNames = Object.keys(mangaVolumes[volume]?.chapters);
         const currChapter = +chaptersNames[+counter];
@@ -82,24 +80,18 @@ const Read = () => {
         ));
 
         setImages(images);
-        // setCurrentChapter({
-        //     ...currentChapter,
-        //     currImg: 1,
-        //     maxImg: images?.length || 1
-        // });
 
-        setCurrentChapter({
+        setCurrentChapter(currentChapter => ({
             ...currentChapter,
             currImg: 1,
             maxImg: images?.length || 1
-        });
+        }));
     }
 
     useEffect(() => {
         const header = document.querySelector('.header-block');
         if (menu.status) {
             header.style.position = "sticky";
-            // header.style.backgroundColor = "white";
         } else {
             header.style.position = "relative";
         }
@@ -130,7 +122,13 @@ const Read = () => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
+            // TODO: create controller to cancel fetching after unmount
+
             fetchChapterHash(currentChapter.volume, currentChapter.chapter, currentChapter.counter);
+        }
+
+        return () => {
+
         }
     }, [currentChapter.volume, currentChapter.chapter, mangaVolumes])
 
@@ -150,29 +148,29 @@ const Read = () => {
         document.documentElement.scrollTop = document.documentElement.scrollHeight;
         if (currentChapter.currImg === currentChapter.maxImg &&
             currentChapter.counter + 1 <= Object.keys(mangaVolumes[currentChapter.volume]?.chapters).length - 1) {
-            setCurrentChapter({
+            setCurrentChapter(currentChapter => ({
                 ...currentChapter,
                 chapter: currentChapter.chapter + 1,
                 counter: currentChapter.counter + 1,
                 currImg: 1,
                 maxImg: 1
-            })
+            }))
             setImages([]);
         } else if (currentChapter.currImg === currentChapter.maxImg &&
                     currentChapter.counter + 1 > Object.keys(mangaVolumes[currentChapter.volume]?.chapters).length - 1) {
-            setCurrentChapter({
+            setCurrentChapter(currentChapter => ({
                 volume: currentChapter.volume + 1,
                 chapter: currentChapter.chapter + 1,
                 counter: 1,
                 currImg: 1,
                 maxImg: 1
-            })
+            }));
             setImages([]);
         } else {
-            setCurrentChapter({
+            setCurrentChapter(currentChapter => ({
                 ...currentChapter,
                 currImg: currentChapter.currImg + 1
-            });
+            }));
         }
     }
 

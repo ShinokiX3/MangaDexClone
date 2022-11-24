@@ -6,7 +6,7 @@ import { faCode, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 const Form = ({type, additional = '', children}) => {
     return (
         <div className="form_wrapper">
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
                 <div className="singup-title">
                     <div>
                         <FontAwesomeIcon icon={faArrowLeft} />

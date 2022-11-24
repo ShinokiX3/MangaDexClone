@@ -33,7 +33,7 @@ const App = () => {
           
           <Route path='*' element={<Main />} />
         </Routes>
-        </div>
+      </div>
       </Router>
     </div>
   );
