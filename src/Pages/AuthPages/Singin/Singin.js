@@ -17,13 +17,14 @@ const Singin = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [checkbox, setCheckbox] = useState(false);
     
     const handleSingup = () => {
         navigate(`/singup`);
     }
 
     const handleSubmit = () => {
-        if (!username || !password) return false;
+        if (!username || !password || checkbox === false) return false;
 
         const creds = {
             username: username,
@@ -68,7 +69,7 @@ const Singin = () => {
                 <span className={styles.spansettings}>
                         Forgot Username/Password
                 </span>
-                <CheckBox value={"Remember Me"} />
+                <CheckBox value={"Remember Me"} checked={checkbox} setChecked={setCheckbox} />
                 <Buttons>
                     <button onClick={handleSubmit}>Log In</button>
                     <button onClick={handleSingup}>Create an Account</button>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CheckBox = ({message = '', additionalMess = '', value, additionalButt = ''}) => {
+const CheckBox = ({message = '', additionalMess = '', value, checked, setChecked, additionalButt = ''}) => {
     return (
         <div className="checkbox">
-            <input className="custom-checkbox" type="checkbox" id="color-5" name="color-5" value="green" required></input>
+            <input checked={checked} onChange={() => setChecked(!checked)} className="custom-checkbox" type="checkbox" id="color-5" name="color-5" value="green" required></input>
             <label htmlFor="color-5">{value} 
                 {
                     additionalButt ? <p className="label-star">{additionalButt}</p> : true
