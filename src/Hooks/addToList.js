@@ -6,7 +6,7 @@ const useAddToList = (mangaId) => {
     const user = useSelector(state => state.user.user);
 
     const fetchMangaToList = async (list) => {
-        const resp = await fetch(`https://api.mangadex.org/manga/${mangaId}/status`, {
+        const resp = await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/manga/${mangaId}/status`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ const useAddToList = (mangaId) => {
     }
 
     const refreshSession = async (list) => {
-        const resp = await fetch('https://api.mangadex.org/auth/refresh', {
+        const resp = await fetch('https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/auth/refresh', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

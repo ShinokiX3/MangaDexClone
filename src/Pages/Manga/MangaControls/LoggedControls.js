@@ -32,7 +32,7 @@ const LoggedControls = ({ redirectToReader }) => {
     }, [mangaInfo]);
 
     const fetchMangaStatus = async (count) => {
-        const resp = await fetch(`https://api.mangadex.org/manga/${mangaInfo.data.id}/status`, {
+        const resp = await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/manga/${mangaInfo.data.id}/status`, {
             headers: {
                 'Authorization': `Bearer ${user.sessionToken}`
             }
