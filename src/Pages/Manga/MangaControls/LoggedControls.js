@@ -63,7 +63,7 @@ const LoggedControls = ({ redirectToReader }) => {
         <button className="report-button">
             <svg data-v-20f285ec="" data-v-022ca1a5="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star text-currentColor icon"><path data-v-20f285ec="" d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
         </button>
-        <button className="read-button">
+        <button className="read-button add-to-md-list">
             <svg class="read-status-ico" data-v-20f285ec="" data-v-022ca1a5="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-v-20f285ec="" d="M8 6h13M8 12h13M8 18h3m10 0h-6m3 3v-6M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             <p>Add To MDList</p>
         </button>
