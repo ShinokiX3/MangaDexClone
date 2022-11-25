@@ -6,12 +6,9 @@ import Cover from '../../../SharedUI/StyledComponents/Cover/Cover';
 import TagsStatus from '../../../SharedUI/Statistics/TagsStatus/TagsStatus';
 import MangaStatus from '../../../Components/Manga/MangaStatus';
 
-import { BookIcon, ReportIcon, ShareIcon } from '../../../Assets/Svg/Manga';
-
 import { Rating, Follows, Seen } from '../../../SharedUI/Statistics';
-import { FollowsIcon } from '../../../Assets/Svg/Manga';
-import { DotsIcon } from '../../../Assets/Svg/Pagination';
 import { filterSomeAttribute } from '../../../Utils/filterAttribute';
+import MangaControls from '../MangaControls/MangaControls';
 
 // TODO: will have to do it with redux.
 
@@ -71,33 +68,9 @@ const MangaTitle = memo(({ mangaInfo }) => {
 });
 
 const MangaIntroduction = memo(({ mangaInfo }) => {
-    const navigate = useNavigate();
-
-    const redirectToReader = () => {
-        navigate(`/chapter/${mangaInfo?.data?.id}`);
-    }
-
     return (
         <div className="introduction" style={{zIndex: '105'}}>
-            <div className="buttons_wrapp">
-                <button className="add-button">
-                    <FollowsIcon />
-                    <p>Add To Library</p>
-                </button>
-                <button className="read-button" onClick={redirectToReader}>
-                    <BookIcon />
-                    <p className="butt-with-ico">Start Reading</p>
-                </button>
-                <button className="report-button">
-                    <ReportIcon />
-                </button>
-                <button className="share-button">
-                    <ShareIcon />
-                </button>
-                <button className="hide-button">
-                    <DotsIcon />
-                </button>
-            </div>
+            <MangaControls mangaInfo={mangaInfo} isAuthorize={false} />
             <MangaVariablesStatus mangaInfo={mangaInfo} />
             <MangaStatistics statistics={{}} />
         </div>

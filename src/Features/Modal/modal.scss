@@ -46,3 +46,28 @@
 .modal-content.active-modal {
     transform: scale(1);
 }
+
+.modal-close {
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100;
+    position: absolute;
+    
+    top: 18px;
+    right: 25px;
+
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 50%;
+
+    &:hover {
+        background-color: #f0f1f2;
+    }
+
+    transition: background-color .2s ease;
+}

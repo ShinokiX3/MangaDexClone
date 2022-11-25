@@ -30,7 +30,7 @@ const Volumes = ({ mangaId }) => {
     return (
         <>
         {
-        mangaFeed.load.status === 'loading' ||  mangaFeed.load.status === '' ? <Spinner /> 
+        mangaFeed.load.status === 'loading' ||  mangaFeed.load.status === '' ? <Spinner customStyle={{width: '50px', height: '50px'}} /> 
         :
         <div className={styles.chapters}>
             <div className={styles.controls_block}>

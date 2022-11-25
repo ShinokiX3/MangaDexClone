@@ -3,7 +3,6 @@ import styles from './usermodal.module.scss';
 
 import avatar from '../../../Assets/Images/avatar.png';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faGear, faDroplet, faArrowRightToBracket, faBookmark, faUserGroup, faFlag, faListUl, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { useSelector } from 'react-redux';
@@ -11,6 +10,7 @@ import { strToUpper } from '../../../Utils/stringToUpperCase';
 import IcoButton from '../../../SharedUI/StyledComponents/IcoButton/IcoButton';
 import { useDispatch } from 'react-redux';
 import { setToInitial } from '../../../Store/Slices/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const links = [
     {title: 'My Profile', icon: faUser, url: ''},
@@ -21,6 +21,8 @@ const links = [
 ]
 
 const UserModal = () => {
+    const navigate = useNavigate();
+
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
 
@@ -29,9 +31,22 @@ const UserModal = () => {
         dispatch(setToInitial());
     }
 
+    const handleUserProfile = async () => {
+        const resp = await fetch('https://api.mangadex.org/user/me?includes[]=scanlation_group', {
+            headers: {
+                'Authorization': user.sessionToken
+            },
+        }).then(data => data.json());
+
+        if (resp.result === 'ok') {
+            const userId = resp.data.id;
+            navigate(`/user/${userId}`);
+        }
+    }
+
     return (
         <div className="login-modal">
-            <div className={styles.info}>
+            <div onClick={handleUserProfile} className={styles.info}>
                 <img src={avatar} alt="avatar" />
                 <p className={styles.name}>{strToUpper(user.username)}</p>
                 <p className={styles.role}>User</p>

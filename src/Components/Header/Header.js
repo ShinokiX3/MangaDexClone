@@ -24,8 +24,6 @@ const Header = memo(() => {
     // const menu = useSelector(state => state.user);
     const user = useSelector(state => state.user.user);
 
-    console.log(user);
-
     const handleModal = () => {
         setActive(true);
         dispatch(setMainStatus(false));

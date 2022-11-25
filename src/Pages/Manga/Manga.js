@@ -16,19 +16,13 @@ const Manga = memo(() => {
 
     const dispatch = useDispatch();
     const mangaInfo = useSelector(state => state.manga.mangaInfo);
+    const user = useSelector(state => state.user.user);
 
     useEffect(() => {
         dispatch(fetchMangaInfo({mangaId}));
         dispatch(fetchMangaStatistics({mangaId}));
         dispatch(fetchMangaCovers({mangaId}));
         dispatch(fetchMangaFeed({mangaId}));
-
-        (async () => {
-            const res = await fetch('https:/uploads.mangadex.org/covers/d2df017b-c003-4de6-9625-4f1fba7aef97/4de979c2-c6e0-438f-b7e7-3a226324a416.png.256.jpg')
-                .then(data => data.json())
-                .then(data => console.log(data))
-            console.log(res);
-        })()
     }, [mangaId])
 
     return (

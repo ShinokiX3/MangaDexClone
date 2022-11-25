@@ -137,7 +137,8 @@
     }
 
     .read-button {
-        width: 174px;
+        padding: 0px 12px;
+        min-width: 174px;
         height: 48px;
     }
 
@@ -153,6 +154,17 @@
     .buttons_wrapp {
         display: flex;
         align-items: center;
+    }
+}
+
+.read-status-ico {
+    display: initial!important; 
+    margin-right: 15px;
+}
+
+@media (max-width: 640px) {
+    .read-status-ico {
+        margin-right: 0px;
     }
 }
 

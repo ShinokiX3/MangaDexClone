@@ -6,7 +6,29 @@ export const refreshToken = createAsyncThunk(
     'title/refreshToken',
     async function(_, {rejectWithValue, dispatch}) {
         try {
-            
+            const resp = await fetch('https://api.mangadex.org/auth/refresh', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: user.refreshToken
+                })
+            }).then(data => data.json());
+
+            if (resp.result === 'ok') {
+                const expires = new Date().valueOf() + 15 * 60000;
+    
+                const refreshedUser = {
+                    username: user.username,
+                    expires,
+                    sessionToken: resp.token.session,
+                    refreshToken: resp.token.refresh
+                }
+
+                localStorage.setItem('user', JSON.stringify(refreshedUser));
+                dispatch(setUser(refreshedUser));
+            }
         } catch (error) {
             
         }
@@ -20,21 +42,6 @@ const initialState = {
         refreshToken: '',
         expires: ''
     }
-}
-
-const setLoading = (state, action, selector) => {
-    state[selector].load.status = 'loading';
-    state[selector].load.error = null;
-}
-
-const setResolved = (state, action, selector) => {
-    state[selector].load.status = 'resolved';
-    state[selector].load.error = null;
-}
-
-const setError = (state, action, selector) => {
-    state[selector].load.status = 'rejecred';
-    state[selector].load.error = action.payload;
 }
 
 const userSlice = createSlice({
@@ -52,11 +59,6 @@ const userSlice = createSlice({
                 expires: ''
             }
         }
-    },
-    extraReducers: {
-        [refreshToken.pending]: (state, action) => setLoading(state, action, 'filterTags'),
-        [refreshToken.fulfilled]: (state, action) => setResolved(state, action, 'filterTags'),
-        [refreshToken.rejected]: (state, action) => setError(state, action, 'filterTags'),
     }
 })
 

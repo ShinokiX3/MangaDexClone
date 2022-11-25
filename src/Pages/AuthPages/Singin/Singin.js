@@ -10,15 +10,25 @@ import MainContainer from '../../../Layouts/MainContainer/MainContainer';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../Store/Slices/userSlice';
+import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
+import Modal from '../../../Features/Modal/Modal';
+import ErrorModal from '../../../Components/Modals/ErrorModal/ErrorModal';
+import ReactDOM from 'react-dom';
+const modalRoot = document.getElementById('modal-root');
 
 const Singin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [shouldOpen, setShouldOpen] = useState(false);
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [checkbox, setCheckbox] = useState(false);
-    
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
     const handleSingup = () => {
         navigate(`/singup`);
     }
@@ -30,6 +40,8 @@ const Singin = () => {
             username: username,
             password: password
         };
+
+        setLoading(true);
 
         (async () => {
             const resp = await fetch(`https://api.mangadex.org/auth/login`, {
@@ -55,13 +67,24 @@ const Singin = () => {
 
                 dispatch(setUser(user));
                 navigate(`/`);
+            } else {
+                const message = {
+                    code: resp.errors[0].status,
+                    details: resp.errors[0].detail
+                }
+
+                setError(message);
+                setShouldOpen(true);
+
+                setTimeout(() => { setShouldOpen(false) }, 4000);
             }
 
+            setLoading(false);
         })();
-
     }
 
     return (
+        <>
         <MainContainer mainClasses={styles.flexcenter} isHeaderBlack>
             <Form type={"Log In"}>
                 <Input type={"text"} id={"username"} placeholder={"Username"} value={username} setValue={setUsername} />
@@ -71,11 +94,25 @@ const Singin = () => {
                 </span>
                 <CheckBox value={"Remember Me"} checked={checkbox} setChecked={setCheckbox} />
                 <Buttons>
-                    <button onClick={handleSubmit}>Log In</button>
+                    <button onClick={handleSubmit}>
+                    {loading 
+                        ? <Spinner customStyle={{width: '27px', height: '27px', margin: '0px', borderColor: 'white'}} wrappStyles={{margin: '0px'}} /> 
+                        : `Log In`}
+                    </button>
                     <button onClick={handleSingup}>Create an Account</button>
                 </Buttons>
             </Form>
         </MainContainer>
+
+        {error 
+            ? ReactDOM.createPortal(
+            <Modal active={shouldOpen} setActive={setShouldOpen}>
+                <ErrorModal error={error} setActive={setShouldOpen} />
+            </Modal>,
+            modalRoot)
+            : null
+        }
+        </>
     );
 };
 

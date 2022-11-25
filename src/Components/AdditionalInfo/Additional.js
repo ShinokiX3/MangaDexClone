@@ -12,18 +12,11 @@ const Additional = () => {
 
     useEffect(() => {
         if (mangaInfo.load.status === 'resolved') {
-            console.log(mangaInfo);
             setTagsArr(configureTags(mangaInfo));
             setAltTitles(mangaInfo.data.attributes.altTitles);
         }
     }, [mangaInfo.load.status]);
 
-    useEffect(() => {
-        console.log(tagsArr);
-    }, [tagsArr]);
-
-
-    // mangaInfo={mangaInfo?.data?.attributes}
     return (
         <div style={{display: 'flex', flexWrap: 'wrap', width: '95%'}}>
             {
