@@ -3,12 +3,15 @@ import styles from './icobutton.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faGear, faDroplet } from '@fortawesome/free-solid-svg-icons';
+import { Link, useNavigate } from 'react-router-dom';
 
-const IcoButton = ({ title, icon, handler, customStyles = {} }) => {
+const IcoButton = ({ title, icon, handler, url = '', customStyles = {} }) => {
+    const navigate = useNavigate();
+
     return (
         <div className={styles.wrapper} style={customStyles}>
             <FontAwesomeIcon icon={icon} />
-            <button onClick={handler}>{title}</button>
+            <button onClick={handler ? handler : () => navigate(url)}>{title}</button>
         </div>
     );
 };

@@ -320,10 +320,6 @@
         // grid-template-columns: auto;
     }
 
-    .add-to-md-list {
-        display: none;
-    }
-
     .manga-title div p {
         color: black;
     }
@@ -434,6 +430,10 @@
 
     .synopsis {
         margin-top: 0px;
+    }
+
+    .add-to-md-list {
+        display: none!important;
     }
 }
 

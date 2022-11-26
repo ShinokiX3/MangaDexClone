@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MangaStatus from '../../Components/Manga/MangaStatus';
 import { Comments, Follows, Rating, Seen } from '../../SharedUI/Statistics';
 import TagsStatus from '../../SharedUI/Statistics/TagsStatus/TagsStatus';
@@ -9,11 +10,17 @@ import { strToUpper } from '../../Utils/stringToUpperCase';
 import styles from './card.module.scss';
 
 const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle }) => {
+    const navigate = useNavigate();
+
+    const handleManga = () => {
+        navigate(`/manga/${manga.id}`)
+    }
+
     return (
         <div className={styles.item}>
             <p className={styles.name}>{strToUpper(manga.related)}</p>
             <div className={styles.item_content}>
-                <div ref={setRefCover} className={styles.cover + ' ' + refCoverStyle}>
+                <div onClick={handleManga} ref={setRefCover} className={styles.cover + ' ' + refCoverStyle}>
                     <Img 
                         src={`https://uploads.mangadex.org/covers/${mangaInfo?.data?.id}/${filterSomeAttribute(mangaInfo?.data?.relationships, 'cover_art', 'fileName')}`} 
                         alt='' 
@@ -21,7 +28,7 @@ const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle
                 </div>
                 <div className={styles.description}>
                     <div className={styles.title + ' ' + refTitleStyle}>
-                        <div>{mangaInfo?.data?.attributes?.title?.en}</div>
+                        <div onClick={handleManga} className={styles.manganame}>{mangaInfo.data ? Object.values(mangaInfo.data.attributes.title)[0] : ''}</div>
                         <div className={styles.statistics}>
                             {/* TODO: Create new component to compose these statistic's items */}
                             <Rating statistic={[]} />

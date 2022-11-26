@@ -8,6 +8,7 @@ import { filterSomeAttribute } from '../../Utils/filterAttribute';
 import CardControls from './CardControls';
 import Cover from '../../SharedUI/StyledComponents/Cover/Cover';
 import Card from './Card';
+import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
 
 const Cards = memo(({ mangasArr, children }) => {
     const [refControls, setRefControls] = useState(null);

@@ -1,0 +1,17 @@
+.wrapp {
+    height: 100%;
+    width: 100%;
+    display: grid;
+}
+
+.container {
+    display: grid;
+    width: 95%;
+    justify-self: center;
+    gap: 20px;
+}
+
+.titlescount {
+    font-size: 15pt;
+    color: #242424;
+}

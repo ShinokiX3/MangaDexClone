@@ -39,7 +39,7 @@ const LoggedControls = ({ redirectToReader }) => {
         }).then(data => data.json());
 
         if (resp.result === 'ok') {
-            setReadingStatus(strToUpper(resp.status));
+            setReadingStatus(strToUpper(resp.status ? resp.status : 'Add To Library'));
             setLoading(false);
         } else if (count !== 2) {
             dispatch(refreshToken());
@@ -55,7 +55,8 @@ const LoggedControls = ({ redirectToReader }) => {
         <>
         <button onClick={handleToLibrary} className={"add-button"}>
             {readingStatus !== 'Add To Library' 
-                ? <svg class="read-status-ico" data-v-20f285ec="" data-v-022ca1a5="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-v-20f285ec="" d="M18 8A6 6 0 1 0 6 8c0 7-3 9-3 9h9m6.63-4A17.888 17.888 0 0 1 18 8m-4.27 13a2 2 0 0 1-3.46 0M17 18l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg> 
+                // ? <svg class="read-status-ico" data-v-20f285ec="" data-v-022ca1a5="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path data-v-20f285ec="" d="M18 8A6 6 0 1 0 6 8c0 7-3 9-3 9h9m6.63-4A17.888 17.888 0 0 1 18 8m-4.27 13a2 2 0 0 1-3.46 0M17 18l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg> 
+                ? <svg class="read-status-ico" data-v-20f285ec="" data-v-022ca1a5="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path data-v-20f285ec="" d="M20 6 9 17l-5-5"></path></svg>
                 : <FollowsIcon /> 
             }
             <p>{loading ? <Spinner customStyle={{width: '27px', height: '27px', borderColor: 'white'}} /> : readingStatus}</p>

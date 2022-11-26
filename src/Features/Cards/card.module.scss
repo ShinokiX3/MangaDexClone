@@ -79,6 +79,7 @@
 }
 
 .cover, .cover img {
+    cursor: pointer;
     height: 120px;
     width: 84px;
 }
@@ -107,10 +108,15 @@
 .title {
     display: flex;
     justify-content: space-between;
+
     &:nth-child(1) {
         font-size: 14pt;
         font-weight: 800;
     }
+}
+
+.manganame {
+    cursor: pointer;
 }
 
 .title_e_row {

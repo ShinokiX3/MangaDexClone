@@ -13,8 +13,8 @@ import { setToInitial } from '../../../Store/Slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 const links = [
-    {title: 'My Profile', icon: faUser, url: ''},
-    {title: 'My Follows', icon: faBookmark, url: ''},
+    {title: 'My Profile', icon: faUser, url: `/user/me`},
+    {title: 'My Follows', icon: faBookmark, url: '/follows'},
     {title: 'My Lists', icon: faListUl, url: ''},
     {title: 'My Groups', icon: faUserGroup, url: ''},
     {title: 'My Reports', icon: faFlag, url: ''}
@@ -53,7 +53,7 @@ const UserModal = () => {
             </div>
             <hr className={styles.hr} />
             <div className={styles.links}>
-                {links.map(({title, icon, url}) => <IcoButton title={title} icon={icon} />)}
+                {links.map(({title, icon, url}) => <IcoButton title={title} icon={icon} url={url} />)}
             </div>
             <hr className={styles.hr} />
             <div className={styles.settings}>

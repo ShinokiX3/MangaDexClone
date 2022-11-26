@@ -9,6 +9,7 @@ import SideMenu from './Features/SideMenu/SideMenu';
 import SideMain from './Components/SideMain/SideMain';
 import Titles from './Pages/Titles/Titles';
 import UserPage from './Pages/User/UserPage';
+import Library from './Pages/Library/Library';
 
 const App = () => {
   return (
@@ -30,6 +31,8 @@ const App = () => {
           <Route path='/manga/:id' element={<Manga />} />
           <Route path='/user/:id' element={<UserPage />} />
           <Route path='/chapter/*' element={<Chapter />} />
+
+          <Route path='/follows' element={<Library />} />
           
           <Route path='*' element={<Main />} />
         </Routes>

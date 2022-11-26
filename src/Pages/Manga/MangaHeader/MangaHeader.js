@@ -29,7 +29,7 @@ const MangaHeader = memo(({ mangaInfo = {} }) => {
         <>
             <Cover 
                 src={mangaCoverUrl} 
-                alt='manga cover' 
+                alt='' 
                 // style={{zIndex: '105', gridArea: 'manga-cover', margin: '10px', alignSelf: 'flex-start', width: '200px'}} 
                 classLists={{wrapp: 'manga-cover-cl', img: ''}}
                 countryIco={mangaInfo?.data?.attributes?.originalLanguage}
