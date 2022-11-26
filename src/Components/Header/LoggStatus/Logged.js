@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './logged.module.scss';
 import avatar from '../../../Assets/Images/avatar.png';
-import { useState } from 'react';
 import Modal from '../../../Features/Modal/Modal';
 import UserModal from '../../Modals/UserModal/UserModal';
 

@@ -33,7 +33,6 @@ const SearchModal = memo(({setActive}) => {
     }
 
     async function searchData() {
-        console.log('searched data');
         const mangas = await MangaDexApi.getSearcedManga(value);
         const authors = await MangaDexApi.getSearcedAuthor(value);
         const groups = await MangaDexApi.getSearcedGroup(value);

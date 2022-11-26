@@ -1,11 +1,11 @@
 import React from 'react';
 import { FollowIcon } from '../../../Assets/Svg/Statistics';
 
-const Follows = ({ statistic }) => {
+const Follows = ({ follows }) => {
     return (
-        <div className="follows" style={{display: 'flex'}}>
+        <div className="follows" style={{display: 'flex', cursor: 'pointer'}}>
             <FollowIcon alt="" />
-            <p>{statistic?.follows || "9.5"}</p>
+            <p>{follows || "9.5"}</p>
         </div>
     );
 };

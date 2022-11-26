@@ -1,6 +1,9 @@
 import React, { memo } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MangaStatus from '../../Components/Manga/MangaStatus';
+import MangaDexApi from '../../Services/MangaDexApi';
 import { Comments, Follows, Rating, Seen } from '../../SharedUI/Statistics';
 import TagsStatus from '../../SharedUI/Statistics/TagsStatus/TagsStatus';
 import Img from '../../SharedUI/StyledComponents/Img/Img';
@@ -11,6 +14,18 @@ import styles from './card.module.scss';
 
 const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle }) => {
     const navigate = useNavigate();
+    const [statistics, setStatistics] = useState('');
+
+    useEffect(() => {
+        if (!!mangaInfo) {
+            (async () => {
+                const statistics = await MangaDexApi.getMangaStatistics(manga?.id).then(data => data.json());
+                if (!!statistics) {
+                    setStatistics(Object.values(statistics.statistics)[0]);
+                }
+            })();
+        }
+    }, []);
 
     const handleManga = () => {
         navigate(`/manga/${manga.id}`)
@@ -31,8 +46,13 @@ const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle
                         <div onClick={handleManga} className={styles.manganame}>{mangaInfo.data ? Object.values(mangaInfo.data.attributes.title)[0] : ''}</div>
                         <div className={styles.statistics}>
                             {/* TODO: Create new component to compose these statistic's items */}
-                            <Rating statistic={[]} />
-                            <Follows statistic={[]} />
+                            {statistics 
+                                ? <>
+                                  <Rating rating={statistics.rating} />
+                                  <Follows follows={statistics.follows} />
+                                  </>
+                                : null
+                            }
                             <Seen statistic={[]} />
                             <Comments statistic={[]} />
                             <MangaStatus 
@@ -50,7 +70,7 @@ const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle
                     </div>
                     <div className={styles.main_title}>
                         {
-                            cutString(mangaInfo?.data?.attributes?.description?.en, 500)
+                            cutString(mangaInfo?.data?.attributes?.description?.en, 450)
                         }
                     </div>
                 </div>

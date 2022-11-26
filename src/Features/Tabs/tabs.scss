@@ -8,6 +8,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 2px;
+    
     span {
         color: #808080;
         border-radius: 2px;
@@ -15,18 +16,46 @@
         font-weight: bold;
         min-height: 32px;
         margin-right: 15px;
+
         &:last-child{
             margin-right: 0;
         }
+
         padding: 4px 8px 4px 8px;
         cursor: pointer;
         position: relative;
         transition: all .5s cubic-bezier(.2,.6,.1,1.2),color .2s cubic-bezier(.2,.6,.1,1.2);
         opacity: 0.4;
     }
+
     span.active {
         color: white;
         background-color: #242424;
         opacity: 1;
+    }
+}
+
+@media (max-width: 750px) {
+    .selectors {
+        height: 30px;
+        width: 90vw;
+        overflow-x: scroll;
+        white-space: nowrap;
+
+        span {
+            font-size: 14pt;
+        }
+
+        &::-webkit-scrollbar {
+            height: 5px;
+        }
+    }
+}
+
+@media (max-width: 440px) {
+    .selectors {
+        span {
+            font-size: 13pt;
+        }
     }
 }

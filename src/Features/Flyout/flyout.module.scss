@@ -1,0 +1,15 @@
+.wrapper {
+    position: absolute;
+    top: 25px;
+    padding: 10px;
+    border-radius: .15rem;
+    min-width: 75px;
+    min-height: 75px;
+    box-shadow: 0 1px 12px #000000aa;
+    background-color: white;
+    display: block!important;
+}
+
+.content {
+    display: flex;
+}

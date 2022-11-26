@@ -5,8 +5,6 @@ import styles from './select.module.scss';
 const Select = memo(({ values = [], selected, setSelected, selectTitle = '', customStyles = {} }) => {
     const refSelect = useRef(null);
 
-    console.log(values);
-
     const handleSelect = () => {
         refSelect.current.classList.toggle(styles.active);
     }

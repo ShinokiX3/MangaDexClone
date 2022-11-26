@@ -131,6 +131,8 @@
         height: 48px;
         background-color: #ff6740;
 
+        box-shadow: 0 0.2rem 1rem #ff67404d;
+
         svg {
             display: none;
         }
@@ -256,10 +258,6 @@
             width: 1em;
             margin-right: 4px;
         }
-
-        p {
-            font-size: 1rem;
-        }
     }
     
     .seen {
@@ -272,6 +270,10 @@
 
     .follows {
         color: #494949
+    }
+
+    .seen, .follows, .rating {
+        font-size: 12.5pt;
     }
 }
 

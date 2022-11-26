@@ -9,6 +9,8 @@ import MangaStatus from '../../../Components/Manga/MangaStatus';
 import { Rating, Follows, Seen } from '../../../SharedUI/Statistics';
 import { filterSomeAttribute } from '../../../Utils/filterAttribute';
 import MangaControls from '../MangaControls/MangaControls';
+import { useSelector } from 'react-redux';
+import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 
 // TODO: will have to do it with redux.
 
@@ -27,16 +29,15 @@ const MangaHeader = memo(({ mangaInfo = {} }) => {
 
     return (
         <>
-            <Cover 
-                src={mangaCoverUrl} 
-                alt='' 
-                // style={{zIndex: '105', gridArea: 'manga-cover', margin: '10px', alignSelf: 'flex-start', width: '200px'}} 
-                classLists={{wrapp: 'manga-cover-cl', img: ''}}
-                countryIco={mangaInfo?.data?.attributes?.originalLanguage}
-            />
-            <MangaTitle mangaInfo={mangaInfo} />
-            <MangaIntroduction mangaInfo={mangaInfo} />
-            <div className="banner-image" style={backImage}></div>
+        <Cover 
+            src={mangaCoverUrl} 
+            alt=''
+            classLists={{wrapp: 'manga-cover-cl', img: ''}}
+            countryIco={mangaInfo?.data?.attributes?.originalLanguage}
+        />
+        <MangaTitle mangaInfo={mangaInfo} />
+        <MangaIntroduction mangaInfo={mangaInfo} />
+        <div className="banner-image" style={backImage}></div>
         </>
     );
 });
@@ -68,11 +69,13 @@ const MangaTitle = memo(({ mangaInfo }) => {
 });
 
 const MangaIntroduction = memo(({ mangaInfo }) => {
+    const statistics = useSelector(state => state.manga.statistics);
+
     return (
         <div className="introduction" style={{zIndex: '105'}}>
             <MangaControls mangaInfo={mangaInfo} isAuthorize={false} />
             <MangaVariablesStatus mangaInfo={mangaInfo} />
-            <MangaStatistics statistics={{}} />
+            <MangaStatistics statistics={statistics.data} />
         </div>
     )
 });
@@ -115,13 +118,19 @@ const MangaVariablesStatus = memo(({ mangaInfo = {} }) => {
 });
 
 const MangaStatistics = memo(({ statistics = {} }) => {
-    return (
+    const stats = useMemo(() => {
+        if (!!statistics) {
+            return Object.values(statistics)[0];
+        }
+    }, [statistics]);
+
+    return stats ? (
         <div className="manga-statistics">
-            <Rating statistic={statistics} />
-            <Follows statistic={statistics} />
+            <Rating rating={stats.rating} details />
+            <Follows follows={stats.follows} />
             <Seen statistic={statistics} />
         </div>
-    )
+    ) : null;
 });
 
 
