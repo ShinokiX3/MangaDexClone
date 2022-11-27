@@ -53,7 +53,7 @@ const UserModal = () => {
             </div>
             <hr className={styles.hr} />
             <div className={styles.links}>
-                {links.map(({title, icon, url}) => <IcoButton title={title} icon={icon} url={url} />)}
+                {links.map(({title, icon, url}) => <IcoButton key={title} title={title} icon={icon} url={url} />)}
             </div>
             <hr className={styles.hr} />
             <div className={styles.settings}>

@@ -62,8 +62,8 @@ const ChapterEl = ({ item, index, chapter, chName }) => {
                 <p>
                     {
                         !(item?.attributes?.title) ? chName
-                        : (item?.attributes?.title).length > 20 ? 
-                        (item?.attributes?.title).substring(0, 20) + '...' 
+                        : (item?.attributes?.title).length > 18 ? 
+                        (item?.attributes?.title).substring(0, 18) + '...' 
                         : item?.attributes?.title
                     }
                 </p>

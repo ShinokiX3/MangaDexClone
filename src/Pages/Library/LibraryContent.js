@@ -1,10 +1,13 @@
 import React, { useEffect, useState, memo } from 'react';
+import ReactDOM from 'react-dom';
 import { useSelector } from 'react-redux';
 import Tabs from '../../Features/Tabs/Tabs';
 import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
 import Cards from '../../Features/Cards/Cards';
 
 import styles from './library.module.scss';
+import Modal from '../../Features/Modal/Modal';
+import ErrorModal from '../../Components/Modals/ErrorModal/ErrorModal';
 
 const readingStatusList = {
     'Reading': 'reading',
@@ -16,6 +19,8 @@ const readingStatusList = {
 }
 
 const tabs = Object.keys(readingStatusList);
+
+const modalRoot = document.getElementById('modal-root');
 
 const collectItems = (items) => {
     const values = Array.from(new Set(Object.values(items)));
@@ -51,7 +56,7 @@ const LibraryContent = () => {
                 const mangaList = collectItems(resp.statuses);
                 setMangaList(mangaList);
             } else {
-                setError('UnAuthorized');
+                setError(resp[0]);
             }
 
             setLoading(false);
@@ -67,20 +72,29 @@ const LibraryContent = () => {
         }
     }
 
-    return loading || error ? <Spinner customStyle={{width: '45px', height: '45px', borderColor: ''}} /> : (
+    return (
         <div>
             <Tabs handleTabs={handleTabs} tabs={tabs} />
             <div>
-                <LoadFollow mangaList={mangaList[readingStatusList[currentTab]]} />
+                <LoadFollow mangaList={mangaList[readingStatusList[currentTab]]} loading={loading} error={error} />
             </div>
         </div>
     );
 };
 
-const LoadFollow = ({ mangaList }) => {
-    return (
+const LoadFollow = ({ mangaList = [], loading, error }) => {
+    if (error) return (
+        ReactDOM.createPortal(
+            <Modal active={true}>
+                <ErrorModal error={{statusCode: error.status, details: error.detail}} />
+            </Modal>
+            , modalRoot
+        )
+    )
+
+    return loading ? <Spinner customStyle={{width: '45px', height: '45px', borderColor: ''}} /> : (
         <Cards mangasArr={mangaList}>
-            <p className={styles.titlescount}>{`${mangaList.length} Titles`}</p>
+            <p className={styles.titlescount}>{`${mangaList.length || '0'} Titles`}</p>
         </Cards>
     )
 }

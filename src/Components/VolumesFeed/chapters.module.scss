@@ -168,6 +168,12 @@
     }
 }
 
+@media (max-width: 500px) {
+    .chapters {
+        width: 90vw;
+    }
+}
+
 @media (max-width: 400px) {
     .chapters_block {
         .content {

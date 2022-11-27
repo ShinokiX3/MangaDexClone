@@ -43,7 +43,7 @@ const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle
                 </div>
                 <div className={styles.description}>
                     <div className={styles.title + ' ' + refTitleStyle}>
-                        <div onClick={handleManga} className={styles.manganame}>{mangaInfo.data ? Object.values(mangaInfo.data.attributes.title)[0] : ''}</div>
+                        <div onClick={handleManga} className={styles.manganame}>{mangaInfo.data ? cutString(Object.values(mangaInfo.data.attributes.title)[0], 32) : ''}</div>
                         <div className={styles.statistics}>
                             {/* TODO: Create new component to compose these statistic's items */}
                             {statistics 

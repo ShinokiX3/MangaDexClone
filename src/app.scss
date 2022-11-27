@@ -92,9 +92,11 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    
     &:last-child {
         margin-right: 10px;
     }
+
     &:hover {
         background-color: #f0f1f2; 
     }
@@ -177,6 +179,26 @@ input[type="button"]:hover {
     display: none;
 }
 
+@media (max-width: 450px) {
+    .page-block {
+        .page-span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-left: 4px;
+            margin-right: 4px;
+
+            max-width: 30px;
+            max-height: 30px;
+            min-width: 30px;
+            min-height: 30px;
+
+            font-size: 13pt;
+        }
+    }    
+}
+
 @media (max-width: 340px) {
     h1 {
         font-size: 18pt;
@@ -184,6 +206,26 @@ input[type="button"]:hover {
 
     input {
         font-size: 10pt;
+    }
+
+    .page-block {
+        .page-span {
+            margin-left: 2px;
+            margin-right: 2px;
+
+            font-size: 10pt;
+        }
+    }  
+}
+
+@media (max-width: 300px) {
+    .page-block {
+        .page-span {
+            max-width: 24px;
+            max-height: 24px;
+            min-width: 24px;
+            min-height: 24px;
+        }
     }
 }
 

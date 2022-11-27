@@ -9,7 +9,7 @@ const Scanlation = ({ name }) => {
     return (
         <div className={styles.wrapp}>
             <img src={groupIcons.group} alt=""></img>
-            <p style={{marginLeft: '4px', padding: '0px 4px'}}>{cutString(name, 20)}</p>
+            <p style={{marginLeft: '4px', padding: '0px 4px'}}>{cutString(name, 18)}</p>
         </div>
     );
 };

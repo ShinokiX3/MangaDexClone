@@ -314,6 +314,10 @@
     .statistics {
         flex-wrap: wrap;
     }
+
+    .item_content {
+        width: 90vw;
+    }
 }
 
 @media (max-width: 350px) {
