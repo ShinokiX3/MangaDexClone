@@ -8,11 +8,10 @@ import Scanlation from '../../../SharedUI/Community/Scanlation/Scanlation';
 import { compareDates } from '../../../Utils/compareDates';
 
 const LatestUpdates = ({ chapters }) => {
-    console.log(chapters);
     return (
         <div className={styles.wrapp}>
             {
-                chapters?.data?.map(chapter => <LatestUpdatesItem chapter={chapter} />)
+                chapters?.data?.map((chapter, idx) => <LatestUpdatesItem key={chapter.id + idx} chapter={chapter} />)
             }
         </div>
     );

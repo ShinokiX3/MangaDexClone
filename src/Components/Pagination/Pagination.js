@@ -12,19 +12,19 @@ const Pagination = ({ pages, currPage, step, setOffset, setCurrPage }) => {
             {
                 Array.from(Array(pages), (e, idx) => {
                     if (idx + 1 >= currPage - 2 && idx + 1 <= currPage + 2) {
-                        return <PaginationItem idx={idx} currPage={currPage} handlePageChange={handlePageChange} />
+                        return <PaginationItem key={idx} idx={idx} currPage={currPage} handlePageChange={handlePageChange} />
                     } else if (idx+1 === currPage - 3 || idx+1 === currPage + 3) {
                         return (
                             <div key={idx + 1}>
                                 {
                                     idx+1 === currPage - 3 ? 
                                     <div style={{display: 'flex'}}>
-                                        <PaginationItem idx={0} currPage={currPage} handlePageChange={handlePageChange} />
+                                        <PaginationItem key={0} idx={0} currPage={currPage} handlePageChange={handlePageChange} />
                                         <PaginationVariable idx={'left'} pages={pages} handlePageChange={handlePageChange} />
                                     </div>
                                     :
                                     <div style={{display: 'flex'}}>
-                                        <PaginationVariable idx={'right'} pages={pages} handlePageChange={handlePageChange} />
+                                        <PaginationVariable key={'right'} idx={'right'} pages={pages} handlePageChange={handlePageChange} />
                                         <PaginationItem idx={pages - 1} currPage={currPage} handlePageChange={handlePageChange} />
                                     </div>
                                 }

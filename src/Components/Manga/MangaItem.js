@@ -18,10 +18,6 @@ const MangaItem = (props) => {
 
     const getInfoAboutManga = async (id, e) => {
         const currClientWdith = document.documentElement.clientWidth;
-        
-        // await JikanApi.getInfoAbout(id).then(data => setInfo(data));
-        // Заменить хардкод-числа на вычесляимые
-        
         const mangaItem = document.querySelector('.manga-item');
         const mangaWidth = mangaItem.clientWidth, mangaHeight = mangaItem.clientHeight;
 
@@ -52,7 +48,6 @@ const MangaItem = (props) => {
     }
 
     const closeDetails = () => {
-        // setInfo([]);
         setDescrStatus('');
     }
     return (

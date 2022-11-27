@@ -27,7 +27,9 @@ const RatingFlyout = ({ distribution }) => {
 
     return (
         <table>
-            {rates.reverse().map(rate => <Rate rate={rate} />)}
+            <tbody>
+                {rates.reverse().map(rate => <Rate key={rate.grade} rate={rate} />)}
+            </tbody>
         </table>
     );
 };

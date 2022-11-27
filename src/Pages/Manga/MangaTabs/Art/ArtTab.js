@@ -18,12 +18,6 @@ const ArtTab = memo(({ mangaId }) => {
     const dispatch = useDispatch();
     const covers = useSelector(state => state.manga.covers);
 
-    // useEffect(() => {
-    //     if (!covers.data) {
-    //         dispatch(fetchMangaCovers({mangaId}));
-    //     }
-    // }, []);
-
     useEffect(() => {
         if (covers.data.total) {
             setPages(Math.ceil(covers?.data?.total / step));
@@ -35,38 +29,28 @@ const ArtTab = memo(({ mangaId }) => {
         dispatch(fetchMangaCovers({mangaId, offset}));
     }, [currPage]);
 
-    // useEffect(() => {
-    //     setOffset((currPage - 1) * step);
-    //     (async() => {
-    //         const covers = await MangaDexApi.getMangaCoversByVolumes(mangaId, offset);
-    //         setCoversFeed(covers?.array);
-    //     })();
-    // }, [currPage])
-
     return (
         <>
-            <p className={styles.name}>Covers</p>
-            <div className={styles.alt_block_settings}>
-                {
-                    covers?.data?.array?.map(cover => (
-                        <Cover
-                            src={cover?.filePath}
-                            alt={'Volume cover ' + cover?.volume}
-                            stylesList={{
-                                height: '360px',
-                                width: '250px'
-                            }}
-                            classLists={{
-                                wrapp: styles.alt_wrapp_settings,
-                                img: styles.img_settings
-                            }}
-                        >
-                            <span><p>Volume {cover?.volume}</p></span>
-                        </Cover>
-                    ))
-                }
-            </div>
-            {/* <Pagination pages={pages} currPage={currPage} step={step} setOffset={setOffset} setCurrPage={setCurrPage} /> */}
+        <p className={styles.name}>Covers</p>
+        <div className={styles.alt_block_settings}>
+            {covers?.data?.array?.map(cover => (
+                <Cover key={cover.volume}
+                    src={cover?.filePath}
+                    alt={'Volume cover ' + cover?.volume}
+                    stylesList={{
+                        height: '360px',
+                        width: '250px'
+                    }}
+                    classLists={{
+                        wrapp: styles.alt_wrapp_settings,
+                        img: styles.img_settings
+                    }}
+                >
+                    <span><p>Volume {cover?.volume}</p></span>
+                </Cover>))
+            }
+        </div>
+        {/* <Pagination pages={pages} currPage={currPage} step={step} setOffset={setOffset} setCurrPage={setCurrPage} /> */}
         </>
     );
 });

@@ -68,8 +68,6 @@ export const fetchLatestUpdates = createAsyncThunk(
                 return chapter;
             });
 
-            console.log(latestUpdListData);
-
             dispatch(setLatestUpdates({data: latestUpdListData.data.slice(0, 18)}));
         } catch (error) {
             return rejectWithValue(error.message);
