@@ -11,6 +11,7 @@ import IcoButton from '../../../SharedUI/StyledComponents/IcoButton/IcoButton';
 import { useDispatch } from 'react-redux';
 import { setToInitial } from '../../../Store/Slices/userSlice';
 import { useNavigate } from 'react-router-dom';
+import useLogout from '../../../Hooks/logout';
 
 const links = [
     {title: 'My Profile', icon: faUser, url: `/user/me`},
@@ -25,11 +26,7 @@ const UserModal = () => {
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
-
-    const handleSignOut = () => {
-        localStorage.removeItem('user');
-        dispatch(setToInitial());
-    }
+    const logout = useLogout();
 
     const handleUserProfile = async () => {
         const resp = await fetch('https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/user/me?includes[]=scanlation_group', {
@@ -61,7 +58,7 @@ const UserModal = () => {
                     <IcoButton title={'Settings'} icon={faGear} />
                     <IcoButton title={'Theme'} icon={faDroplet} />
                 </div>
-                <IcoButton handler={handleSignOut} title={'Sign Out'} icon={faArrowRightToBracket} customStyles={{padding: '10px 13px'}} />
+                <IcoButton handler={() => logout(navigate('/singin'))} title={'Sign Out'} icon={faArrowRightToBracket} customStyles={{padding: '10px 13px'}} />
             </div>
         </div>
     );

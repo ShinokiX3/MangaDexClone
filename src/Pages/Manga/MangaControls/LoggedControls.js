@@ -1,13 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom'
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { BookIcon, ReportIcon, ShareIcon, FollowsIcon } from '../../../Assets/Svg/Manga';
 import { DotsIcon } from '../../../Assets/Svg/Pagination';
 import ToLibraryModal from '../../../Components/Modals/ToLibraryModal/ToLibraryModal';
 import Modal from '../../../Features/Modal/Modal';
+import useCheckForAuth from '../../../Hooks/checkForAuth';
 import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 import { refreshToken } from '../../../Store/Slices/userSlice';
 import { strToUpper } from '../../../Utils/stringToUpperCase';
@@ -23,13 +22,19 @@ const LoggedControls = ({ redirectToReader }) => {
     const mangaInfo = useSelector(state => state.manga.mangaInfo);
     const user = useSelector(state => state.user.user);
 
+    const authCheck = useCheckForAuth();
+
     useEffect(() => {
         if (user.username && mangaInfo?.data?.id) {
             fetchMangaStatus(1);
         }
-    }, [mangaInfo]);
+    }, [user, mangaInfo]);
 
     const fetchMangaStatus = async (count) => {
+        const authStatus = await authCheck(); 
+        
+        if (authStatus === false) { setLoading(false); return false };
+
         const resp = await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/manga/${mangaInfo.data.id}/status`, {
             headers: {
                 'Authorization': `Bearer ${user.sessionToken}`
@@ -40,8 +45,10 @@ const LoggedControls = ({ redirectToReader }) => {
             setReadingStatus(strToUpper(resp.status ? resp.status : 'Add To Library'));
             setLoading(false);
         } else if (count !== 2) {
-            dispatch(refreshToken());
+            // dispatch(refreshToken());
             fetchMangaStatus(2);
+        } else {
+            setLoading(false);
         }
     }
 
