@@ -48,7 +48,9 @@ const Singin = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'https://mangadexshinoki.vercel.app/'
+                    'Access-Control-Allow-Origin': 'https://api.mangadex.org/',
+                    'Access-Control-Allow-Credentials': true,
+                    'Access-Control-Expose-Headers': '*'
                 },
                 body: JSON.stringify(creds)
             })
