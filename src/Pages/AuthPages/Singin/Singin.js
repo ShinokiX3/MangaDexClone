@@ -57,7 +57,7 @@ const Singin = () => {
             const resp = await fetch(`https://api.mangadex.org/auth/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    // 'Content-Type': 'application/json',
                     'Accept': 'application/json, text/plain, */*',
                     'Referer': 'https://mangadexshinoki.vercel.app/'
                 },
