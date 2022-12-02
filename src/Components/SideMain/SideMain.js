@@ -14,6 +14,7 @@ const SideMain = () => {
 
     const dispatch = useDispatch();
     const menu = useSelector(state => state.menu.mainMenu);
+    const user = useSelector(state => state.user.user);
 
     const handleMenu = () => {
         dispatch(setMainStatus(false));
@@ -44,7 +45,7 @@ const SideMain = () => {
             <LinkList ico={faHouseUser} title={"Home"}></LinkList>
             <LinkList ico={faBookmark} title={"Follows"}>
                 <Link className="link" to="/singin">Updates</Link>
-                <Link className="link" to="/singin">Library</Link>
+                <Link className="link" to={user.sessionToken ? '/follows' : '/singin'}>Library</Link>
                 <Link className="link" to="/singin">Followed Groups</Link>
                 <Link className="link" to="/singin">Reading History</Link>
             </LinkList>

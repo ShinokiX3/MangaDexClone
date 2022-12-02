@@ -10,10 +10,11 @@ const useCheckForAuth = () => {
     const logout = useLogout();
 
     const refreshToken = async () => {
-        const resp = await fetch('https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/auth/refresh', {
+        const resp = await fetch('https://api.mangadex.org/auth/refresh', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({
                 token: user.refreshToken
@@ -34,22 +35,26 @@ const useCheckForAuth = () => {
             dispatch(setUser(refreshedUser));
             return resp.token.session;
         } else {
+            console.log(false);
             return false;
         }
     }
 
     const check = async (newToken = null) => {
-        const resp = await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/auth/check`, {
+        const resp = await fetch(`https://api.mangadex.org/auth/check`, {
             headers: {
-                'Authorization': `Bearer ${newToken ? newToken : user.sessionToken}`
+                'Authorization': `Bearer ${newToken ? newToken : user.sessionToken}`,
+                'Access-Control-Allow-Origin': '*'
             }
         }).then(data => data.json());
 
         if (resp.result === 'ok' && resp.isAuthenticated === true) {
             return true;
-        } else if (resp.result === 'ok' && resp.isAuthenticated === false && !newToken) {
+        } else if (resp.result === 'ok' && resp.isAuthenticated === false && !!newToken) {
             const resp = await refreshToken();
-            check(resp);
+            if (resp) {
+                check(resp);
+            } else return false;
         } else {
             logout();
             return false;

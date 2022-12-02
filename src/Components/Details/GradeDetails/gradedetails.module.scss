@@ -1,0 +1,22 @@
+.grade {
+    display: flex;
+    align-items: flex-start;
+
+    padding: 10px 15px;
+
+    &:hover {
+        background-color: #8080804d;
+    }
+
+    transition: background-color .15s ease-in-out;
+
+    p {
+        font-size: 12pt;
+        font-weight: lighter;
+        letter-spacing: .5px;
+
+        &:first-child {
+            margin-right: 12px;
+        }
+    }
+}

@@ -46,9 +46,10 @@ const LibraryContent = () => {
 
     useEffect(() => {
         (async () => {
-            const resp = await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/manga/status`, {
+            const resp = await fetch(`https://api.mangadex.org/manga/status`, {
                 headers: {
-                    'Authorization': `Bearer ${user.sessionToken}`
+                    'Authorization': `Bearer ${user.sessionToken}`,
+                    'Access-Control-Allow-Origin': '*'
                 }
             }).then(data => data.json());
 

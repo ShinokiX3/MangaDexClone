@@ -29,9 +29,10 @@ const UserModal = () => {
     const logout = useLogout();
 
     const handleUserProfile = async () => {
-        const resp = await fetch('https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/user/me?includes[]=scanlation_group', {
+        const resp = await fetch('https://api.mangadex.org/user/me?includes[]=scanlation_group', {
             headers: {
-                'Authorization': user.sessionToken
+                'Authorization': user.sessionToken,
+                'Access-Control-Allow-Origin': '*'
             },
         }).then(data => data.json());
 

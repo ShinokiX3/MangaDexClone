@@ -13,11 +13,11 @@ const Pagination = ({ pages, currPage, step, setOffset, setCurrPage }) => {
                 Array.from(Array(pages), (e, idx) => {
                     if (idx + 1 >= currPage - 2 && idx + 1 <= currPage + 2) {
                         return <PaginationItem key={idx} idx={idx} currPage={currPage} handlePageChange={handlePageChange} />
-                    } else if (idx+1 === currPage - 3 || idx+1 === currPage + 3) {
+                    } else if (idx + 1 === currPage - 3 || idx + 1 === currPage + 3) {
                         return (
-                            <div key={idx + 1}>
+                            <div key={idx}>
                                 {
-                                    idx+1 === currPage - 3 ? 
+                                    idx + 1 === currPage - 3 ? 
                                     <div style={{display: 'flex'}}>
                                         <PaginationItem key={0} idx={0} currPage={currPage} handlePageChange={handlePageChange} />
                                         <PaginationVariable idx={'left'} pages={pages} handlePageChange={handlePageChange} />

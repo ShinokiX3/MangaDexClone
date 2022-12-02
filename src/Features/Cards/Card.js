@@ -12,21 +12,9 @@ import { filterSomeAttribute } from '../../Utils/filterAttribute';
 import { strToUpper } from '../../Utils/stringToUpperCase';
 import styles from './card.module.scss';
 
-const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle }) => {
+const Card = memo(({ manga, mangaInfo, statistics, setRefCover, refCoverStyle, refTitleStyle }) => {
     const navigate = useNavigate();
-    const [statistics, setStatistics] = useState('');
-
-    useEffect(() => {
-        if (!!mangaInfo) {
-            (async () => {
-                const statistics = await MangaDexApi.getMangaStatistics(manga?.id).then(data => data.json());
-                if (!!statistics) {
-                    setStatistics(Object.values(statistics.statistics)[0]);
-                }
-            })();
-        }
-    }, []);
-
+    
     const handleManga = () => {
         navigate(`/manga/${manga.id}`)
     }
@@ -37,13 +25,13 @@ const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle
             <div className={styles.item_content}>
                 <div onClick={handleManga} ref={setRefCover} className={styles.cover + ' ' + refCoverStyle}>
                     <Img 
-                        src={`https://uploads.mangadex.org/covers/${mangaInfo?.data?.id}/${filterSomeAttribute(mangaInfo?.data?.relationships, 'cover_art', 'fileName')}`} 
+                        src={`https://uploads.mangadex.org/covers/${mangaInfo?.id}/${filterSomeAttribute(mangaInfo?.relationships, 'cover_art', 'fileName')}`} 
                         alt='' 
                     />
                 </div>
                 <div className={styles.description}>
                     <div className={styles.title + ' ' + refTitleStyle}>
-                        <div onClick={handleManga} className={styles.manganame}>{mangaInfo.data ? cutString(Object.values(mangaInfo.data.attributes.title)[0], 32) : ''}</div>
+                        <div onClick={handleManga} className={styles.manganame}>{mangaInfo ? cutString(Object.values(mangaInfo.attributes.title)[0], 32) : ''}</div>
                         <div className={styles.statistics}>
                             {/* TODO: Create new component to compose these statistic's items */}
                             {statistics 
@@ -56,21 +44,21 @@ const Card = memo(({ manga, mangaInfo, setRefCover, refCoverStyle, refTitleStyle
                             <Seen statistic={[]} />
                             <Comments statistic={[]} />
                             <MangaStatus 
-                                status={mangaInfo?.data?.attributes?.status} 
+                                status={mangaInfo?.attributes?.status} 
                                 styles={{textStyles: { fontSize: '.9rem' }}}
                             />
                         </div>
                     </div>
                         <div>
                             <TagsStatus 
-                                tags={mangaInfo?.data?.attributes?.tags} 
+                                tags={mangaInfo?.attributes?.tags} 
                                 amount={20}
                                 customStyles={{backgroundColor: 'white'}}
                             />
                     </div>
                     <div className={styles.main_title}>
                         {
-                            cutString(mangaInfo?.data?.attributes?.description?.en, 450)
+                            cutString(mangaInfo?.attributes?.description?.en, 450)
                         }
                     </div>
                 </div>

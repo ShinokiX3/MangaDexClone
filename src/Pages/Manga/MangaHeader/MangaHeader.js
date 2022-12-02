@@ -47,7 +47,11 @@ const MangaTitle = memo(({ mangaInfo }) => {
     // TODO: seems like unusefull 
 
     const enTitle = useMemo(() => mangaInfo?.data?.attributes?.title?.en, [mangaInfo]);
-    const alternative = useMemo(() => (mangaInfo?.data?.attributes?.altTitles?.filter(el => el.en)[0])?.en, [mangaInfo]);
+    const alternative = useMemo(() => {
+        const en = mangaInfo?.data?.attributes?.altTitles?.filter(el => el.en)[0]?.en;
+        const ja = mangaInfo?.data?.attributes?.altTitles?.filter(el => el.ja)[0]?.ja;
+        return en ? en : ja
+    }, [mangaInfo]);
     
     // TODO: Change filter method to some else, which can be dynamic ent value
     

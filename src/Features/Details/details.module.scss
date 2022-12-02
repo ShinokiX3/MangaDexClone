@@ -1,0 +1,12 @@
+.wrapper {
+    position: absolute;
+    top: 90%;
+    border-radius: .1rem;
+    background-color: #f0f1f2;
+    box-shadow: 0 1px 12px #000000aa;
+    z-index: 105;
+
+    p {
+        color: initial;
+    }
+}

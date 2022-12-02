@@ -100,6 +100,18 @@
     }
 }
 
+@media (max-width: 400px) {
+    .controls {
+        grid-template-columns: auto;
+        gap: 5px;
+    }
+    
+    .tags {
+        flex-direction: column;
+    }
+}
+
+
 @media (max-width: 370px) {
     .tag {
         h3 {
@@ -114,16 +126,7 @@
     }
 }
 
-@media (max-width: 300px) {
-    .controls {
-        grid-template-columns: auto;
-        gap: 5px;
-    }
-
-    .tags {
-        flex-direction: column;
-    }
-
+@media (max-width: 340px) {
     .tag {
         h3 {
             font-size: 11pt!important;

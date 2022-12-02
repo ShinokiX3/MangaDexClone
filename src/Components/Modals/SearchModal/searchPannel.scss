@@ -54,6 +54,7 @@
 }
 
 .sch-item-block {
+    width: calc(100vw - 65px)!important;
     background-color: #f0f1f2;
     color: #494949;
     border-radius: 0.5ch;
@@ -134,7 +135,7 @@
 }
 
 .search-input {
-    width: 87vw;
+    width: calc(100vw - 65px)!important;
 }
 
 .manga-status-block {
@@ -197,6 +198,12 @@
     }
 }
 
+@media (max-width: 500px) {
+    .sch-item-block, .search-input {
+        width: calc(100vw - 65px)!important;
+    }
+}
+
 @media (max-width: 450px) {
     .manga-status-block {
         padding: 3px 7px;
@@ -225,6 +232,20 @@
     }
 }
 
+@media (max-width: 400px) {
+    .search-modal-statistics {
+        margin-left: 0px;
+
+        div p {
+            font-size: 8.5pt!important;
+        }
+    }
+
+    .title-srch-name {
+        font-size: 11pt!important;
+    }
+}
+
 @media (max-width: 360px) {
     .search-input {
         background-color: #f0f1f2;
@@ -250,9 +271,15 @@
     .title-srch div:first-child {
         line-height: 1;
     }
+}
 
+@media (max-width: 340px) {
     .search-modal-statistics {
         margin-left: 0px;
+
+        div p {
+            font-size: 7pt!important;
+        }
     }
 }
 

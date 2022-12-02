@@ -4,10 +4,15 @@ import ReactDOM from 'react-dom';
 import { StarIcon } from '../../../Assets/Svg/Statistics';
 import Flyout from '../../../Features/Flyout/Flyout';
 import RatingFlyout from '../../../Components/Flyouts/RatingFlyout/RatingFlyout';
+import { useMemo } from 'react';
 
 const Rating = ({ rating, details = false }) => {
     const [shouldShow, setShouldShow] = useState(false);
     const ref = useRef();
+
+    const finalRating = useMemo(() => {
+        return String(rating.average).substring(0, 4)
+    }, [rating])
 
     return (
         <>
@@ -17,7 +22,7 @@ const Rating = ({ rating, details = false }) => {
             style={{display: 'flex', cursor: 'pointer'}}
         >
             <StarIcon alt="" />
-            <p>{rating.average || "9.5"}</p>
+            <p>{finalRating || "9.5"}</p>
         </div>
 
         {shouldShow && details

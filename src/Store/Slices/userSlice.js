@@ -6,10 +6,11 @@ export const refreshToken = createAsyncThunk(
     'title/refreshToken',
     async function(_, {rejectWithValue, dispatch}) {
         try {
-            const resp = await fetch('https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/auth/refresh', {
+            const resp = await fetch('https://api.mangadex.org/auth/refresh', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify({
                     token: user.refreshToken

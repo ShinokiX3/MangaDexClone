@@ -9,10 +9,11 @@ const useLogout = () => {
     const user = useSelector(state => state.user.user);
 
     const logout = async (callback = () => {}) => {
-        const resp = await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/auth/logout`, {
+        const resp = await fetch(`https://api.mangadex.org/auth/logout`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${user.sessionToken}`
+                'Authorization': `Bearer ${user.sessionToken}`,
+                'Access-Control-Allow-Origin': '*'
             }
         }).then(data => data.json());
 

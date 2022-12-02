@@ -148,6 +148,9 @@ const titleSlice = createSlice({
         setMangaIdsToInitial(state, action) {
             state.ids.data = [];
             state.ids.load.status = 'loading';
+        },
+        setToInitial(state, action) {
+            state = initialState
         }
     },
     extraReducers: {
@@ -161,6 +164,6 @@ const titleSlice = createSlice({
     }
 })
 
-export const { setFilterTags, setSelectedTags, setFilteredData, setSearchValue, setOrderType, resetSelectedTags, setMangaIds, setMangaIdsToInitial } = titleSlice.actions;
+export const { setFilterTags, setSelectedTags, setFilteredData, setSearchValue, setOrderType, resetSelectedTags, setMangaIds, setMangaIdsToInitial, setToInitial } = titleSlice.actions;
 
 export default titleSlice.reducer;

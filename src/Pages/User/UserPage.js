@@ -20,7 +20,7 @@ const UserPage = () => {
 
     useEffect(() => {
         (async() => {
-            await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/user/${userId}`)
+            await fetch(`https://api.mangadex.org/user/${userId}`, { headers: { 'Access-Control-Allow-Origin': '*' } })
                 .then(data => data.json())
                 .then(data => {
                     console.log(data);

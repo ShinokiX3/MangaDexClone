@@ -1,0 +1,68 @@
+.title {
+    font-size: 16pt;
+}
+
+.content {
+    margin-top: 15px;
+    min-width: 30vw;
+
+    button {
+        border: 0;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        margin-right: 8px;
+        font-size: 12pt;
+        color: white;
+        font-weight: bold;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .butt-with-ico {
+            margin-left: 16px;
+        }
+    }
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 15px;
+}
+
+.addlist {
+    font-size: 18pt;
+    margin-right: 18px;
+}
+
+.list {
+    margin-bottom: 15px;
+}
+
+.newlistbutton {
+    font-size: 11pt!important;
+    font-weight: 525!important;
+    color: #000000!important;
+    padding: 3px 15px;
+}
+
+.cancelbutton {
+    color: #242424!important;
+}
+
+.addbutton {
+    min-width:  85px;
+    min-height: 40px;
+    background-color: #ff6740;
+
+    box-shadow: 0 0.2rem 1rem #ff67404d;
+
+    svg {
+        display: none;
+    }
+}

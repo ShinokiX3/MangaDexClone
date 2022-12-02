@@ -44,10 +44,11 @@ const Singin = () => {
         setLoading(true);
 
         (async () => {
-            const resp = await fetch(`https://infinite-sea-32007.herokuapp.com/https://api.mangadex.org/auth/login`, {
+            const resp = await fetch(`https://api.mangadex.org/auth/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify(creds)
             })

@@ -159,6 +159,32 @@
     }
 }
 
+.report-button {
+    position: relative;
+}
+
+.report-active {
+    display: flex;
+    align-items: center!important;
+    justify-content: center!important;
+    
+    background-color: #ff6740!important;
+
+    width: fit-content!important;
+
+    padding: 0px 14px;
+
+    svg, p {
+        color: white;
+    }
+
+    svg {
+        width: 25px;
+        height: 25px;
+        margin-right: 16px;
+    }
+}
+
 .read-status-ico {
     display: initial!important; 
     margin-right: 15px;

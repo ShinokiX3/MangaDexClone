@@ -20,10 +20,12 @@ import useFetchByFilters from './Hooks/useFetchByFilters';
 
 import fetchTitleVariable from './Utils/fetchTitleVariable';
 import setTitle from './Utils/setTitle';
+import { setToInitial } from '../../Store/Slices/userSlice';
 
 const Titles = memo(() => {
     const params = useParams();
     const [groupedTags, setGroupedTags] = useState([]);
+    const [fetching, setFetching] = useState(false);
     const [selected, setSelected] = useState({name: 'Best Match', val: 'relevance.desc'});
 
     const dispatch = useDispatch();
@@ -59,11 +61,34 @@ const Titles = memo(() => {
     ], [])
 
     useEffect(() => {
-        (async() =>{
+        (async() => {
             const data = await fetchTitleVariable(params['*']);
             dispatch(setMangaIds(data.data.map(item => item.id) ?? []));
         })();
     }, []);
+
+    // useEffect(() => {
+    //     if (fetching) return false;
+        
+    //     (async() => {
+    //         setFetching(true);
+
+    //         const data = await fetchTitleVariable(params['*']);
+    //         if (data.data.length > 0) {
+    //             dispatch(setMangaIds(data.data.map(item => item.id) ?? []));
+    //             setFetching(false);
+    //         } else {
+    //             dispatch(setMangaIds([]));
+    //             setFetching(false);
+    //         }
+    //     })();
+
+    //     return () => {
+    //         if (!fetching) {
+    //             dispatch(setToInitial());
+    //         }
+    //     }
+    // }, [pageTitle]);
 
     useEffect(() => {
         if (titleIds.load.status === 'resolved') {

@@ -17,8 +17,6 @@ const SideReader = ({ data, handleChapter, currImg, maxImg, handleImage }) => {
 
     useEffect(() => {
         if (data) {
-            console.log(data);
-
             const chapters = [];
 
             for (let volume in data) {
@@ -37,7 +35,6 @@ const SideReader = ({ data, handleChapter, currImg, maxImg, handleImage }) => {
                     chapters.push(chapter);
                 }
             }
-            console.log(chapters);
             setChapters(chapters);
         }
     }, [data]);

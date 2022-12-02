@@ -15,6 +15,37 @@ const Cards = memo(({ mangasArr, children }) => {
     const [refContent, setRefContent] = useState(null);
     const [currentControl, setCurrentControl] = useState('row');
 
+    const [mangaArrayInfo, setMangaArrayInfo] = useState([]);
+    const [mangaStatisticsInfo, setMangaStatisticsInfo] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        console.log(mangasArr);
+        if (mangasArr) {
+            (async() => {
+                setLoading(true);
+                const mangaArrInfo = await MangaDexApi.getMangaInfoByArray(mangasArr).then(data => data.json());
+
+                if (mangaArrInfo.result === 'ok' && mangaArrInfo?.data?.length > 0) {
+                    const stats = await fetchStatistics(mangaArrInfo.data);
+
+                    setMangaArrayInfo(mangaArrInfo.data);
+                    setMangaStatisticsInfo(stats);
+                    
+                    setLoading(false);
+                } else {
+                    setMangaArrayInfo([]);
+                    
+                    setLoading(false);
+                }
+            })()
+        } else {
+            setMangaArrayInfo([]);
+            setLoading(false);
+        }
+    }, [mangasArr]);
+
     useEffect(() => {
         if (refContent) {
             if (currentControl === 'row') {                
@@ -47,6 +78,15 @@ const Cards = memo(({ mangasArr, children }) => {
         }
     }
 
+    const fetchStatistics = async (mangaArrayInfo) => {
+        const mangaStatistics = await MangaDexApi.getMangaStatisticsByArray(mangaArrayInfo).then(data => data.json());
+        if (mangaStatistics.result === 'ok') {
+            return await mangaStatistics.statistics
+        } else {
+            return []
+        }
+    }
+
     return (
         <div className={styles.wrapp} style={{paddingBottom: '48px'}}>
             <div className={styles.controls_wrapp}>
@@ -54,42 +94,35 @@ const Cards = memo(({ mangasArr, children }) => {
                 <CardControls setRefControls={setRefControls} handleControls={handleControls} />
             </div>
             <div ref={setRefContent} className={styles.content}>
-                {mangasArr.length > 0 ?
-                    mangasArr.map((manga, index) => manga !== undefined ? 
-                        <CardItem key={index} manga={manga} currentControl={currentControl} /> : null
-                    )
-                    :
-                    <div className={styles.couldnt_find} style={{width: '100%', height: '50px', backgroundColor: '#f0f1f2', borderRadius: '0.5rem', fontSize: '14pt', textAlign: 'center'}}>No Data Found</div>
+                {loading 
+                    ? <Spinner customStyle={{width: 40, height: 40, borderColor: 'red'}} /> 
+                    : mangaArrayInfo.length > 0 && mangasArr.length > 0
+                        ? mangaArrayInfo.map((manga, index) => manga !== undefined ? 
+                            <CardItem key={index} mangaInfo={manga} mangaStatistics={mangaStatisticsInfo[manga?.id]} currentControl={currentControl} /> : null
+                          ) 
+                        : <div className={styles.couldnt_find} style={{width: '100%', height: '50px', backgroundColor: '#f0f1f2', borderRadius: '0.5rem', fontSize: '14pt', textAlign: 'center'}}>No Data Found</div>
                 }
             </div>
         </div>
     );
 });
 
-const CardItem = memo(({ manga, currentControl }) => {
-    const [mangaInfo, setMangaInfo] = useState({});
+const CardItem = memo(({ mangaInfo, mangaStatistics, currentControl }) => {
     const [refCover, setRefCover] = useState(null);
 
-    useEffect(() => {
-        if (manga) {
-            (async() => {
-                const mangaInfo = await MangaDexApi.getMangaInfo(manga?.id).then(data => data.json());
-                setMangaInfo(mangaInfo);
-            })()
-        }
-    }, [manga]);
-
     return (
-        <ChooseCardViewType type={currentControl} manga={manga} mangaInfo={mangaInfo} setRefCover={setRefCover} />
+        <ChooseCardViewType type={currentControl} manga={mangaInfo} mangaInfo={mangaInfo} mangaStatistics={mangaStatistics} setRefCover={setRefCover} />
     )
 });
 
-const ChooseCardViewType = ({ type, manga, mangaInfo, setRefCover, setRefTitle, setRefDescription }) => {
+const ChooseCardViewType = ({ type, manga, mangaInfo, mangaStatistics, setRefCover, setRefTitle, setRefDescription }) => {
     switch(type) {
         case 'row': return (
             <Card 
                 manga={manga} 
-                mangaInfo={mangaInfo} 
+                mangaInfo={mangaInfo}
+                statistics={mangaStatistics} 
+                mangaStatistics={mangaStatistics}
                 setRefCover={setRefCover} 
             />
         )
@@ -97,6 +130,7 @@ const ChooseCardViewType = ({ type, manga, mangaInfo, setRefCover, setRefTitle, 
             <Card 
                 manga={manga} 
                 mangaInfo={mangaInfo} 
+                statistics={mangaStatistics}
                 setRefCover={setRefCover} 
                 setRefTitle={setRefTitle} 
                 setRefDescription={setRefDescription} 
