@@ -58,7 +58,8 @@ const Singin = () => {
                 method: 'POST',
                 headers: {
                     // 'Content-Type': 'application/json',
-                    'Accept': 'application/json, text/plain, */*',
+                    // 'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'text/plain',
                     'Referer': 'https://mangadexshinoki.vercel.app/'
                 },
                 body: JSON.stringify(creds)
