@@ -56,6 +56,8 @@ const Singin = () => {
 
             const resp = await fetch(`https://api.mangadex.org/auth/login`, {
                 method: 'POST',
+                mode: 'cors',
+                credentials: 'include',
                 headers: {
                     // 'Content-Type': 'application/json',
                     // 'Accept': 'application/json, text/plain, */*',
