@@ -44,11 +44,22 @@ const Singin = () => {
         setLoading(true);
 
         (async () => {
+            // const resp = await fetch(`https://api.mangadex.org/auth/login`, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'Access-Control-Allow-Origin': 'origin-list'
+            //     },
+            //     body: JSON.stringify(creds)
+            // })
+            // .then(data => data.json());
+
             const resp = await fetch(`https://api.mangadex.org/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'origin-list'
+                    'Access-Control-Request-Method': 'POST',
+                    'Access-Control-Request-Headers': 'Content-Type'
                 },
                 body: JSON.stringify(creds)
             })
