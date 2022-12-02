@@ -44,53 +44,17 @@ const Singin = () => {
         setLoading(true);
 
         (async () => {
-            // const resp = await fetch(`https://api.mangadex.org/auth/login`, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'Access-Control-Allow-Origin': 'origin-list'
-            //     },
-            //     body: JSON.stringify(creds)
-            // })
-            // .then(data => data.json());
-
             const resp = await fetch(`https://api.mangadex.org/auth/login`, {
                 method: 'POST',
                 mode: 'cors',
                 credentials: 'include',
                 headers: {
-                    // 'Content-Type': 'application/json',
-                    // 'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json',
                     'Referer': 'https://mangadexshinoki.vercel.app/'
                 },
                 body: JSON.stringify(creds)
             })
             .then(data => data.json());
-
-            const resp2 = await fetch("https://api.mangadex.com/manga/72331318-7f5e-44b3-8510-12133149fde3", {
-                mode: 'cors',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Referer': 'https://mangadexshinoki.vercel.app/'
-                },
-            })
-            .then((data) => data.json());
-            
-            console.log(resp2);
-
-            const resp3 = await fetch("https://api.mangadex.com/manga/72331318-7f5e-44b3-8510-12133149fde3", {
-                mode: 'no-cors',
-                credentials: 'omit',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Referer': 'https://mangadexshinoki.vercel.app/'
-                },
-            })
-            .then((data) => data.json());
-
-            console.log(resp3);
 
             if (resp.result === 'ok') {
                 const expires = new Date().valueOf() + 15 * 60000;
