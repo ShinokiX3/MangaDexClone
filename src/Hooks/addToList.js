@@ -11,8 +11,7 @@ const useAddToList = (mangaId) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${user.sessionToken}`,
-                'Access-Control-Allow-Origin': '*'
+                'Authorization': `Bearer ${user.sessionToken}`
             },
             body: JSON.stringify({
                 status: list.value
@@ -26,8 +25,7 @@ const useAddToList = (mangaId) => {
         const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/auth/refresh`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 token: user.refreshToken
