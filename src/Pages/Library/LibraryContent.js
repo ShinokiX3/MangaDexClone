@@ -8,6 +8,7 @@ import Cards from '../../Features/Cards/Cards';
 import styles from './library.module.scss';
 import Modal from '../../Features/Modal/Modal';
 import ErrorModal from '../../Components/Modals/ErrorModal/ErrorModal';
+import MangaDexApi from '../../Services/MangaDexApi';
 
 const readingStatusList = {
     'Reading': 'reading',
@@ -46,7 +47,7 @@ const LibraryContent = () => {
 
     useEffect(() => {
         (async () => {
-            const resp = await fetch(`https://api.mangadex.org/manga/status`, {
+            const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/manga/status`, {
                 headers: {
                     'Authorization': `Bearer ${user.sessionToken}`,
                     'Access-Control-Allow-Origin': '*'

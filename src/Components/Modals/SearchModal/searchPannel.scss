@@ -54,7 +54,7 @@
 }
 
 .sch-item-block {
-    width: calc(100vw - 65px)!important;
+    width: calc(91vw - 65px)!important;
     background-color: #f0f1f2;
     color: #494949;
     border-radius: 0.5ch;
@@ -134,8 +134,16 @@
     font-size: 18pt;
 }
 
+.seach-modal {
+    .search-input {
+        width: calc(91vw - 65px);
+    }
+}
+
+// width: calc(100vw - 65px)!important;
+
 .search-input {
-    width: calc(100vw - 65px)!important;
+    width: 100%;
 }
 
 .manga-status-block {

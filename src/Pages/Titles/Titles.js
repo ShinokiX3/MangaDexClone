@@ -65,6 +65,10 @@ const Titles = memo(() => {
             const data = await fetchTitleVariable(params['*']);
             dispatch(setMangaIds(data.data.map(item => item.id) ?? []));
         })();
+
+        return () => {
+            dispatch(setToInitial());
+        }
     }, []);
 
     // useEffect(() => {

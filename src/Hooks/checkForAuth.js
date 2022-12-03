@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import MangaDexApi from '../Services/MangaDexApi';
 import { setUser } from '../Store/Slices/userSlice';
 import useLogout from './logout';
 
@@ -10,11 +11,10 @@ const useCheckForAuth = () => {
     const logout = useLogout();
 
     const refreshToken = async () => {
-        const resp = await fetch('https://api.mangadex.org/auth/refresh', {
+        const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/auth/refresh`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 token: user.refreshToken
@@ -41,10 +41,9 @@ const useCheckForAuth = () => {
     }
 
     const check = async (newToken = null) => {
-        const resp = await fetch(`https://api.mangadex.org/auth/check`, {
+        const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/auth/check`, {
             headers: {
-                'Authorization': `Bearer ${newToken ? newToken : user.sessionToken}`,
-                'Access-Control-Allow-Origin': '*'
+                'Authorization': `Bearer ${newToken ? newToken : user.sessionToken}`
             }
         }).then(data => data.json());
 

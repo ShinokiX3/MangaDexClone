@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { setToInitial } from '../../../Store/Slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import useLogout from '../../../Hooks/logout';
+import MangaDexApi from '../../../Services/MangaDexApi';
 
 const links = [
     {title: 'My Profile', icon: faUser, url: `/user/me`},
@@ -29,10 +30,9 @@ const UserModal = () => {
     const logout = useLogout();
 
     const handleUserProfile = async () => {
-        const resp = await fetch('https://api.mangadex.org/user/me?includes[]=scanlation_group', {
+        const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/user/me?includes[]=scanlation_group`, {
             headers: {
-                'Authorization': user.sessionToken,
-                'Access-Control-Allow-Origin': '*'
+                'Authorization': user.sessionToken
             },
         }).then(data => data.json());
 

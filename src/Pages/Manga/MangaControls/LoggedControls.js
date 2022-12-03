@@ -10,6 +10,7 @@ import ToLibraryModal from '../../../Components/Modals/ToLibraryModal/ToLibraryM
 import Details from '../../../Features/Details/Details';
 import Modal from '../../../Features/Modal/Modal';
 import useCheckForAuth from '../../../Hooks/checkForAuth';
+import MangaDexApi from '../../../Services/MangaDexApi';
 import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 import { strToUpper } from '../../../Utils/stringToUpperCase';
 
@@ -59,10 +60,9 @@ const LoggedControls = ({ redirectToReader }) => {
         
         if (authStatus === false) { setLoading(false); return false };
 
-        const resp = await fetch(`https://api.mangadex.org/manga/${mangaInfo.data.id}/status`, {
+        const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/manga/${mangaInfo.data.id}/status`, {
             headers: {
-                'Authorization': `Bearer ${user.sessionToken}`,
-                'Access-Control-Allow-Origin': '*'
+                'Authorization': `Bearer ${user.sessionToken}`
             }
         }).then(data => data.json());
 
@@ -87,12 +87,11 @@ const LoggedControls = ({ redirectToReader }) => {
         if (authStatus && grade) {
             setGradeLoading(true);
 
-            const resp = await fetch(`https://api.mangadex.org/rating/${mangaInfo?.data?.id}`, {
+            const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/rating/${mangaInfo?.data?.id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${user.sessionToken}`,
-                    'Access-Control-Allow-Origin': '*'
+                    'Authorization': `Bearer ${user.sessionToken}`
                 },
                 body: JSON.stringify({
                     rating: grade
@@ -115,10 +114,9 @@ const LoggedControls = ({ redirectToReader }) => {
 
         if (authStatus) {
             setGradeLoading(true);
-            const resp = await fetch(`https://api.mangadex.org/rating?manga[]=${mangaInfo?.data?.id}`, {
+            const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/rating?manga[]=${mangaInfo?.data?.id}`, {
                 headers: {
-                    'Authorization': `Bearer ${user.sessionToken}`,
-                    'Access-Control-Allow-Origin': '*'
+                    'Authorization': `Bearer ${user.sessionToken}`
                 }
             }).then(data => data.json());
 

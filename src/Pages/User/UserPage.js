@@ -5,6 +5,7 @@ import { strToUpper } from '../../Utils/stringToUpperCase';
 import CommunityLayout from '../../Layouts/CommunityLayout/CommunityLayout';
 import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
 import Lists from './UserTabs/Lists';
+import MangaDexApi from '../../Services/MangaDexApi';
 
 const Info = lazy(() => import('./UserTabs/Info'));
 const Uploads = lazy(() => import('./UserTabs/Uploads'));
@@ -20,7 +21,7 @@ const UserPage = () => {
 
     useEffect(() => {
         (async() => {
-            await fetch(`https://api.mangadex.org/user/${userId}`, { headers: { 'Access-Control-Allow-Origin': '*' } })
+            await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/user/${userId}`)
                 .then(data => data.json())
                 .then(data => {
                     console.log(data);

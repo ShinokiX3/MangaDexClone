@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import MangaDexApi from "../../Services/MangaDexApi";
 
 const user = JSON.parse(localStorage.getItem('user'));
 
@@ -6,11 +7,10 @@ export const refreshToken = createAsyncThunk(
     'title/refreshToken',
     async function(_, {rejectWithValue, dispatch}) {
         try {
-            const resp = await fetch('https://api.mangadex.org/auth/refresh', {
+            const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/auth/refresh`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     token: user.refreshToken

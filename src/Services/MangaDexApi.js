@@ -1,7 +1,10 @@
 import { filterSomeAttribute } from "../Utils/filterAttribute";
 
 class MangaDexApi {
-    BaseUrl = 'https://api.mangadex.org';
+    CorsProxy = 'https://justcors.com/tl_02b3087/';
+    Setting = '?forcePort443=false';
+
+    BaseUrl = `${this.CorsProxy}https://api.mangadex.org`;
     BaseUploadUrl = 'https://uploads.mangadex.org';
     AtHomeServer = `${this.BaseUrl}/at-home/server`;
 
@@ -11,14 +14,10 @@ class MangaDexApi {
     BaseCover = `${this.BaseUrl}/cover`;
     BaseChapter = `${this.BaseUrl}/chapter`;
     BaseStatistics = `${this.BaseUrl}/statistics`
-
-    Setting = '?forcePort443=false';
-
+    
     // Rewrite to instance of
 
-    Headers = {
-        'Access-Control-Allow-Origin': '*'
-    }
+    Headers = {}
 
     getTest = async() => {
         return await fetch(`https://api.mangadex.org/list/3fa85f64-5717-4562-b3fc-2c963f66af`)
@@ -64,7 +63,7 @@ class MangaDexApi {
     }
 
     getMangaCover = async (mangaId) => {
-        const mangaImageId = filterSomeAttribute(( await fetch(`${this.BaseManga}/${mangaId}/`, { headers: {...this.Headers} })
+        const mangaImageId = filterSomeAttribute(( await fetch(`${this.BaseManga}/${mangaId}/`)
             .then(data => data.json()) )?.data?.relationships, 'cover_art')?.id;
         const coverId = ( await fetch(`${this.BaseCover}/${mangaImageId}`, { headers: {...this.Headers} })
             .then(data => data.json()) )?.data?.attributes?.fileName;
@@ -120,7 +119,7 @@ class MangaDexApi {
     }
 
     getSeasonal = async() => {
-        return await fetch(`https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`, { headers: {...this.Headers} })
+        return await fetch(`${this.CorsProxy}https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`, { headers: {...this.Headers} })
     }
 
     getRecentlyAdded = async() => {

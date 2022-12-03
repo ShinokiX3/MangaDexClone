@@ -14,6 +14,7 @@ import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 import Modal from '../../../Features/Modal/Modal';
 import ErrorModal from '../../../Components/Modals/ErrorModal/ErrorModal';
 import ReactDOM from 'react-dom';
+import MangaDexApi from '../../../Services/MangaDexApi';
 const modalRoot = document.getElementById('modal-root');
 
 const Singin = () => {
@@ -44,13 +45,10 @@ const Singin = () => {
         setLoading(true);
 
         (async () => {
-            const resp = await fetch(`https://api.mangadex.org/auth/login`, {
+            const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/auth/login`, {
                 method: 'POST',
-                mode: 'cors',
-                credentials: 'include',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Referer': 'https://mangadexshinoki.vercel.app/'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(creds)
             })
