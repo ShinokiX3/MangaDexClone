@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import MangaDexApi from '../Services/MangaDexApi';
 import { setUser } from '../Store/Slices/userSlice';
 
 const useAddToList = (mangaId) => {
@@ -6,7 +7,7 @@ const useAddToList = (mangaId) => {
     const user = useSelector(state => state.user.user);
 
     const fetchMangaToList = async (list) => {
-        const resp = await fetch(`https://api.mangadex.org/manga/${mangaId}/status`, {
+        const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/manga/${mangaId}/status`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ const useAddToList = (mangaId) => {
     }
 
     const refreshSession = async (list) => {
-        const resp = await fetch('https://api.mangadex.org/auth/refresh', {
+        const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/auth/refresh`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
