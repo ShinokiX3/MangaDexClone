@@ -113,3 +113,12 @@
     }
 }
 
+.banner {
+    height: 20.5rem;
+    background-color: initial;
+
+    &::after {
+        background-color: initial;
+        backdrop-filter: initial;
+    }
+}

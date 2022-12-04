@@ -6,6 +6,7 @@ import CommunityLayout from '../../Layouts/CommunityLayout/CommunityLayout';
 import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
 import Lists from './UserTabs/Lists';
 import MangaDexApi from '../../Services/MangaDexApi';
+import groupBanner from '../../Assets/Images/group-banner.png';
 
 const Info = lazy(() => import('./UserTabs/Info'));
 const Uploads = lazy(() => import('./UserTabs/Uploads'));
@@ -43,7 +44,9 @@ const UserPage = () => {
     }
 
     return (
-        <CommunityLayout tabs={tabs} handleTabs={handleTabs} title={userName}>
+        <CommunityLayout tabs={tabs} handleTabs={handleTabs} title={userName} 
+            bgStyles={{backgroundImage: `url(${groupBanner})`}}
+            bgClasses={styles.banner}>
             <Suspense fallback={<Spinner customStyle={{width: '30px', height: '30px'}} />}>
                 <ChangeTab currentTab={currentTab} userId={userId} userRoles={userRoles} />
             </Suspense>
