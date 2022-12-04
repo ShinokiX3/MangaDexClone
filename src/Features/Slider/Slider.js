@@ -56,7 +56,7 @@ const Slider = memo(({children}) => {
     }, [children, sliderContent])
 
     const animate = (sliderContent) => {
-        sliderContent.style.transition = "0.4s all";
+        sliderContent.style.transition = "0.4s left";
         sliderContent.style.transitionTimingFunction = "ease-out";
         setTimeout(() => {
             sliderContent.style.transition = "";
