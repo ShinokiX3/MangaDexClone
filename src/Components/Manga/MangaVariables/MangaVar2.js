@@ -1,19 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { flags } from '../../../Assets/Svg/Flags';
-import MangaDexApi from '../../../Services/MangaDexApi';
 import Img from '../../../SharedUI/StyledComponents/Img/Img';
 import './mangaVariables.scss';
 
-const MangaVar2 = ({ manga }) => {
+const MangaVar2 = ({ manga, mangaCover }) => {
     const ref = useRef();
-    const [mangaCover, setMangaCover] = useState('');
-
-    useEffect(() => {
-        (async() => {
-            const cover = await MangaDexApi.getMangaCover(manga?.id);
-            setMangaCover(cover);
-        })()
-    }, [manga])
 
     return (
         <div style={{display: "block"}} ref={ref}>

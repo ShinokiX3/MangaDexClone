@@ -66,3 +66,29 @@
         display: none;
     }
 }
+
+.label {
+    display: flex; 
+    align-items: center;
+}
+
+.checkbox {
+    margin-left: 10px;
+    font-size: 12pt;
+}
+
+.private { 
+    &::after {
+        content: 'Private';
+        font-size: 9pt;
+        font-weight: bold;
+
+        color: red;
+
+        border: 1px solid red;
+        border-radius: .2rem;
+
+        padding: 3px 5px;
+        margin-left: 10px;
+    }
+}

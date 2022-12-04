@@ -21,7 +21,6 @@ const Cards = memo(({ mangasArr, children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        console.log(mangasArr);
         if (mangasArr) {
             (async() => {
                 setLoading(true);

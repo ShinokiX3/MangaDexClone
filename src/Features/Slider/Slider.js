@@ -11,24 +11,11 @@ const Slider = memo(({children}) => {
     const sliderControls = useRef(null);
 
     const slidemove = (e, iniX) => {
-        setXCurr(+e.clientX - +iniX);
+        const clientX = +e.clientX ? +e.clientX : +e.changedTouches[0].clientX;
+        setXCurr(clientX - +iniX);
     }
 
     useEffect(() => {
-        // const leftT = +sliderContent.current.style.left.match(/\d*/g)[0];
-        // const leftT = +sliderContent.current.style.left.split('px')[0];
-        // const styleRight = +window.getComputedStyle(sliderContent.current).getPropertyValue("right").split('px')[0];
-        // console.log(styleRight);
-        // if (xCurr >= 0 && leftT >= 0) {
-        //     console.log(xCurr, leftT);
-        //     sliderContent.current.style.left = `${+currentLeft + xCurr / 2.5}px`;
-        // } else if (xCurr < 0 && styleRight >= 0) {
-        //     console.log('right');
-        //     sliderContent.current.style.left = `${+currentLeft + xCurr / 2.5}px`;
-        // } else {
-        //     console.log('other');
-        //     sliderContent.current.style.left = `${+currentLeft + xCurr}px`;
-        // }
         sliderContent.current.style.left = `${+currentLeft + xCurr}px`;
     }, [xCurr])
 
@@ -57,10 +44,14 @@ const Slider = memo(({children}) => {
             instance = sliderWindow.current;
             setCurrentLeft(window.getComputedStyle(instance).getPropertyValue("left").split('px')[0]);
             instance.addEventListener("mousedown", slide, false);
+            instance.addEventListener("touchstart", slide, false);
         }
         return () => {
             instance.removeEventListener("mousedown", slide, false);
+            instance.addEventListener("touchstart", slide, false);
+            
             document.onmouseup = null;
+            document.ontouchend = null;
         }
     }, [children, sliderContent])
 
@@ -73,14 +64,34 @@ const Slider = memo(({children}) => {
     }
 
     const slide = (e) => {
-        const iniX = +e.clientX;
+        const iniX = +e.clientX ? +e.clientX : +e.changedTouches[0].clientX;
+
+        // click event
 
         document.onmousemove = function(e) {
             slidemove(e, iniX);
         };
 
+        // touch event
+
+        document.ontouchmove = function(e) {
+            slidemove(e, iniX);
+        };
+
+        // cancel event
+
         document.onmouseup = function() {
+            eventUp();
+        };
+
+        document.ontouchend = function() {
+            eventUp();
+        };
+
+        function eventUp() {
             document.onmousemove = null;
+            document.ontouchmove = null;
+
             document.dragend = null;
 
             setCurrentLeft(window.getComputedStyle(sliderContent.current).getPropertyValue("left").split('px')[0]);
@@ -132,8 +143,7 @@ const Slider = memo(({children}) => {
                     setXCurr(0);
                 }
             }
-        };
-        // document.onmouseup = null;
+        }
     }
 
     const handleControl = (control, isResetLeft = true) => {

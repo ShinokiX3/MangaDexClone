@@ -3,16 +3,8 @@ import MangaDexApi from '../../../Services/MangaDexApi';
 import Img from '../../../SharedUI/StyledComponents/Img/Img';
 import './mangaVariables.scss';
 
-const MangaVar1 = ({manga}) => {
+const MangaVar1 = ({ manga, mangaCover }) => {
     const ref = useRef();
-    const [mangaCover, setMangaCover] = useState('');
-
-    useEffect(() => {
-        (async() => {
-            const cover = await MangaDexApi.getMangaCover(manga?.id);
-            setMangaCover(cover);
-        })()
-    }, [manga])
 
     return (
         <div style={{display: "flex"}} ref={ref}>

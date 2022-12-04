@@ -1,7 +1,7 @@
 import { memo, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchFilterTags, setMangaIds, setOrderType } from '../../Store/Slices/titlesSlice';
+import { fetchFilterTags, setMangaIds, setOrderType, setToInitial } from '../../Store/Slices/titlesSlice';
 import styles from './titles.module.scss';
 
 import MainContainer from '../../Layouts/MainContainer/MainContainer';
@@ -20,7 +20,6 @@ import useFetchByFilters from './Hooks/useFetchByFilters';
 
 import fetchTitleVariable from './Utils/fetchTitleVariable';
 import setTitle from './Utils/setTitle';
-import { setToInitial } from '../../Store/Slices/userSlice';
 
 const Titles = memo(() => {
     const params = useParams();

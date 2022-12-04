@@ -37,7 +37,7 @@ export const refreshToken = createAsyncThunk(
 )
 
 const initialState = {
-    user: user ? user : {
+    user: user.sessionToken ? user : {
         username: '',
         sessionToken: '',
         refreshToken: '',

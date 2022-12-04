@@ -65,9 +65,26 @@ class MangaDexApi {
     getMangaCover = async (mangaId) => {
         const mangaImageId = filterSomeAttribute(( await fetch(`${this.BaseManga}/${mangaId}/`)
             .then(data => data.json()) )?.data?.relationships, 'cover_art')?.id;
-        const coverId = ( await fetch(`${this.BaseCover}/${mangaImageId}`, { headers: {...this.Headers} })
+        const coverId = ( await fetch(`${this.BaseCover}/${mangaImageId}`)
             .then(data => data.json()) )?.data?.attributes?.fileName;
         return `${this.BaseUploadUrl}/covers/${mangaId}/${coverId}`;
+    }
+
+    getMangaListCovers = async (mangaImagesArray) => {
+        const mangaImageIds = mangaImagesArray.length > 0 ? mangaImagesArray.reduce((accu, curr) => `&ids[]=${filterSomeAttribute(curr?.relationships, 'cover_art')?.id}` + accu, '') : '';
+
+        const coverIds = await fetch(`${this.BaseCover}?${mangaImageIds}`)
+            .then(data => data.json());
+
+        const coversUrl = coverIds.data.reduce((accu, curr) => {
+            const mangaId = filterSomeAttribute(curr?.relationships, 'manga')?.id;
+            
+            return {...accu,
+                [mangaId]: `${this.BaseUploadUrl}/covers/${mangaId}/${curr?.attributes?.fileName}`
+            }
+        }, {});
+
+        return coversUrl;
     }
 
     getMangaCoversByVolumes = async (mangaId, offset = 0) => {
@@ -83,28 +100,28 @@ class MangaDexApi {
     }
 
     getLatestUpdateChapters = async () => {
-        return await fetch(`${this.BaseChapter}?includes[]=manga&includes[]=scanlation_group&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[readableAt]=desc&offset=0&limit=20`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseChapter}?includes[]=manga&includes[]=scanlation_group&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[readableAt]=desc&offset=0&limit=20`)
     }
 
     getLatestUpdateMangas = async (mangasIds) => {
         const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
-        return await fetch(`${this.BaseManga}?includes[]=cover_art${ids}&limit=24&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseManga}?includes[]=cover_art${ids}&limit=24&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`)
     }
 
     getInfoAboutChapter = async (chapters) => {
         return await Promise.all(chapters.map(async (el) => {
-            return await fetch(`${this.BaseChapter}/${el}`, { headers: {...this.Headers} })
+            return await fetch(`${this.BaseChapter}/${el}`)
                 .then(data => data.json())
         }));
     }
 
     getChapterHash = async (chapterId) => {
-        return await fetch(`${this.AtHomeServer}/${chapterId}${this.Setting}`, { headers: {...this.Headers} })
+        return await fetch(`${this.AtHomeServer}/${chapterId}${this.Setting}`)
             .then(data => data.json())
     }
 
     getChapter = async (hash, data) => {
-        return await fetch(`${this.BaseUploadUrl}/data/${hash}/${data}`, { headers: {...this.Headers} }) 
+        return await fetch(`${this.BaseUploadUrl}/data/${hash}/${data}`) 
             .then(data => data.json());
     }
 
@@ -119,51 +136,51 @@ class MangaDexApi {
     }
 
     getSeasonal = async() => {
-        return await fetch(`${this.CorsProxy}https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`, { headers: {...this.Headers} })
+        return await fetch(`${this.CorsProxy}https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`)
     }
 
     getRecentlyAdded = async() => {
-        return await fetch(`${this.BaseManga}?limit=18&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[createdAt]=desc&includes[]=cover_art`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseManga}?limit=18&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&order[createdAt]=desc&includes[]=cover_art`)
     }
 
     getRecentlyCovers = async(mangasIds) => {
         const ids = mangasIds.reduce((accu, curr) => accu + curr, '');
-        return await fetch(`${this.BaseManga}?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=59`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseManga}?includes[]=cover_art&order[followedCount]=desc&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica${ids}&limit=59`)
             .then(data => data.json())
     } 
 
     getSearcedAuthor = async (title) => {
-        return await fetch(`${this.BaseAuthor}?name=${title}`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseAuthor}?name=${title}`)
             .then(data => data.json())
     }
 
     getAuthorInfo = async(authorId) => {
-        return await fetch(`${this.BaseAuthor}/${authorId}/`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseAuthor}/${authorId}/`)
     }
 
     getSearcedGroup = async (title) => {
-        return await fetch(`${this.BaseGroup}?name=${title}`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseGroup}?name=${title}`)
             .then(data => data.json())
     }
 
     getGroupInfo = async(groupsIds) => {
         return await Promise.all(groupsIds.map(async (el) => {
-            return await fetch(`${this.BaseGroup}/${el}`, { headers: {...this.Headers} })
+            return await fetch(`${this.BaseGroup}/${el}`)
                 .then(data => data.json())
         }));
     }
 
     getMangaStatistics = async (mangaId) => {
-        return await fetch(`${this.BaseStatistics}/manga/${mangaId}`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseStatistics}/manga/${mangaId}`)
     }
 
     getMangaStatisticsByArray = async (mangaArray) => {
         const ids = mangaArray.length > 0 ? mangaArray.reduce((accu, curr) => `&manga[]=${curr.id}` + accu, '') : '';
-        return await fetch(`${this.BaseStatistics}/manga?${ids}`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseStatistics}/manga?${ids}`)
     }
 
     getFilterTags = async() => {
-        return await fetch(`${this.BaseManga}/tag`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseManga}/tag`)
     }
 
     getFilteredData = async(includeIds = [], excludeIds = [], pubDemographic = [], rating = [], status = [], title = '', order = '', mangaIds = [], limit = 32, offset = 0) => {
@@ -182,7 +199,7 @@ class MangaDexApi {
 
         const ids = mangaIds.length > 0 ? mangaIds.reduce((accu, curr) => `&ids[]=${curr}` + accu, '') : '';
 
-        return await fetch(`${this.BaseManga}?limit=${limit}&offset=${offset}&includes[]=cover_art&includes[]=author&includes[]=artist${contentRating}${statusElems}${pubDemographics}${includeTags}${excludeTags}${title.length > 0 ? `&title=${title}` : ''}${orderValue}${ids}`, { headers: {...this.Headers} })
+        return await fetch(`${this.BaseManga}?limit=${limit}&offset=${offset}&includes[]=cover_art&includes[]=author&includes[]=artist${contentRating}${statusElems}${pubDemographics}${includeTags}${excludeTags}${title.length > 0 ? `&title=${title}` : ''}${orderValue}${ids}`)
     }
 
     getRandomManga = async() => {

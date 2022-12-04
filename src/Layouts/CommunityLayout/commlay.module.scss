@@ -74,6 +74,13 @@
     width: 100%;
 }
 
+@media (max-width: 740px) {
+    .userintro div {
+        width: fit-content;
+        height: fit-content;
+    }
+}
+
 @media (max-width: 640px) {
     .content {
         grid-template-areas:
@@ -117,5 +124,16 @@
         span {
             font-size: initial!important;
         };
+    }
+}
+
+@media (max-width: 450px) {
+    .usercontrols {
+        width: 150%;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+            height: 5px;
+        }
     }
 }
