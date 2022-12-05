@@ -8,9 +8,9 @@ const IcoButton = ({ title, icon, handler, url = '', customStyles = {} }) => {
     const navigate = useNavigate();
 
     return (
-        <div className={styles.wrapper} style={customStyles}>
+        <div onClick={handler ? handler : () => navigate(url)} className={styles.wrapper} style={customStyles}>
             <FontAwesomeIcon icon={icon} />
-            <button onClick={handler ? handler : () => navigate(url)}>{title}</button>
+            <button>{title}</button>
         </div>
     );
 };
