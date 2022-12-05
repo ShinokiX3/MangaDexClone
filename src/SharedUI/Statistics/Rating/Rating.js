@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { StarIcon } from '../../../Assets/Svg/Statistics';
 import Flyout from '../../../Features/Flyout/Flyout';
 import RatingFlyout from '../../../Components/Flyouts/RatingFlyout/RatingFlyout';
-import { useMemo } from 'react';
 
 const Rating = ({ rating, details = false }) => {
     const [shouldShow, setShouldShow] = useState(false);

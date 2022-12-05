@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import styles from './details.module.scss';
 
 const Details = ({ setShouldShow, rootElement, children }) => {
-
     useEffect(() => {
         const handler = (e) => {
             if (!rootElement.current.contains(e.target)) {

@@ -1,9 +1,8 @@
 import React, { memo, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import './mangaPage.scss';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMangaCovers, fetchMangaFeed, fetchMangaInfo, fetchMangaStatistics } from '../../Store/Slices/mangaSlice';
+import './mangaPage.scss';
 
 import MangaHeader from './MangaHeader/MangaHeader';
 import MangaSynopsis from './MangaSynopsis/MangaSynopsis';
@@ -16,7 +15,6 @@ const Manga = memo(() => {
 
     const dispatch = useDispatch();
     const mangaInfo = useSelector(state => state.manga.mangaInfo);
-    const user = useSelector(state => state.user.user);
 
     useEffect(() => {
         dispatch(fetchMangaInfo({mangaId}));

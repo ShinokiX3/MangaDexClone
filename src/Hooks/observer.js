@@ -22,7 +22,6 @@ export const useObserver = (options) => {
                 observer.unobserve(observerRef);
             }
         }
-
     }, [observerRef, options]);
     
     return [observerStatus, setObserverRef];

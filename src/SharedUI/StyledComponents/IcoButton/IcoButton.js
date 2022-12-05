@@ -2,8 +2,7 @@ import React from 'react';
 import styles from './icobutton.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCode, faGear, faDroplet } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const IcoButton = ({ title, icon, handler, url = '', customStyles = {} }) => {
     const navigate = useNavigate();

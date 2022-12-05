@@ -1,5 +1,5 @@
 import React, { memo, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Cover from '../../../SharedUI/StyledComponents/Cover/Cover';
 
@@ -9,10 +9,6 @@ import MangaStatus from '../../../Components/Manga/MangaStatus';
 import { Rating, Follows, Seen } from '../../../SharedUI/Statistics';
 import { filterSomeAttribute } from '../../../Utils/filterAttribute';
 import MangaControls from '../MangaControls/MangaControls';
-import { useSelector } from 'react-redux';
-import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
-
-// TODO: will have to do it with redux.
 
 const MangaHeader = memo(({ mangaInfo = {} }) => {
     const [mangaCoverUrl, setMangaCoverUrl] = useState('');
@@ -43,17 +39,12 @@ const MangaHeader = memo(({ mangaInfo = {} }) => {
 });
 
 const MangaTitle = memo(({ mangaInfo }) => {
-
-    // TODO: seems like unusefull 
-
     const enTitle = useMemo(() => mangaInfo?.data?.attributes?.title?.en, [mangaInfo]);
     const alternative = useMemo(() => {
         const en = mangaInfo?.data?.attributes?.altTitles?.filter(el => el.en)[0]?.en;
         const ja = mangaInfo?.data?.attributes?.altTitles?.filter(el => el.ja)[0]?.ja;
         return en ? en : ja
     }, [mangaInfo]);
-    
-    // TODO: Change filter method to some else, which can be dynamic ent value
     
     return (
         <div className="manga-title" style={{zIndex: '105'}}>
@@ -85,9 +76,6 @@ const MangaIntroduction = memo(({ mangaInfo }) => {
 });
 
 const MangaVariablesStatus = memo(({ mangaInfo = {} }) => {
-
-    // TODO: might be thinking about another destructure or other ways to organize
-
     const tags = useMemo(() => {
         if (mangaInfo.data) {
             return mangaInfo?.data?.attributes?.tags;

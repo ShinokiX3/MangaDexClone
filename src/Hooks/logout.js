@@ -1,9 +1,6 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import MangaDexApi from '../Services/MangaDexApi';
+import { useDispatch, useSelector } from 'react-redux';
 import { setToInitial } from '../Store/Slices/userSlice';
+import MangaDexApi from '../Services/MangaDexApi';
 
 const useLogout = () => {
     const dispatch = useDispatch();

@@ -14,18 +14,22 @@
 .userinfo {
     grid-area: userinfo;
     padding-top: 9rem;
+
     .title {
         font-size: 2.25rem;
         line-height: 2.5rem;
         font-weight: 700;
         margin-bottom: 1.5rem;
     }
+
     .userid, .roles, .groups, .uploads {
         font-size: 12.9pt;
+
         p:first-child {
             font-weight: 900;
             margin-bottom: .9rem;
         }
+
         margin-bottom: 1.5rem;
     }
 }
@@ -33,6 +37,7 @@
 .userintro {
     grid-area: userintro;
     padding-top: 9rem;
+
     .title {
         font-size: 2.25rem;
         line-height: 2.5rem;
@@ -43,6 +48,7 @@
 
 .userimage {
     grid-area: userimage;
+
     img {
         border-radius: 50%;
         border: 2px solid;
@@ -57,6 +63,7 @@
     display: flex;
     flex-direction: column;
     align-self:initial;
+
     button {
         min-height: 48px;
         min-width: 95%;
@@ -94,6 +101,7 @@
         padding-top: 75px;
         flex-direction: row;
         gap: 5px;
+        
         button {
             font-size: 10pt;
             height: fit-content;

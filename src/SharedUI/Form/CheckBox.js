@@ -9,13 +9,12 @@ const CheckBox = ({message = '', additionalMess = '', value, checked, setChecked
                     additionalButt ? <p className="label-star">{additionalButt}</p> : true
                 }
             </label>
-            {
-                message ?
-                <div className="form-message">
+            {message 
+                ? <div className="form-message">
                     <span>Created an account already and need to activate it?</span>
                     <span className="label-star">{additionalMess}</span>
-                </div> :
-                true
+                  </div> 
+                : null
             }
         </div>
     );

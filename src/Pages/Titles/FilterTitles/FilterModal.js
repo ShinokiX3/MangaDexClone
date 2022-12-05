@@ -1,19 +1,14 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';         
-import FilterItemsViev from '../../../SharedUI/Filter/FilterItemsViev';
-import Select from '../../../SharedUI/StyledComponents/Select/Select';
 import { resetSelectedTags, setSelectedTags } from '../../../Store/Slices/titlesSlice';
-
 import styles from './filter-titles.module.scss';
+
+import FilterItemsViev from '../../../SharedUI/Filter/FilterItemsViev';
 import filterStyles from '../../../SharedUI/Filter/filter-items.module.scss'
-
 import stylesFilter from '../../../SharedUI/Filter/filter-items.module.scss';
-
 import Tags from './Tags';
 
 const FilterModal = ({ tags = [], setActive }) => {
-    const [langSelect, setLangSelect] = useState(['All Languages']);
-    
     const specificTags = useMemo(() => [
         { type: 'Demographic', tags: ['Shounen', 'Shoujo', 'Seinen', 'Josei', 'None'] }, 
         { type: 'Content Rating', tags: ['Safe', 'Suggestive', 'Erotica'] },
@@ -26,6 +21,7 @@ const FilterModal = ({ tags = [], setActive }) => {
     const handleDelete = (e) => {
         const targetValue = e.target.innerHTML;
         const dataToChange = {title: '', type: '', index: ''};
+        
         selectedTags.forEach((el, elIdx) => {
             const idx = el.tags.findIndex(tag => tag.value === targetValue);
             if (idx !== -1) {
@@ -34,6 +30,7 @@ const FilterModal = ({ tags = [], setActive }) => {
                 dataToChange.index = idx;
             }
         })
+
         const newObj = {
             type: dataToChange.title,
             tags: [
@@ -41,19 +38,17 @@ const FilterModal = ({ tags = [], setActive }) => {
                 ...selectedTags[dataToChange.type].tags.slice(dataToChange.index + 1)
             ]
         }
+
         const elems = document.querySelectorAll(`#${targetValue.split(' ').join('-')}`);
+        
         elems[elems.length - 1].classList.remove(stylesFilter.include); 
         elems[elems.length - 1].classList.remove(stylesFilter.exclude);
         dispatch(setSelectedTags(newObj));
     }
 
-    // TODO: create other way to compose, or function that will be compiling these tags values
-
     const handleSearch = () => {
         setActive(false);
     }
-
-    // TODO: remove active styles in select items and search by close modal window
 
     const handleReset = () => {
         const tags = document.querySelectorAll('.filter-tag');
@@ -94,8 +89,7 @@ const FilterModal = ({ tags = [], setActive }) => {
             </div>
             <hr style={{margin: '0.25rem 0px', borderTop: '1px solid #e5e7eb'}}></hr>
             <div className={styles.select}>
-                <p>Original Language</p>
-                {/* <Select values={['Other', 'Something']} selected={langSelect} setSelected={setLangSelect} /> */}
+                {/* <p>Original Language</p> */}
             </div>
             <Tags tags={specificTags} isFlexBox />
             <Tags tags={tags} />

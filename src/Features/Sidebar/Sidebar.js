@@ -7,7 +7,6 @@ import { ChooseSelector, VariableSelector, CheckboxSelector } from './SidebarSel
 import { GENRES, STATUS, TYPES, VOLUMES } from './filterData';
 
 const Sidebar = () => {
-
     const [typebarData, setTypebarData] = useState([]);
     const [chosenData, setChosenData] = useState([]);
     const [toggleTypebar, setToggleTypebar] = useState('');
@@ -28,35 +27,18 @@ const Sidebar = () => {
 
     return (
         <div className={`sidebar ${hideSidebar}`}>
-            <TypeSidebar 
-                data={typebarData} 
-                status={toggleTypebar} 
-                setTypebarStatus={setToggleTypebar}
-                setSidebarOverflow={setHideSidebar} 
-                typeName={typeName} />
-            <ChooseSelector title={'Genres'} 
-                chosenData={chosenData}
-                func={openTypebarBy} />
-            <ChooseSelector title={'Tags'} 
-                chosenData={chosenData}
-                func={openTypebarBy} />
-            <VariableSelector title={'Chapters'}
-                typeName={'chapters'} />
-            <VariableSelector title={'Year of issue'}
-                typeName={'date'} />
-            <VariableSelector title={'Grade'}
-                typeName={'score'} />
-            <CheckboxSelector checkboxData={ VOLUMES }
-                typeName={'rated'} />
-            <CheckboxSelector checkboxData={ TYPES }
-                typeName={'type'} />
-            <CheckboxSelector checkboxData={ STATUS }
-                typeName={'status'} />
+            <TypeSidebar data={typebarData} status={toggleTypebar} setTypebarStatus={setToggleTypebar} 
+                setSidebarOverflow={setHideSidebar} typeName={typeName} />
+            <ChooseSelector title={'Genres'} chosenData={chosenData} func={openTypebarBy} />
+            <ChooseSelector title={'Tags'} chosenData={chosenData} func={openTypebarBy} />
+            <VariableSelector title={'Chapters'} typeName={'chapters'} />
+            <VariableSelector title={'Year of issue'} typeName={'date'} />
+            <VariableSelector title={'Grade'} typeName={'score'} />
+            <CheckboxSelector checkboxData={ VOLUMES } typeName={'rated'} />
+            <CheckboxSelector checkboxData={ TYPES } typeName={'type'} />
+            <CheckboxSelector checkboxData={ STATUS } typeName={'status'} />
         </div>
     );
 };
-
-// onClick={() => openTypebarBy()}
-// onClick={() => openTypebarBy('tags')}
 
 export default Sidebar;

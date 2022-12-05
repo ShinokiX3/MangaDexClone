@@ -14,12 +14,14 @@
 .manga-de {
     padding: 1rem;
     max-width: 200px;
+
     p:first-child {
         font-size: 15pt;
         color: #242424;
         font-weight: bold;
         margin-bottom: 10px;
     }
+    
     p:last-child {
         font-size: 13pt;
     }
@@ -29,17 +31,20 @@
     position: relative;
     width: 128px;
     height: 180px;
+
     img {
         width: 128px;
         height: 180px;
         border-radius: 0.25rem;
     }
+
     .flag-img-var2 {
         position: absolute;
         bottom: 0.375rem;
         right: 0.5rem;
         width: 24px;
         height: 24px;
+        
         img {
             width: 24px;
             height: 24px;

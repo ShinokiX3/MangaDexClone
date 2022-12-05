@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import './reader-page.scss';
-
-import MangaDexApi from '../../Services/MangaDexApi';
-import { useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setReaderStatus } from '../../Store/Slices/menuSlice';
+import { useParams } from 'react-router-dom';
+import './reader-page.scss';
 
 import SideMenu from '../../Features/SideMenu/SideMenu';
 import SideReader from './SideReader/SideReader';
 import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
+
+import MangaDexApi from '../../Services/MangaDexApi';
 
 const Read = () => {
     const params = useParams();
@@ -32,8 +30,6 @@ const Read = () => {
     });
     const [images, setImages] = useState([]);
 
-    // SideReader
-
     const dispatch = useDispatch();
     const menu = useSelector(store => store.menu.readerMenu);
 
@@ -50,9 +46,6 @@ const Read = () => {
 
         const chaptersIds = [...mangaVolumes[volume]?.chapters[currChapter]?.others, 
             mangaVolumes[volume]?.chapters[currChapter]?.id];
-
-        // const chaptersIds = [...mangaVolumes[volume]?.chapters[chapter]?.others, 
-        //     mangaVolumes[volume]?.chapters[chapter]?.id];
 
         const chaterInfoArr = await MangaDexApi.getInfoAboutChapter(chaptersIds);
 
@@ -90,6 +83,7 @@ const Read = () => {
 
     useEffect(() => {
         const header = document.querySelector('.header-block');
+        
         if (menu.status) {
             header.style.position = "sticky";
         } else {
@@ -103,6 +97,7 @@ const Read = () => {
     useEffect(() => {
         const fetchVolumes = async () => {
             const volumes = await MangaDexApi.getMangaChapters(mangaId);
+
             if (!volumes?.volumes || Object.keys(volumes?.volumes).length === 0) {
                 const someOtherIds = (await MangaDexApi.getMangaInfo(mangaId))?.data?.relationships;
                 const newMangaId = someOtherIds[someOtherIds?.findIndex(el => el?.related === 'colored')]?.id;
@@ -113,28 +108,20 @@ const Read = () => {
             }
         }
         fetchVolumes();
-    }, [])
-
-    // Проверить на работоспособность. Вызывать только если предыдущий стейт изменился. Для отрисовки.
-    // Только Апдейт, не должно срабатывать при первой загрузке.
+    }, []);
 
     useEffect(() => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
-            // TODO: create controller to cancel fetching after unmount
-
             fetchChapterHash(currentChapter.volume, currentChapter.chapter, currentChapter.counter);
-        }
-
-        return () => {
-
         }
     }, [currentChapter.volume, currentChapter.chapter, mangaVolumes])
 
     const mangaContentDelegate = (e) => {
         const leftBorder = clientWidth / 2.3;
         const rightBorder = clientWidth / 2 + (clientWidth / 2 - leftBorder);
+
         if (e.pageX > leftBorder &&
             e.pageX < rightBorder) {
         } else if (e.pageX > rightBorder) {
@@ -146,6 +133,7 @@ const Read = () => {
 
     const handleNextImg = () => {
         document.documentElement.scrollTop = document.documentElement.scrollHeight;
+
         if (currentChapter.currImg === currentChapter.maxImg &&
             currentChapter.counter + 1 <= Object.keys(mangaVolumes[currentChapter.volume]?.chapters).length - 1) {
             setCurrentChapter(currentChapter => ({
@@ -176,6 +164,7 @@ const Read = () => {
 
     const handlePrevImg = () => {
         document.documentElement.scrollTop = document.documentElement.scrollHeight;
+
         if (currentChapter.currImg === 1 &&
              currentChapter.volume === 1 &&
              currentChapter.chapter === 1) {
@@ -255,8 +244,7 @@ const Read = () => {
                 <p className="translator">Some guy's scans</p>
             </div>
             <div className="chapter-content" style={{maxHeight: clientHeight}} onClick={mangaContentDelegate}>
-                {
-                    images && images.length > 0 
+                {images && images.length > 0 
                     ? images?.map((el, idx) => {
                         if (idx+1 === currentChapter.currImg) {
                             return <img referrerPolicy="no-referrer" src={el} style={{display: '', maxHeight: clientHeight, maxWidth: clientWidth - 40}} 

@@ -1,7 +1,7 @@
-import Singin from "./Singin/Singin";
-import Singup from "./Singup/Singup";
+import Signin from "./Signin/Signin";
+import Signup from "./Signup/Signup";
 
 export {
-    Singin,
-    Singup
+    Signin,
+    Signup
 }

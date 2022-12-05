@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './tags-status.module.scss';
 
 const TagsStatus = ({ tags, amount, customStyles = {} }) => {
-
     const colorage = (tag) => {
         const colorage = {
             'GORE': 'red',
@@ -15,8 +14,7 @@ const TagsStatus = ({ tags, amount, customStyles = {} }) => {
 
     return (
         <div className={styles.manga_tags}>
-            {
-                tags?.map((el, idx) => {
+            {tags?.map((el, idx) => {
                     if (idx < amount) {
                         return (
                             <span 

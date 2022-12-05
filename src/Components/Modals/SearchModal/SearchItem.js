@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MangaDexApi from '../../../Services/MangaDexApi';
-import MangaStatus from '../../Manga/MangaStatus';
-import { Comments, Follows, Rating, Seen } from '../../../SharedUI/Statistics';
 import Img from '../../../SharedUI/StyledComponents/Img/Img';
 import avatar from '../../../Assets/Images/avatar.png';
 import './searchPannel.scss';

@@ -4,16 +4,19 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         h1 {
             cursor: pointer;
             color: #242424;
         }
+
         svg {
             cursor: pointer;
             width: 24px;
             height: 24px;
             color: #242424;
         }
+
         margin-bottom: 1rem;
     }
 }
@@ -22,6 +25,7 @@
     div {
         margin-bottom: 0px;
         justify-content: flex-start;
+        
         svg {
             transform-origin: center center;
             transform: rotate(180deg);

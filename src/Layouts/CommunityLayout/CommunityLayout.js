@@ -13,14 +13,11 @@ const CommunityLayout = ({ handleTabs, title, tabs, children, bgStyles, bgClasse
                 <div className={styles.userimage}>
                     <img src={avatar} alt="" />
                 </div>
-                {/* <div className={styles.userinfo}> */}
                 <div className={styles.userintro}>
                     <div className={styles.title}>{title}</div>
                     <Tabs handleTabs={handleTabs} tabs={tabs} />
                 </div>
-                {
-                    children
-                }
+                { children }
                 <ButtonsBlock  />
             </div>
         </MainContainer>

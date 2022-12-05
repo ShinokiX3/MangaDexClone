@@ -167,19 +167,17 @@ const Slider = memo(({children}) => {
                 }
             </div>
             <div className="slider-controls" ref={sliderControls}>
-                {
-                    secArr.map((item, index) => {
-                        if (item.i !== "") {
-                            return (
-                                <span className={`control ${index === 0 ? "active-control" : ""}`} 
-                                    key={`control-${index}`}
-                                    onClick={() => handleControl(index)}></span>
-                            )
-                        } else {
-                            return true
-                        }
-                    })
-                }
+                {secArr.map((item, index) => {
+                    if (item.i !== "") {
+                        return (
+                            <span className={`control ${index === 0 ? "active-control" : ""}`} 
+                                key={`control-${index}`}
+                                onClick={() => handleControl(index)}></span>
+                        )
+                    } else {
+                        return true
+                    }
+                })}
             </div>
         </div>
     );

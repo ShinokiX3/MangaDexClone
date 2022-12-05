@@ -6,27 +6,6 @@
     gap: 8px;
 }
 
-// @media (min-width: 1500px) {
-//     .alt_block_settings { 
-//         grid-template-columns: repeat(6, minmax(0, 1fr));
-//     }
-// }
-// @media (min-width: 80rem) {
-//     .alt_block_settings { 
-//         grid-template-columns: repeat(5, minmax(0, 1fr));
-//     }
-// }
-// @media (min-width: 64rem) {
-//     .alt_block_settings { 
-//         grid-template-columns: repeat(4, minmax(0, 1fr));
-//     }
-// }
-// @media (min-width: 48rem) {
-//     .alt_block_settings { 
-//         grid-template-columns: repeat(3, minmax(0, 1fr));
-//     }
-// }
-
 .img_settings, .alt_wrapp_settings span {
     border-radius: 0.25rem;
     width: inherit;
@@ -37,6 +16,7 @@
     width: inherit;
     position: relative;
     cursor: pointer;
+
     span {
         position: absolute;
         bottom: 0;
@@ -46,6 +26,7 @@
         display: flex;
         align-items: flex-end;
         background: linear-gradient(180deg,transparent,rgba(0,0,0,.8));
+        
         p {
             color: white;
             font-size: 14pt;

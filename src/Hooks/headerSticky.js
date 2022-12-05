@@ -51,7 +51,5 @@ const useHeaderSticky = () => {
         }
     }
 
-    return [addStyles, removeStyles]
+    return [addStyles, removeStyles];
 };
-
-// export default useHeaderSticky;

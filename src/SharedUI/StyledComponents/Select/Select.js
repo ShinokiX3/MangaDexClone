@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react';
+import { memo, useRef } from 'react';
 import { SelectIcon } from '../../../Assets/Svg/Form';
 import styles from './select.module.scss';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CoverModal = ({ setActive = null, src = '', alt = '' }) => {
+const CoverModal = ({ src = '', alt = '' }) => {
     return (
         <img src={src} alt={alt} style={{maxHeight: '100%'}} />
     );

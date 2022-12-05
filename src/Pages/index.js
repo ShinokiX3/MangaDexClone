@@ -1,20 +1,18 @@
 import Main from "./Main/Main";
 import About from "./About/About";
-import Basket from "./Basket/Basket";
 import Favorites from "./Favorites/Favorites";
 import Manga from "./Manga/Manga";
 import Chapter from "./Reader/Reader";
 import Suggestion from "./Suggestion/Suggestion";
-import { Singup, Singin } from "./AuthPages";
+import { Signup, Signin } from "./AuthPages";
 
 export {
     Main, 
     About,
-    Basket,
     Favorites,
     Manga,
     Chapter,
-    Singup,
-    Singin,
+    Signup,
+    Signin,
     Suggestion
 }

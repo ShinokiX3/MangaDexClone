@@ -1,19 +1,19 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+
 import LinkList from '../../SharedUI/Form/LinkList';
 import Logo from '../../SharedUI/Logo/Logo';
 
 import { setMainStatus } from '../../Store/Slices/menuSlice';
 
 import { faHouseUser, faBookmark, faBookOpen, faUserGroup, faThumbTack } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
 import MangaDexApi from '../../Services/MangaDexApi';
 
 const SideMain = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const menu = useSelector(state => state.menu.mainMenu);
     const user = useSelector(state => state.user.user);
 
     const handleMenu = () => {
@@ -57,13 +57,13 @@ const SideMain = () => {
             </LinkList>
             <LinkList ico={faUserGroup} title={"Community"}>
                 <Link className="link" to="">Groups</Link>
-                <a className="link" href="dsad">Users</a>
+                <Link className="link" to="">Users</Link>
             </LinkList>
             <LinkList ico={faThumbTack} title={"MangaLive"}>
-                <a className="link" href="dsad">About Us</a>
-                <a className="link" href="dsad">Site Rules</a>
-                <a className="link" href="dsad">Announcements</a>
-                <a className="link" href="dsad">Merch Store</a>
+                <Link className="link" to="">About us</Link>
+                <Link className="link" to="">Site Rules</Link>
+                <Link className="link" to="">Announcements</Link>
+                <Link className="link" to="">Merch Store</Link>
             </LinkList>
         </div>
     );

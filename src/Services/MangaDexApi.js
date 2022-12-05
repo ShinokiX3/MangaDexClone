@@ -1,7 +1,7 @@
 import { filterSomeAttribute } from "../Utils/filterAttribute";
 
 class MangaDexApi {
-    CorsProxy = 'https://justcors.com/tl_86841e9/';
+    CorsProxy = 'https://justcors.com/tl_5289da9/';
     Setting = '?forcePort443=false';
 
     BaseUrl = `${this.CorsProxy}https://api.mangadex.org`;
@@ -13,11 +13,9 @@ class MangaDexApi {
     BaseGroup = `${this.BaseUrl}/group`;
     BaseCover = `${this.BaseUrl}/cover`;
     BaseChapter = `${this.BaseUrl}/chapter`;
-    BaseStatistics = `${this.BaseUrl}/statistics`
-    
-    // Rewrite to instance of
+    BaseStatistics = `${this.BaseUrl}/statistics`;
 
-    Headers = {}
+    Headers = {};
 
     getTest = async() => {
         return await fetch(`https://api.mangadex.org/list/3fa85f64-5717-4562-b3fc-2c963f66af`)
@@ -127,7 +125,6 @@ class MangaDexApi {
 
     getMangaFeed = async (mangaId, offset = 0, orderBy = 'asc', limit = 500) => {
         return await fetch(`${this.BaseManga}/${mangaId}/feed?limit=96&includes[]=scanlation_group&includes[]=user&order[volume]=asc&order[chapter]=asc&offset=${offset}&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic`, { headers: {...this.Headers} })
-            // .then(data => data.json());
     }
 
     getScanlationGroup = async (groupId) => {

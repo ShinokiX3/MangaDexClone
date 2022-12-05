@@ -4,10 +4,12 @@
     align-items: center;
     width: 100%;
     height: fit-content;
+    
     input {
         margin-top: 0px;
         width: 100%;
     }
+
     div {
         display: flex;
         p {
@@ -20,6 +22,7 @@
 .modal_wrapp {
     display: grid; 
     gap: 1rem;
+
     h1 {
         color: #242424; 
         font-weight: 650;
@@ -38,10 +41,11 @@
     display: grid; 
     grid-template-columns: 1fr 0.20fr;
     gap: 5px;
+
     button {
+        cursor: pointer; 
         width: 100%; 
         background-color: transparent; 
-        cursor: pointer; 
         height: 50px;
         border: 0px;
         font-size: 12.5pt;
@@ -52,6 +56,7 @@
 .first_button {
     border-radius: 0.25rem;
     background-color: #ff6740;
+
     button {
         color: white;
     }
@@ -62,6 +67,7 @@
     border-radius: 0.25rem;
     background-color: transparent;
     transition: background-color 0.2s ease;
+
     &:hover {
         background-color: rgba($color: #f0f1f2, $alpha: 1);
     }
@@ -69,6 +75,7 @@
 
 .select {
     width: 10vw;
+
     p {
         font-size: 14pt; 
         font-weight: 600; 
@@ -80,10 +87,12 @@
 .tags {
     display: grid; 
     gap: 15px;
+
     .tag {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+        
         h3 { 
             color: #242424;
             margin-bottom: 5px;

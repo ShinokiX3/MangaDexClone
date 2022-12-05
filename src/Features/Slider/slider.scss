@@ -1,9 +1,10 @@
 .slider-window {
+    cursor: pointer;
+
     width: 100%;
     height: 250px;
     overflow: hidden;
     position: relative;
-    cursor: pointer;
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -26,9 +27,11 @@
     margin-right: 20px;
     border-radius: 0.5ch;
     background-color: #f0f1f2;
+
     &:last-child {
         margin-right: 0;
     }
+    
     position: relative;
 }
 
@@ -37,6 +40,7 @@
     bottom: 0;
     width: auto;
     display: flex;
+
     span {
         content: '';
         display: block;
@@ -44,6 +48,7 @@
         height: 8px;
         border-radius: 50%;
         margin-right: 10px;
+        
         &:last-child {
             margin-right: 0;
         }
@@ -66,18 +71,6 @@
     .manga-de {
         max-width: 200px!important;
     }
-
-    // .slider-controls {
-    //     display: none;
-    // }
-
-    // .slider-window {
-    //     overflow: scroll;
-    // }
-
-    // &::-webkit-scrollbar {
-    //     height: 0px;
-    // }
 }
 
 @media (max-width: 380px) {

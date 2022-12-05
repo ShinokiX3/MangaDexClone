@@ -3,8 +3,6 @@ import { groupIcons } from '../../../Assets/Svg/Groups';
 import { cutString } from '../../../Utils/cutString';
 import styles from './scanlation.module.scss';
 
-
-
 const Scanlation = ({ name }) => {
     return (
         <div className={styles.wrapp}>

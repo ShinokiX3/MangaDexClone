@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCode, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Form = ({type, additional = '', children}) => {
     return (
@@ -12,13 +12,9 @@ const Form = ({type, additional = '', children}) => {
                         <FontAwesomeIcon icon={faArrowLeft} />
                         <h1>{type}</h1>
                     </div>
-                    {
-                        additional ? <p>{additional}</p> : true
-                    }
+                    { additional ? <p>{additional}</p> : null }
                 </div>
-                {
-                    children
-                }
+                { children }
             </form>
         </div>
     );

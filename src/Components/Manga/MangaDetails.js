@@ -11,7 +11,6 @@ const MangaDetails = (props) => {
         genres,
         status,
         score,
-        scored_by,
         chapters
     } = mangaInfo;
 

@@ -8,11 +8,13 @@
     display: none;
     padding: 15px;
     font-size: 15pt;
+
     input[type=text] {
         width: 97%;
         font-size: 12pt;
         padding: 5px;
     }
+    
     input[type=button] {
         width: 100%;
         font-size: 12pt;
@@ -21,13 +23,16 @@
         border-color: transparent;
         border-radius: 2%;
         cursor: pointer;
+        
         &:hover {
             background-color: grey;
         }
     }
+
     input[type=checkbox] {
         width: 20px;
     }
+
     height: 80vh;
     overflow: auto;
     overflow-x:hidden;
@@ -36,9 +41,11 @@
 .toggle-typebar {
     width: 90%;
     display: block;
+
     .select-block {
         display: flex;
         flex-direction: column;
+
         .select-block-elem {
             display: flex;
         }
@@ -50,14 +57,17 @@
     width: 100%;
     justify-content: space-between;
     margin-bottom: 15px;
+
     span {
         cursor: pointer;
         font-weight: bold;
         padding: 10px;
         border-radius: 2%;
+
         &:hover {
             background-color: #ececec;
         }
+        
         &:last-child {
             color: grey;
         }

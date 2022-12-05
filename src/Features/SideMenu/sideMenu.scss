@@ -16,24 +16,29 @@
 
 .links-block {
     font-size: 14pt;
+
     .svg-link {
         font-weight: bold;
     }
+
     width: 90%;
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-bottom: 10px;
+    
     svg {
         width: 1.5rem;
         height: 1.5rem;
         margin-right: 10px;
         padding-left: 10px;
     }
+    
     a {
         padding-left: 20px;
         font-size: 12pt;
         width: calc(100% - 20px);
     }
-    margin-bottom: 10px;
+    
     &:last-child {
         padding-bottom: 50px;
     }
@@ -48,10 +53,12 @@
     display: flex;
     align-items: center;
     transition: background-color 0.2s ease;
+    
     a {
         padding-left: 20px;
         width: calc(100% - 20px);
     }
+    
     &:hover {
         background-color: rgb(211, 211, 211);
         border-radius: 0.5ch;
@@ -62,6 +69,7 @@
     color: white;
     background-color: #ff6740;
     border-radius: 0.24rem;   
+    
     &:hover {
         background-color: rgba($color: #ff6740, $alpha: 0.8);   
     }

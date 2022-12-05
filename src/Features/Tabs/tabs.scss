@@ -1,4 +1,6 @@
 .selectors {
+    cursor: pointer;
+    
     width: fit-content;
     height: fit-content;
     overflow: hidden;
@@ -22,7 +24,6 @@
         }
 
         padding: 4px 8px 4px 8px;
-        cursor: pointer;
         position: relative;
         transition: all .5s cubic-bezier(.2,.6,.1,1.2),color .2s cubic-bezier(.2,.6,.1,1.2);
         opacity: 0.4;

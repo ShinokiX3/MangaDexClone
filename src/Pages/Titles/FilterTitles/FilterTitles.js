@@ -1,12 +1,14 @@
 import React, { memo, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchValue } from '../../../Store/Slices/titlesSlice';
 import styles from './filter-titles.module.scss';
+
 import useInput from '../../../Hooks/input';
+import useDebounce from '../../../Hooks/debounce';
+import useFetchByFilters from '../Hooks/useFetchByFilters';
+
 import Modal from '../../../Features/Modal/Modal';
 import FilterModal from './FilterModal';
-import { useDispatch, useSelector } from 'react-redux';
-import useDebounce from '../../../Hooks/debounce';
-import { fetchFilteredData, setSearchValue } from '../../../Store/Slices/titlesSlice';
-import useFetchByFilters from '../Hooks/useFetchByFilters';
 
 // TODO: perhaps create united component for Titles & Suggestion page controls 
 // Modal, that will be create for filter search, take to wrapp React Lazy, and when the modal closed don't load it's on the page   
@@ -22,16 +24,11 @@ const FilterTitles = memo(({ tags = [] }) => {
     const fetchByFilters = useFetchByFilters();
     const debouncedValue = useDebounce(filterInput.value, 1000, true);
 
-    // TODO: create other way to compose, or function that will be compiling these tags values
-
     useEffect(() => {
-        // TODO: if data status resolved or error
         if (filteredData.status === 'resolved') {
             dispatch(setSearchValue(debouncedValue));
         }
     }, [debouncedValue]);
-
-    // fetch by close modal
 
     useEffect(() => {
         if (filteredData.status === 'resolved' && active === false) {
@@ -65,6 +62,7 @@ const FilterTitles = memo(({ tags = [] }) => {
                 <p>Filter</p>
             </div>
         </div>
+        
         <Modal active={active} setActive={setActive} styleModalContent={{width: '87vw', borderRadius: '0px'}} >
             <FilterModal tags={tags} setActive={setActive} />
         </Modal>

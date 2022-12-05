@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './latest-updates.module.scss';
 import Img from '../../../SharedUI/StyledComponents/Img/Img';
 import { filterSomeAttribute } from '../../../Utils/filterAttribute';

@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMangaCovers } from '../../../../Store/Slices/mangaSlice';
 
 const ArtTab = memo(({ mangaId }) => {
-
-    const [coversFeed, setCoversFeed] = useState([]);
     const [pages, setPages] = useState(1);
     const [offset, setOffset] = useState(0);
     const [step, setStep] = useState(32);

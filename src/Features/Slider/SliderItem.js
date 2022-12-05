@@ -2,10 +2,9 @@ import React, { useCallback, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SliderItem = ({children, manga, styles = {}}) => {
-    const ref = useRef();
-    const navigate = useNavigate();
-
     const [mouseMove, setMouseMove] = useState(false);
+    const navigate = useNavigate();
+    const ref = useRef();
 
     const mouseMoveListener = useCallback(() => {
         ref.current.removeEventListener("mousemove", mouseMoveListener);
@@ -32,12 +31,8 @@ const SliderItem = ({children, manga, styles = {}}) => {
     }
     
     return (
-        <div className="slider-item" style={styles} ref={ref} 
-            onMouseDown={mouseDownListener}
-            onMouseUp={mouseUpListener}>
-                {
-                    children
-                }
+        <div onMouseDown={mouseDownListener} onMouseUp={mouseUpListener} className="slider-item" style={styles} ref={ref}>
+            { children }
         </div>
     )
 };

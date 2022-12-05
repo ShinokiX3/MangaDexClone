@@ -7,7 +7,6 @@ const useSideMenu = (sideMenu) => {
     const [menuStatus, setMenuStatus] = useState();
 
     const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
 
     useEffect(() => {
         if (sideMenu === 'main') {
@@ -16,10 +15,6 @@ const useSideMenu = (sideMenu) => {
             dispatch(setChapterMenuStatus(menuStatus));
         }
     }, [menuStatus]);
-
-    useEffect(() => {
-        console.log(menuStatus);   
-    });
 
     return [menuStatus, setMenuStatus];
 };

@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import MangaDexApi from '../../../Services/MangaDexApi';
+import React, { useRef } from 'react';
 import Img from '../../../SharedUI/StyledComponents/Img/Img';
 import './mangaVariables.scss';
 

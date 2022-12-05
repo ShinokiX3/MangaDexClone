@@ -1,4 +1,4 @@
-import { lazy, memo, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, memo, Suspense, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './userpage.module.scss';
 import { strToUpper } from '../../Utils/stringToUpperCase';
@@ -25,11 +25,9 @@ const UserPage = () => {
             await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/user/${userId}`)
                 .then(data => data.json())
                 .then(data => {
-                    console.log(data);
                     setUserName(data?.data?.attributes?.username);
                     const roles = data?.data?.attributes?.roles.map(role => strToUpper(role.split('_').slice(1).join(' ').toLowerCase()));
                     setUserRoles(roles);
-                    
                 })
         })()       
     }, []);

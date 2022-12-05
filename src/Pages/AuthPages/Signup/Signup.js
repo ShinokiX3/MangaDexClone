@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 
 const rootModal = document.getElementById('modal-root');
 
-const Singup = () => {
+const Signup = () => {
     const [shouldShow, setShouldShow] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -81,4 +81,4 @@ const Singup = () => {
     );
 };
 
-export default Singup;
+export default Signup;

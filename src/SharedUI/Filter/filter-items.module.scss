@@ -14,6 +14,7 @@
 .include, .any {
     background-color: #ff6740;
     color: white;
+
     &::before {
         content: '+';
         color: white;
@@ -27,6 +28,7 @@
 .exclude {
     background-color: #f0f1f2;
     border: 1px solid #ff6740;
+    
     &::before {
         content: '-';
         color: black;

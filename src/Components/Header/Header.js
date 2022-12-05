@@ -1,15 +1,13 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setMainStatus } from '../../Store/Slices/menuSlice';
+
 import './header.scss';
 
 import { SearchModal, LoginModal } from '../Modals';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { setMainStatus } from '../../Store/Slices/menuSlice';
-
-import avatar from '../../Assets/Images/avatar.png';
 
 import Modal from '../../Features/Modal/Modal';
 import Logo from '../../SharedUI/Logo/Logo';
@@ -18,10 +16,8 @@ import Logged from './LoggStatus/Logged';
 const Header = memo(() => {
     const [active, setActive] = useState(false);
     const [logModal, setLogModal] = useState(false);
-    const [ref, setRef] = useState(null);
 
     const dispatch = useDispatch();
-    // const menu = useSelector(state => state.user);
     const user = useSelector(state => state.user.user);
 
     const handleModal = () => {
@@ -44,7 +40,7 @@ const Header = memo(() => {
 
     return (
         <>
-            <div ref={setRef} className="header-block header-white">
+            <div className="header-block header-white">
                 <Logo handleMenu={handleMenu} ico={{side: 'left', type: 'open'}} />
                 <div className="right-links_wrapp">
                     <div className="search-block" onClick={handleModal}>

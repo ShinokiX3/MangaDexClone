@@ -1,7 +1,9 @@
 .logo {
     display: flex;
     align-items: center;
+
     svg {
+        cursor: pointer;
         width: 22px;
         height: 22px;
         font-size: 14pt;
@@ -9,8 +11,8 @@
         margin-right: 10px;
         margin-top: 2px;
         border-radius: 50%;
-        cursor: pointer;
     }
+
     svg:hover {
         background-color: rgba($color: #ebebeb, $alpha: 0.7);
         transition: 0.6s all ease-in-out;
@@ -24,10 +26,12 @@
             transition: 0.4s all;
         }
     }
+
     svg {
         margin-right: 0px;
         margin-left: 10px;
     }
+    
     svg:hover {
         background-color: rgba($color: #b4b9be, $alpha: 0.4);
     }

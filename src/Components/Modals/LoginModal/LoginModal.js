@@ -2,7 +2,7 @@ import React from 'react';
 import './loginModal.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCode, faGear, faDroplet } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faDroplet } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 const LoginModal = ({ setActive }) => {

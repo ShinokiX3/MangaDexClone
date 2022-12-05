@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import styles from '../auth.module.scss';
 
 import Form from '../../../SharedUI/Form/Form';
 import Input from '../../../SharedUI/Form/Input';
 import Buttons from '../../../SharedUI/Form/Buttons';
 import CheckBox from '../../../SharedUI/Form/CheckBox';
-import { useNavigate } from 'react-router-dom';
+
 import MainContainer from '../../../Layouts/MainContainer/MainContainer';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { setUser } from '../../../Store/Slices/userSlice';
 import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 import Modal from '../../../Features/Modal/Modal';
 import ErrorModal from '../../../Components/Modals/ErrorModal/ErrorModal';
-import ReactDOM from 'react-dom';
 import MangaDexApi from '../../../Services/MangaDexApi';
+
 const modalRoot = document.getElementById('modal-root');
 
-const Singin = () => {
+const Signin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -117,4 +118,4 @@ const Singin = () => {
     );
 };
 
-export default Singin;
+export default Signin;

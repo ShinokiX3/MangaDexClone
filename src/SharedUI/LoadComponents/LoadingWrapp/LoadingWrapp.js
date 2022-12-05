@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import styles from './loading-wrapp.module.scss';
 
 const LoadingWrapp = ({ height, width }) => {
-    
     const customStyles = useMemo(() => (
         {
             height: height, 
@@ -13,10 +12,7 @@ const LoadingWrapp = ({ height, width }) => {
     ), [width, height]) 
 
     return (
-        <div 
-            className={styles.loading_wrapp} 
-            style={customStyles}
-        >
+        <div className={styles.loading_wrapp} style={customStyles}>
             <div className={styles.loading_animation_block}></div>
         </div>
     );

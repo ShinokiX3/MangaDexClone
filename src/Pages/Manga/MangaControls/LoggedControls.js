@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useMemo } from 'react';
 import ReactDOM from 'react-dom'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { BookIcon, ReportIcon, ShareIcon, FollowsIcon } from '../../../Assets/Svg/Manga';
 import { DotsIcon } from '../../../Assets/Svg/Pagination';
 import GradeDetails from '../../../Components/Details/GradeDetails/GradeDetails';

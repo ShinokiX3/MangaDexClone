@@ -42,16 +42,14 @@ const TypeSidebar = (props) => {
     const paintData = ({title, elems}) => {
         return (
             <>
-                <h3>{title}</h3>
-                {
-                    elems.map(({id, title}) => (
-                        <div className="select-block-elem" key={title}>
-                            <input type="checkbox" id={title} name={title} 
-                                onChange={(e) => setProperty(e, id)} />
-                            <label htmlFor={title}>{title}</label>
-                        </div>
-                    ))
-                }
+            <h3>{title}</h3>
+            {elems.map(({id, title}) => (
+                    <div className="select-block-elem" key={title}>
+                        <input type="checkbox" id={title} name={title} 
+                            onChange={(e) => setProperty(e, id)} />
+                        <label htmlFor={title}>{title}</label>
+                    </div>
+            ))}
             </>
         )
     }
@@ -59,26 +57,23 @@ const TypeSidebar = (props) => {
     return (
         <div className={`type-sidebar ${status}`}>
             <div className="back-block">
-                    <span onClick={() => closeTypebar()}>Back</span>
-                    <span onClick={() => handleReset()}>Reset</span>
+                <span onClick={() => closeTypebar()}>Back</span>
+                <span onClick={() => handleReset()}>Reset</span>
             </div>
             <input type="text" 
                 value={typebarFilter} 
                 placeholder={`Filter by ${'genres'}`}
                 onChange={(e) => handleTypebarFilter(e)} />
             <>
-                {
-                    data.map((el, index) => (
-                        <div className="select-block" key={index} >
-                            { 
-                                paintData(el) 
-                            }
-                        </div>
-                    ))
-                }
+            {data.map((el, index) => (
+                <div className="select-block" key={index} >
+                    { 
+                        paintData(el) 
+                    }
+                </div>)
+            )}
             </>
-            <div className="select-block">
-            </div>
+            <div className="select-block"></div>
             <input type="button" value={'Submit'} onClick={() => setCheckedFilters()} />
         </div>
     );

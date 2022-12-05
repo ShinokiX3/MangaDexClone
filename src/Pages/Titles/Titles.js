@@ -24,7 +24,6 @@ import setTitle from './Utils/setTitle';
 const Titles = memo(() => {
     const params = useParams();
     const [groupedTags, setGroupedTags] = useState([]);
-    const [fetching, setFetching] = useState(false);
     const [selected, setSelected] = useState({name: 'Best Match', val: 'relevance.desc'});
 
     const dispatch = useDispatch();
@@ -37,11 +36,7 @@ const Titles = memo(() => {
     const fetchByFilters = useFetchByFilters();
 
     const title = params['*'];
-    const pageTitle = useMemo(() => setTitle(title), [title])
-
-    // TODO: take data from global titles page state to children component
-    
-    // TODO: take to redux's global state
+    const pageTitle = useMemo(() => setTitle(title), [title]);
 
     const sortValues = useMemo(() => [
         {name: 'Best Match', val: 'relevance.desc'},
@@ -69,29 +64,6 @@ const Titles = memo(() => {
             dispatch(setToInitial());
         }
     }, []);
-
-    // useEffect(() => {
-    //     if (fetching) return false;
-        
-    //     (async() => {
-    //         setFetching(true);
-
-    //         const data = await fetchTitleVariable(params['*']);
-    //         if (data.data.length > 0) {
-    //             dispatch(setMangaIds(data.data.map(item => item.id) ?? []));
-    //             setFetching(false);
-    //         } else {
-    //             dispatch(setMangaIds([]));
-    //             setFetching(false);
-    //         }
-    //     })();
-
-    //     return () => {
-    //         if (!fetching) {
-    //             dispatch(setToInitial());
-    //         }
-    //     }
-    // }, [pageTitle]);
 
     useEffect(() => {
         if (titleIds.load.status === 'resolved') {
@@ -126,10 +98,10 @@ const Titles = memo(() => {
     return (
         <MainContainer mainClasses={styles.wrapp} containerClasses={styles.container} isHeaderBlack >
             <PageArrowLink title={pageTitle} link='' arrowReDirection />   
-            {pageTitle === 'Advanced Search' ?
-            <FilterTitles tags={groupedTags} selected={selected} />
-            :
-            null}     
+            {pageTitle === 'Advanced Search' 
+                ? <FilterTitles tags={groupedTags} selected={selected} />
+                : null
+            }     
             <ComponentByStatus filteredManga={filteredManga} sortValues={sortValues} selected={selected} setSelected={setSelected} />
         </MainContainer>
     );

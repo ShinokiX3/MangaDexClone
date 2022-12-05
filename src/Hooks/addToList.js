@@ -17,8 +17,6 @@ const useAddToList = (mangaId) => {
                 status: list.value
             })
         }).then(data => data.json());
-
-        console.log(resp);
     }
 
     const refreshSession = async (list) => {

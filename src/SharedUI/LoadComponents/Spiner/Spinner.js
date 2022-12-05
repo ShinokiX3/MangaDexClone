@@ -4,9 +4,7 @@ import styles from './spinner.module.scss';
 const Spinner = ({ customStyle = {}, wrappStyles = {} }) => {
     return (
         <div className={styles.wrapp} style={wrappStyles}>
-            <div className={styles.spinner} style={customStyle}>
-
-            </div>
+            <div className={styles.spinner} style={customStyle}></div>
         </div>
     );
 };

@@ -15,16 +15,14 @@ $manga-item-p-size: 1rem;
     align-items: center;
     margin: 10px;
     cursor: pointer;
+    
     img {
         width: $manga-item-width;
-        // width: 220px;
-        // max-height: 400px;
-        // height: 350px;
         border-radius: 2%; 
         z-index: 1;
     }
+    
     p {
-        // font-size: 15pt;
         font-size: $manga-item-p-size;
         position: absolute;
         bottom: 8%;
@@ -41,14 +39,13 @@ $manga-item-p-size: 1rem;
 .fast-description {
     position: absolute;
     width: $manga-details-width;
-    // width: 350px;
-    // height: 400px;
     z-index: 100;
     border-radius: 1%;
     background-color:rgba(8, 8, 8, 0.9);
     display: none;
     padding: 15px;
     color: white;
+    
     p {
         position: initial;
         display: block;
@@ -59,28 +56,35 @@ $manga-item-p-size: 1rem;
         text-align: start;
         width: 100%;
     }
+    
     h2 {
         color: white;
     }
+    
     h3 {
         color: grey;
     }
+    
     div {
         display: flex;
+        
         p {
             display:ruby-text;
             margin: 0;
             padding: 0;
             margin: 2px 0 2px 0;
         }
+        
         .question {
             max-width: 100px;
         }
+        
         .answer {
             color: lightgray;
             width: 100%;
         }
     }
+    
     .named-details {
         margin-top: 20px;
     }
@@ -109,19 +113,23 @@ $manga-item-p-size: 1rem;
     padding: 7px;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
+    
     p {
         color: white;
         font-weight: bold;
         font-size: 16pt
     }
+    
     i {
         padding-top: 6px;
         &:last-child {
             margin-right: 10px;
         }
     }
+    
     div {
         margin-right: 2px;
     }
+
     margin-bottom: 10px;
 }

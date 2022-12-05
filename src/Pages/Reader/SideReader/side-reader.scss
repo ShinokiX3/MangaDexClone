@@ -11,7 +11,7 @@
 }
 
 .side-chapter-active {
-    left: calc(100vw - 250px - 110px);
+    left: calc(100vw - 250px - 76px);
 }
 
 .side-chapter-disable {
@@ -19,6 +19,9 @@
 }
 
 .side-chapter-utils {
+    display: flex;
+    justify-content: space-between;
+
     div {
         display: flex;
         align-items: center;
@@ -41,8 +44,6 @@
             height: 1.5rem;
         }
     }
-    display: flex;
-    justify-content: space-between;
 }
 
 .side-chapter-controls {

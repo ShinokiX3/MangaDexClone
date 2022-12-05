@@ -42,7 +42,6 @@ const MangaItem = (props) => {
         const mangaNo = mangaVars?.data?.reduce((prev, curr, idx) => {
             return curr?.attributes?.title?.en === title ? idx : prev
         }, 0);
-        const mangaChapters = await MangaDexApi.getMangaChapters(mangaVars?.data[mangaNo]?.id);
         const mangaId = mangaVars?.data[mangaNo]?.id;
         navigate(`/manga/${mangaId}`);
     }

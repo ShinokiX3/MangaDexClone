@@ -9,5 +9,3 @@ export const findOutUniqGroups = (array, selector = 'group') => {
     }
     return newArray;
 }
-
-// [{type: '', tags: []}]

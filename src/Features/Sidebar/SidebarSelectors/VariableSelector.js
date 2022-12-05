@@ -6,9 +6,7 @@ import { setFilters } from '../../../OldStore/Actions/manga';
 
 const VariableSelector = (props) => {
     const dispatch = useDispatch();
-
     const { title, typeName } = props;
-    
     const [inputsData, setInputsData] = useState({from: '', to: ''});
 
     const changeInputsData = (e) => {
@@ -17,7 +15,6 @@ const VariableSelector = (props) => {
         } else {
             setInputsData({...inputsData, to: e.target.value})
         }
-        // Пока тестовое, без кнопки поиска добавление при каждом вводе нового символа
     }
 
     useEffect(() => {

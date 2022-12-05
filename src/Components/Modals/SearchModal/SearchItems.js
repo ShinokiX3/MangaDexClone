@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import MangaDexApi from '../../../Services/MangaDexApi';
+import React from 'react';
 import SearchItem from './SearchItem';
 import './searchPannel.scss';
 

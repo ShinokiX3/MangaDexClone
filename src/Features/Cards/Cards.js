@@ -2,8 +2,6 @@ import { memo, useEffect, useState } from 'react';
 import MangaDexApi from '../../Services/MangaDexApi';
 import styles from './card.module.scss';
 
-// import { BlocksIcon, EaseRowIcon, RowIcon } from '../../Assets/Svg/CardTypes';
-
 import { filterSomeAttribute } from '../../Utils/filterAttribute';
 import CardControls from './CardControls';
 import Cover from '../../SharedUI/StyledComponents/Cover/Cover';

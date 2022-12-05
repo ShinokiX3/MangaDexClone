@@ -61,7 +61,6 @@
     padding: 0.5rem;
     column-gap: 0.6rem;
     font-weight: 700;
-    // line-height: 1.75rem;
     font-size: 1.3rem;
     display: grid;
     grid-template-areas: 'img-srch title-srch'
@@ -140,8 +139,6 @@
     }
 }
 
-// width: calc(100vw - 65px)!important;
-
 .search-input {
     width: 100%;
 }
@@ -218,7 +215,7 @@
     }
 }
 
-@media (max-width: 470px) {
+@media (max-width: 540px) {
     .search-input {
         background-color: #f0f1f2;
         width: 80vw;
@@ -240,7 +237,7 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 440px) {
     .search-modal-statistics {
         margin-left: 0px;
 
@@ -254,6 +251,12 @@
     }
 }
 
+@media (max-width: 400px) {
+    .search-modal-statistics {
+        gap: .5rem;
+    }
+}
+
 @media (max-width: 360px) {
     .search-input {
         background-color: #f0f1f2;
@@ -264,7 +267,6 @@
     }
 
     .search-modal-statistics div p {
-        font-size: 10pt!important;
         font-weight: 550;
     }
 
@@ -279,6 +281,10 @@
     .title-srch div:first-child {
         line-height: 1;
     }
+
+    .search-modal-statistics {
+        gap: .2rem;
+    }
 }
 
 @media (max-width: 340px) {
@@ -288,6 +294,12 @@
         div p {
             font-size: 7pt!important;
         }
+    }
+}
+
+@media (max-width: 320px) {
+    .search-modal-statistics {
+        flex-wrap: wrap;
     }
 }
 

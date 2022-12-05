@@ -118,7 +118,7 @@ const initialState = {
     }
 }
 
-// TODO: take to the slice helper
+// TODO: take to the slice util
 
 const setLoading = (state, action, selector) => {
     state[selector].load.status = 'loading';

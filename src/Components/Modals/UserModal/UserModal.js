@@ -1,16 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styles from './usermodal.module.scss';
 
 import avatar from '../../../Assets/Images/avatar.png';
 
-import { faCode, faGear, faDroplet, faArrowRightToBracket, faBookmark, faUserGroup, faFlag, faListUl, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faDroplet, faArrowRightToBracket, faBookmark, faUserGroup, faFlag, faListUl, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { useSelector } from 'react-redux';
 import { strToUpper } from '../../../Utils/stringToUpperCase';
 import IcoButton from '../../../SharedUI/StyledComponents/IcoButton/IcoButton';
-import { useDispatch } from 'react-redux';
-import { setToInitial } from '../../../Store/Slices/userSlice';
-import { useNavigate } from 'react-router-dom';
 import useLogout from '../../../Hooks/logout';
 import MangaDexApi from '../../../Services/MangaDexApi';
 
@@ -25,7 +23,6 @@ const links = [
 const UserModal = () => {
     const navigate = useNavigate();
 
-    const dispatch = useDispatch();
     const user = useSelector(state => state.user.user);
     const logout = useLogout();
 

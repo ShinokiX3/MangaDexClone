@@ -6,16 +6,16 @@
 }
 
 form {
-    // min-width: 250px;
     width: 500px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content:flex-start;
+    
     div {
         margin-bottom: 28px;
     }
+    
     padding-bottom: 15px;
 }
 
@@ -92,10 +92,12 @@ form {
     flex-direction: column;
     align-items:initial;
     justify-content: center;
+
     .label-star {
         font-weight: bold;
         margin-left: 4px;
     }
+
     margin-bottom: 10px;
 }
 
@@ -164,10 +166,12 @@ form {
     margin-bottom: 7px;
     color: #6e6e6e;
     align-self: flex-start;
+
     div {
         display: flex;
         align-items: center;
         margin-bottom: 17px;
+
         svg {
             width: 24px;
             height: 24px;
@@ -176,6 +180,7 @@ form {
             cursor: pointer;
         }
     }
+
     p {
         font-size: 15pt;
         color: #494949;
@@ -192,7 +197,7 @@ form {
     margin-top: 0px;
 
     button {
-        // background-color: rgba($color: #ff6740, $alpha: 0.1);
+        cursor: pointer;
         background-color: #ff6740;
         border-color: transparent;
         border-radius: 0.4ch;
@@ -202,7 +207,6 @@ form {
         color: white;
         font-size: 12pt;
         font-weight: 550;
-        cursor: pointer;
     }
 
     button:last-child {
@@ -210,9 +214,11 @@ form {
         background-color: transparent;
         color: red;
     }
+
     button:last-child:hover {
         background-color: rgba($color: #ff6740, $alpha: 0.15);
     }
+    
     margin-bottom: 16px;
 }
 

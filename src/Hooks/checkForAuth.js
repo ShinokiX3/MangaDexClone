@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MangaDexApi from '../Services/MangaDexApi';
 import { setUser } from '../Store/Slices/userSlice';
@@ -35,7 +34,6 @@ const useCheckForAuth = () => {
             dispatch(setUser(refreshedUser));
             return resp.token.session;
         } else {
-            console.log(false);
             return false;
         }
     }

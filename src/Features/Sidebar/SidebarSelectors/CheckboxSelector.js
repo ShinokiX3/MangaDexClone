@@ -42,6 +42,4 @@ const CheckboxSelector = (props) => {
     );
 };
 
-// 'checkbox-el' - id of input
-
 export default CheckboxSelector;

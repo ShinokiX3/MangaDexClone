@@ -25,6 +25,4 @@ export const compareDates = (date) => {
 
     compareRecurcive(diff, 0);
     return result.difference;
-
-    // return diff.year === 0 ? (diff.month === 0 ? (diff.days <= 0 ? `${diff.hours} hours ago` : `${diff.days} days ago`) : `${diff.month} months ago` ) : `${diff.year} years ago`;
 }

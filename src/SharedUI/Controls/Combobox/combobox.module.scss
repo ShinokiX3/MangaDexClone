@@ -14,8 +14,10 @@
     transition: 0.2s all ease;
     overflow: hidden;
     width: 100%;
+
     div {
         width: 100%;
+        
         &:hover {
             background-color: #cfcfcf;
         }
