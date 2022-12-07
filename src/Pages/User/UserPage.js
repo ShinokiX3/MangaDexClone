@@ -30,7 +30,7 @@ const UserPage = () => {
                     setUserRoles(roles);
                 })
         })()       
-    }, []);
+    }, [userId]);
 
     const handleTabs = (e) => {
         if (e.target.nodeName === 'SPAN') {

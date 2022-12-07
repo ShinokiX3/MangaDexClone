@@ -63,7 +63,7 @@ const Titles = memo(() => {
         return () => {
             dispatch(setToInitial());
         }
-    }, []);
+    }, [title]);
 
     useEffect(() => {
         if (titleIds.load.status === 'resolved') {
