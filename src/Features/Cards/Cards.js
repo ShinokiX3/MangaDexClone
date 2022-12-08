@@ -76,7 +76,8 @@ const Cards = memo(({ mangasArr, children }) => {
     }
 
     const fetchStatistics = async (mangaArrayInfo) => {
-        const mangaStatistics = await MangaDexApi.getMangaStatisticsByArray(mangaArrayInfo).then(data => data.json());
+        const mangaStatistics = await MangaDexApi.getMangaStatisticsByArray(mangaArrayInfo)
+            .then(data => data.json());
         if (mangaStatistics.result === 'ok') {
             return await mangaStatistics.statistics
         } else {

@@ -27,7 +27,7 @@ const MdListModal = ({ active, setActive }) => {
         <p className={styles.title}>Add to List</p>
             <div className={styles.content}>
                 <div className={styles.list}>
-                    {list.map(item => <ListItem key={item.attributes.name} item={item} />)}
+                    {list.map((item, idx) => <ListItem key={item.attributes.name + idx} item={item} />)}
                 </div>
                 <button className={styles.newlistbutton}><p className={styles.addlist}>+</p> Create new list</button>
                 <div className={styles.controls}>

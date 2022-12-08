@@ -47,7 +47,7 @@ const Suggestion = memo(() => {
                 }
             </SuggestItem>
 
-            <SuggestItem title='Latest Updates' link='titles/latest' >
+            <SuggestItem title='Latest Updates' link='' >
                 <LatestUpdates chapters={latestUpdates?.data} />
             </SuggestItem>
 

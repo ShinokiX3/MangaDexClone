@@ -12,6 +12,7 @@ import useCheckForAuth from '../../../Hooks/checkForAuth';
 import MangaDexApi from '../../../Services/MangaDexApi';
 import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 import { strToUpper } from '../../../Utils/stringToUpperCase';
+import styles from '../../../Components/Details/GradeDetails/gradedetails.module.scss';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -32,6 +33,7 @@ const LoggedControls = ({ redirectToReader }) => {
     const [shouldOpen, setShouldOpen] = useState(false);
     const [shouldRankOpen, setShouldRankOpen] = useState(false);
     const [shouldMdlistOpen, setShouldMdlistOpen] = useState(false);
+    const [shouldHideControlsShow, setShouldHideControlsShow] = useState(false);
     
     const [readingStatus, setReadingStatus] = useState('Add To Library');
     
@@ -44,6 +46,7 @@ const LoggedControls = ({ redirectToReader }) => {
     const user = useSelector(state => state.user.user);
 
     const ref = useRef();
+    const hideControlsRef = useRef();
 
     const authCheck = useCheckForAuth();
 
@@ -53,6 +56,8 @@ const LoggedControls = ({ redirectToReader }) => {
             fetchCurrentGrade();
         }
     }, [user, mangaInfo]);
+
+    // TODO: Take these fetches to upper component
 
     const fetchMangaStatus = async (count) => {
         const authStatus = await authCheck(); 
@@ -130,6 +135,22 @@ const LoggedControls = ({ redirectToReader }) => {
         }
     }
 
+    const handleShare = () => {
+        if (navigator.share) {
+            navigator.share({
+                title: 'MangaDex',
+                url: document.location.href
+            }).then(() => {
+                alert('Thanks for sharing!');
+            })
+            .catch(console.error);
+        } else {
+            console.log('Does not have web share api');
+        }
+    }
+
+    // TODO: Create Button component with childrens as SVG and Text
+
     return (
         <>
         <button onClick={handleToLibrary} className={"add-button"}>
@@ -168,10 +189,12 @@ const LoggedControls = ({ redirectToReader }) => {
         <button className="report-button">
             <ReportIcon />
         </button>
+
         <button className="share-button">
             <ShareIcon />
         </button>
-        <button className="hide-button">
+
+        <button ref={hideControlsRef} onClick={() => setShouldHideControlsShow(!shouldHideControlsShow)} className="hide-button">
             <DotsIcon />
         </button>
         
@@ -199,6 +222,31 @@ const LoggedControls = ({ redirectToReader }) => {
                     <MdListModal setActive={setShouldMdlistOpen} />
                 </Modal>,
                 modalRoot)
+            : null
+        }
+
+        {/* TODO: Create Details common stylesheet */}
+
+        {shouldHideControlsShow
+            ? ReactDOM.createPortal(
+                <Details shouldShow={shouldHideControlsShow}  setShouldShow={setShouldHideControlsShow} rootElement={hideControlsRef}>
+                    <div onClick={handleShare} className={styles.flyoutlist} style={{padding: 15}}>
+                        <p>Share</p>
+                    </div>
+                    <div onClick={() => setShouldMdlistOpen(!shouldMdlistOpen)} className={styles.flyoutlist} style={{padding: 15}}>
+                        <p>Add To MDList</p>
+                    </div>
+                    <div className={styles.flyoutlist} style={{padding: 15}}>
+                        <p>Report</p>
+                    </div>
+                    <div className={styles.flyoutlist} style={{padding: 15}}>
+                        <p>Upload Chapter</p>
+                    </div>
+                    <div onClick={redirectToReader} className={styles.flyoutlist} style={{padding: 15}}>
+                        <p>Start Reading</p>
+                    </div>
+                </Details>,
+                hideControlsRef.current)
             : null
         }
         </>

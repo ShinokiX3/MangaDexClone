@@ -5,12 +5,16 @@ const Img = ({ src = '', alt = '', classes = '', height, width, draggable = true
     const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
+        setIsLoading(true);
         const img = new Image();
         img.referrerPolicy = "no-referrer";
         img.src = src;
         img.onload = () => {
             setIsLoading(false);
         }
+        // img.onerror = () => {
+        //     setIsLoading(false);
+        // }
     }, [src]);
 
     const shadowSetting = useMemo(() => ({boxShadow: '0px 0px 30px 2px rgba(34, 60, 80, 0.12)'}), [])

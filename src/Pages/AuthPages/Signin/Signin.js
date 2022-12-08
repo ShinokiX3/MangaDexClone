@@ -30,6 +30,7 @@ const Signin = () => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [message, setMessage] = useState(true);
 
     const handleSingup = () => {
         navigate(`/singup`);
@@ -110,6 +111,18 @@ const Signin = () => {
             ? ReactDOM.createPortal(
             <Modal active={shouldOpen} setActive={setShouldOpen}>
                 <ErrorModal error={error} setActive={setShouldOpen} />
+            </Modal>,
+            modalRoot)
+            : null
+        }
+
+        {message ? ReactDOM.createPortal(
+            <Modal active={message} setActive={setMessage}>
+                <div style={{padding: 15, fontSize: '14pt'}}>
+                    <h1 style={{marginBottom: 10}}>Test loggin data:</h1>
+                    <p>Login: usertest123</p>
+                    <p>Password: usertest123</p>
+                </div>
             </Modal>,
             modalRoot)
             : null

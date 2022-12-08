@@ -44,15 +44,15 @@ const SideMain = () => {
             </div>
             <LinkList ico={faHouseUser} title={"Home"}></LinkList>
             <LinkList ico={faBookmark} title={"Follows"}>
-                <Link className="link" to="/singin">Updates</Link>
+                {/* <Link className="link" to="/singin">Updates</Link> */}
                 <Link className="link" to={user.sessionToken ? '/follows' : '/singin'}>Library</Link>
                 <Link className="link" to="/singin">Followed Groups</Link>
-                <Link className="link" to="/singin">Reading History</Link>
+                {/* <Link className="link" to="/singin">Reading History</Link> */}
             </LinkList>
             <LinkList ico={faBookOpen} title={"Titles"}>
                 <Link className="link" to="/titles">Advanced Search</Link>
                 <Link className="link" to="/titles/recently">Recently Added</Link>
-                <Link className="link" to="/titles/latest">Latest Updates</Link>
+                {/* <Link className="link" to="/titles/latest">Latest Updates</Link> */}
                 <a className="link" href='/' onClick={handleRandom}>Random</a>
             </LinkList>
             <LinkList ico={faUserGroup} title={"Community"}>

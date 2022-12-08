@@ -57,7 +57,7 @@ const Titles = memo(() => {
     useEffect(() => {
         (async() => {
             const data = await fetchTitleVariable(params['*']);
-            dispatch(setMangaIds(data.data.map(item => item.id) ?? []));
+            dispatch(setMangaIds(data.data.map(item => item?.id) ?? []));
         })();
 
         return () => {

@@ -7,8 +7,7 @@ const RelatedTab = memo(() => {
     const mangaInfo = useSelector(state => state.manga.mangaInfo);
 
     const selectors = useMemo(() => ['colored', 'preserialization', 'doujinshi'], []);
-    const mangasArr = useMemo(() => filterSomeAttributes(mangaInfo.data.relationships, selectors), [selectors]);
-
+    const mangasArr = useMemo(() => filterSomeAttributes(mangaInfo.data.relationships, selectors).filter(el => !!el), [selectors]);
     return ( 
         mangaInfo.load.status === 'resolved' ?
         <Cards mangasArr={mangasArr} >
