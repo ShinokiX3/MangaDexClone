@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import MangaDexApi from '../../../Services/MangaDexApi';
 import Input from '../../../SharedUI/Form/Input';
 import styles from '../MdList/mdlist.module.scss';
 
@@ -13,7 +14,7 @@ const NewListModal = ({ active, setActive }) => {
     const handleSubmit = async() => {
         setLoading(true);
 
-        const resp = await fetch('https://api.mangadex.org/list', {
+        const resp = await fetch(`${MangaDexApi.CorsProxy}https://api.mangadex.org/list`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
