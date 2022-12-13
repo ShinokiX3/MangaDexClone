@@ -20,7 +20,7 @@ const Logged = () => {
         <Modal active={shouldOpen} setActive={setShouldOpen} 
             styleModal={{ backdropFilter: 'initial' }} 
             styleModalContent={{ position: 'fixed', top: '7.5%', right: '2.5%', minWidth: '244px', paddingLeft: '24px', paddingRight: '24px' }}>
-            <UserModal setActive={setShouldOpen} />
+            <UserModal active={shouldOpen} setActive={setShouldOpen} />
         </Modal>
         </>
     );

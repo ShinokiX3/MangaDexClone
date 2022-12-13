@@ -15,12 +15,12 @@ import MangaDexApi from '../../../Services/MangaDexApi';
 const links = [
     {title: 'My Profile', icon: faUser, url: `/user/me`},
     {title: 'My Follows', icon: faBookmark, url: '/follows'},
-    {title: 'My Lists', icon: faListUl, url: ''},
+    {title: 'My Lists', icon: faListUl, url: '/lists'},
     {title: 'My Groups', icon: faUserGroup, url: ''},
     {title: 'My Reports', icon: faFlag, url: ''}
 ]
 
-const UserModal = () => {
+const UserModal = ({ active, setActive }) => {
     const navigate = useNavigate();
 
     const user = useSelector(state => state.user.user);
@@ -56,7 +56,8 @@ const UserModal = () => {
                     <IcoButton title={'Settings'} icon={faGear} />
                     <IcoButton title={'Theme'} icon={faDroplet} />
                 </div>
-                <IcoButton handler={() => logout(navigate('/singin'))} title={'Sign Out'} icon={faArrowRightToBracket} customStyles={{padding: '10px 13px'}} />
+                <IcoButton handler={() => { logout(navigate('/singin')); setActive(false); }} title={'Sign Out'} 
+                    icon={faArrowRightToBracket} customStyles={{padding: '10px 13px'}} />
             </div>
         </div>
     );

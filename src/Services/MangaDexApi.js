@@ -1,7 +1,7 @@
 import { filterSomeAttribute } from "../Utils/filterAttribute";
 
 class MangaDexApi {
-    CorsProxy = 'https://justcors.com/tl_55dea4b/';
+    CorsProxy = 'https://justcors.com/tl_0df7880/';
     Setting = '?forcePort443=false';
 
     BaseUrl = `${this.CorsProxy}https://api.mangadex.org`;
@@ -50,9 +50,9 @@ class MangaDexApi {
         return await fetch(`${this.BaseManga}/${mangaId}?includes[]=artist&includes[]=author&includes[]=cover_art`, { headers: {...this.Headers} })
     }
 
-    getMangaInfoByArray = async (mangaArray) => {
+    getMangaInfoByArray = async (mangaArray, limit = 32) => {
         const ids = mangaArray.length > 0 ? mangaArray.reduce((accu, curr) => `&ids[]=${curr.id}` + accu, '') : '';
-        return await fetch(`${this.BaseManga}?limit=32&includes[]=artist&includes[]=author&includes[]=cover_art${ids}`, { headers: {...this.Headers} })    
+        return await fetch(`${this.BaseManga}?limit=${limit}&includes[]=artist&includes[]=author&includes[]=cover_art${ids}`, { headers: {...this.Headers} })    
     }
     
     getMangaChapters = async (mangaId) => {
@@ -133,7 +133,7 @@ class MangaDexApi {
     }
 
     getSeasonal = async() => {
-        return await fetch(`${this.CorsProxy}https://api.mangadex.org/list/7df1dabc-b1c5-4e8e-a757-de5a2a3d37e9?includes[]=user&limit=${20}`)
+        return await fetch(`${this.CorsProxy}https://api.mangadex.org/list/4be9338a-3402-4f98-b467-43fb56663927?includes[]=user&limit=${20}`)
     }
 
     getRecentlyAdded = async() => {

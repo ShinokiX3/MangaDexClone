@@ -46,7 +46,8 @@ const SideMain = () => {
             <LinkList ico={faBookmark} title={"Follows"}>
                 {/* <Link className="link" to="/singin">Updates</Link> */}
                 <Link className="link" to={user.sessionToken ? '/follows' : '/singin'}>Library</Link>
-                <Link className="link" to="/singin">Followed Groups</Link>
+                <Link className="link" to={user.sessionToken ? '/lists' : '/singin'}>MDLists</Link>
+                {/* <Link className="link" to="/singin">Followed Groups</Link> */}
                 {/* <Link className="link" to="/singin">Reading History</Link> */}
             </LinkList>
             <LinkList ico={faBookOpen} title={"Titles"}>

@@ -92,3 +92,15 @@
         margin-left: 10px;
     }
 }
+
+#mdinput {
+    height: 16px;
+    & ~ label{
+        font-size: 12pt;
+    }
+}
+
+.labeltitle {
+    margin-left: 10px; 
+    font-size: 12pt;
+}

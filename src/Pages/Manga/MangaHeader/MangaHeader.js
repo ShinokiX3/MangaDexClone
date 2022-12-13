@@ -39,7 +39,12 @@ const MangaHeader = memo(({ mangaInfo = {} }) => {
 });
 
 const MangaTitle = memo(({ mangaInfo }) => {
-    const enTitle = useMemo(() => mangaInfo?.data?.attributes?.title?.en, [mangaInfo]);
+    const enTitle = useMemo(() => {
+        const en = mangaInfo?.data?.attributes?.title?.en;
+        const ja = mangaInfo?.data?.attributes?.title?.['ja-ro'];
+        return en ? en : ja
+    }, [mangaInfo]);
+
     const alternative = useMemo(() => {
         const en = mangaInfo?.data?.attributes?.altTitles?.filter(el => el.en)[0]?.en;
         const ja = mangaInfo?.data?.attributes?.altTitles?.filter(el => el.ja)[0]?.ja;

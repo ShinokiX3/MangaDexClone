@@ -11,3 +11,21 @@
         color: initial;
     }
 }
+
+// Write to new stylesheet file
+
+.private { 
+    &::after {
+        content: 'Private';
+        font-size: 9pt;
+        font-weight: bold;
+
+        color: red;
+
+        border: 1px solid red;
+        border-radius: .2rem;
+
+        padding: 3px 5px;
+        margin-left: 10px;
+    }
+}

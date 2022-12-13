@@ -10,6 +10,7 @@ import SideMain from './Components/SideMain/SideMain';
 import Titles from './Pages/Titles/Titles';
 import UserPage from './Pages/User/UserPage';
 import Library from './Pages/Library/Library';
+import MDLists from './Pages/MDLists/MDLists';
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='/chapter/*' element={<Chapter />} />
 
           <Route path='/follows' element={<Library />} />
+          <Route path='/lists' element={<MDLists />} />
           
           <Route path='*' element={<Main />} />
         </Routes>

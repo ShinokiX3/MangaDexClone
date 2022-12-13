@@ -40,31 +40,31 @@ const Header = memo(() => {
 
     return (
         <>
-            <div className="header-block header-white">
-                <Logo handleMenu={handleMenu} ico={{side: 'left', type: 'open'}} />
-                <div className="right-links_wrapp">
-                    <div className="search-block" onClick={handleModal}>
-                        <span className="serach-block-ico">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </span>
-                        <p>Search</p>
-                    </div>
-                    {!user.username 
-                        ? <div className="login-block" onClick={handleAnouthorizeModal}>
-                            <FontAwesomeIcon icon={faArrowRightToBracket} />
-                          </div>
-                        : <Logged />
-                    }
+        <div className="header-block header-white">
+            <Logo handleMenu={handleMenu} ico={{side: 'left', type: 'open'}} />
+            <div className="right-links_wrapp">
+                <div className="search-block" onClick={handleModal}>
+                    <span className="serach-block-ico">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </span>
+                    <p>Search</p>
                 </div>
-                <Modal active={active} setActive={setActive}>
-                    <SearchModal setActive={setActive}/>
-                </Modal>
-                
-                <Modal active={logModal} setActive={setLogModal} styleModalContent={{position: 'fixed', top: '10%', right: '5%'}}>
-                    <LoginModal setActive={setLogModal} />
-                </Modal>
+                {!user.username 
+                    ? <div className="login-block" onClick={handleAnouthorizeModal}>
+                        <FontAwesomeIcon icon={faArrowRightToBracket} />
+                        </div>
+                    : <Logged />
+                }
             </div>
-            <div className='header-plug' style={{postion: 'fixed', top: '0px', height: '1px'}} />
+            <Modal active={active} setActive={setActive}>
+                <SearchModal setActive={setActive}/>
+            </Modal>
+            
+            <Modal active={logModal} setActive={setLogModal} styleModalContent={{position: 'fixed', top: '10%', right: '5%'}}>
+                <LoginModal setActive={setLogModal} />
+            </Modal>
+        </div>
+        <div className='header-plug' style={{postion: 'fixed', top: '0px', height: '1px'}} />
         </>
     );
 });

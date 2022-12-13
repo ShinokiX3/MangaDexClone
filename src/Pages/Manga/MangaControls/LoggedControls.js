@@ -12,7 +12,7 @@ import useCheckForAuth from '../../../Hooks/checkForAuth';
 import MangaDexApi from '../../../Services/MangaDexApi';
 import Spinner from '../../../SharedUI/LoadComponents/Spiner/Spinner';
 import { strToUpper } from '../../../Utils/stringToUpperCase';
-import styles from '../../../Components/Details/GradeDetails/gradedetails.module.scss';
+import styles from '../../../Components/Details/details.module.scss';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -230,19 +230,19 @@ const LoggedControls = ({ redirectToReader }) => {
         {shouldHideControlsShow
             ? ReactDOM.createPortal(
                 <Details shouldShow={shouldHideControlsShow}  setShouldShow={setShouldHideControlsShow} rootElement={hideControlsRef}>
-                    <div onClick={handleShare} className={styles.flyoutlist} style={{padding: 15}}>
+                    <div onClick={handleShare} className={styles.list} style={{padding: 15}}>
                         <p>Share</p>
                     </div>
-                    <div onClick={() => setShouldMdlistOpen(!shouldMdlistOpen)} className={styles.flyoutlist} style={{padding: 15}}>
+                    <div onClick={() => setShouldMdlistOpen(!shouldMdlistOpen)} className={styles.list} style={{padding: 15}}>
                         <p>Add To MDList</p>
                     </div>
-                    <div className={styles.flyoutlist} style={{padding: 15}}>
+                    <div className={styles.list} style={{padding: 15}}>
                         <p>Report</p>
                     </div>
-                    <div className={styles.flyoutlist} style={{padding: 15}}>
+                    <div className={styles.list} style={{padding: 15}}>
                         <p>Upload Chapter</p>
                     </div>
-                    <div onClick={redirectToReader} className={styles.flyoutlist} style={{padding: 15}}>
+                    <div onClick={redirectToReader} className={styles.list} style={{padding: 15}}>
                         <p>Start Reading</p>
                     </div>
                 </Details>,
