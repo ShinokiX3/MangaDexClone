@@ -21,7 +21,7 @@ import useFetchByFilters from './Hooks/useFetchByFilters';
 import fetchTitleVariable from './Utils/fetchTitleVariable';
 import setTitle from './Utils/setTitle';
 
-const Titles = memo(() => {
+const Titles = memo(({ hasFilter = true, customTitle = '', handleManga }) => {
     const params = useParams();
     const [groupedTags, setGroupedTags] = useState([]);
     const [selected, setSelected] = useState({name: 'Best Match', val: 'relevance.desc'});
@@ -97,23 +97,29 @@ const Titles = memo(() => {
 
     return (
         <MainContainer mainClasses={styles.wrapp} containerClasses={styles.container} isHeaderBlack >
-            <PageArrowLink title={pageTitle} link='' arrowReDirection />   
-            {pageTitle === 'Advanced Search' 
-                ? <FilterTitles tags={groupedTags} selected={selected} />
+            <PageArrowLink title={customTitle ? customTitle : pageTitle} link='' arrowReDirection />   
+            {pageTitle === 'Advanced Search'
+                ? <FilterTitles tags={groupedTags} selected={selected} hasFilter={hasFilter} />
                 : null
             }     
-            <ComponentByStatus filteredManga={filteredManga} sortValues={sortValues} selected={selected} setSelected={setSelected} />
+            <ComponentByStatus 
+                filteredManga={filteredManga} 
+                sortValues={sortValues} 
+                selected={selected} 
+                setSelected={setSelected} 
+                handleManga={handleManga} 
+            />
         </MainContainer>
     );
 });
 
-const ComponentByStatus = memo(({ filteredManga, sortValues, selected, setSelected }) => {
+const ComponentByStatus = memo(({ filteredManga, sortValues, selected, setSelected, handleManga }) => {
     switch(filteredManga.load.status) {
         case 'loading': return (
             <Spinner customStyle={{width: '35px', height: '35px', marginTop: '15px'}} />
         )
         case 'resolved': return (
-            <Cards mangasArr={filteredManga.data}>
+            <Cards mangasArr={filteredManga.data} handleManga={handleManga} >
                 <Select values={sortValues} selected={selected} setSelected={setSelected} selectTitle='Sort By' />
             </Cards>
         )

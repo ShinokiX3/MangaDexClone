@@ -8,7 +8,7 @@ import Cover from '../../SharedUI/StyledComponents/Cover/Cover';
 import Card from './Card';
 import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
 
-const Cards = memo(({ mangasArr, children }) => {
+const Cards = memo(({ mangasArr, handleManga, children }) => {
     const [refControls, setRefControls] = useState(null);
     const [refContent, setRefContent] = useState(null);
     const [currentControl, setCurrentControl] = useState('row');
@@ -96,7 +96,7 @@ const Cards = memo(({ mangasArr, children }) => {
                     ? <Spinner customStyle={{width: 40, height: 40, borderColor: 'red'}} /> 
                     : mangaArrayInfo.length > 0 && mangasArr.length > 0
                         ? mangaArrayInfo.map((manga, index) => manga !== undefined ? 
-                            <CardItem key={index} mangaInfo={manga} mangaStatistics={mangaStatisticsInfo[manga?.id]} currentControl={currentControl} /> : null
+                            <CardItem handleManga={handleManga} key={index} mangaInfo={manga} mangaStatistics={mangaStatisticsInfo[manga?.id]} currentControl={currentControl} /> : null
                           ) 
                         : <div className={styles.couldnt_find} style={{width: '100%', height: '50px', backgroundColor: '#f0f1f2', borderRadius: '0.5rem', fontSize: '14pt', textAlign: 'center'}}>No Data Found</div>
                 }
@@ -105,18 +105,19 @@ const Cards = memo(({ mangasArr, children }) => {
     );
 });
 
-const CardItem = memo(({ mangaInfo, mangaStatistics, currentControl }) => {
+const CardItem = memo(({ mangaInfo, mangaStatistics, currentControl, handleManga }) => {
     const [refCover, setRefCover] = useState(null);
 
     return (
-        <ChooseCardViewType type={currentControl} manga={mangaInfo} mangaInfo={mangaInfo} mangaStatistics={mangaStatistics} setRefCover={setRefCover} />
+        <ChooseCardViewType handleManga={handleManga} type={currentControl} manga={mangaInfo} mangaInfo={mangaInfo} mangaStatistics={mangaStatistics} setRefCover={setRefCover} />
     )
 });
 
-const ChooseCardViewType = ({ type, manga, mangaInfo, mangaStatistics, setRefCover, setRefTitle, setRefDescription }) => {
+const ChooseCardViewType = ({ handleManga, type, manga, mangaInfo, mangaStatistics, setRefCover, setRefTitle, setRefDescription }) => {
     switch(type) {
         case 'row': return (
             <Card 
+                handleMangas={handleManga}
                 manga={manga} 
                 mangaInfo={mangaInfo}
                 statistics={mangaStatistics} 
@@ -126,6 +127,7 @@ const ChooseCardViewType = ({ type, manga, mangaInfo, mangaStatistics, setRefCov
         )
         case 'e-row': return (
             <Card 
+                handleMangas={handleManga}
                 manga={manga} 
                 mangaInfo={mangaInfo} 
                 statistics={mangaStatistics}

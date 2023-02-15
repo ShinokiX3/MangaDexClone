@@ -1,0 +1,79 @@
+.wrapp {
+    height: 100%;
+    width: 100%;
+    display: grid;
+}
+
+.container {
+    display: grid;
+    width: 95%;
+    justify-self: center;
+    gap: 20px;
+    // margin-right: 25px;
+    margin-bottom: 25px;
+}
+
+.addmanga {
+    cursor: pointer;
+    color: red;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .25rem;
+    padding: 11px 15px;
+    font-size: 14pt;
+    font-weight: bolder;
+    border: 1px solid transparent;
+    background-color: transparent;
+
+    transition: background-color .4s ease;
+
+    &:hover {
+        background-color: #ffadad;
+    }
+}
+
+.choose {
+    display: flex;
+    padding: 18px;
+    background-color: #f0f1f2;
+    border-radius: .2rem;
+    gap: 10px;
+}
+
+.controlwrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        padding: 15px 75px;
+    }
+}
+
+.img_wrapp {
+    height: 104px;
+    min-width: 72px;
+    max-width: 104px;
+    border-radius: 0.25rem;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.mangawrapper {
+    position: relative;
+}
+
+.removemanga {
+    cursor: pointer;
+    position: absolute;
+    top: 3.5px;
+    right: 3.5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

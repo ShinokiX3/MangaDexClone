@@ -1,0 +1,23 @@
+.default {
+    border: 0;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    margin-right: 8px;
+    font-size: 12pt;
+    color: white;
+    font-weight: bold;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #242424!important;
+
+    .butt-with-ico {
+        margin-left: 16px;
+    }
+}

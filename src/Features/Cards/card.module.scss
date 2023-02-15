@@ -4,6 +4,10 @@
     display: grid;
 }
 
+.item {
+    position: relative;
+}
+
 .controls_wrapp {
     display: flex;
     align-items: center;
@@ -218,6 +222,32 @@
     font-size: 14pt; 
     background-color: #f0f1f2; 
     border-radius: 0.5rem; 
+}
+
+.plus {
+    background-color: rgb(255, 76, 76);
+    color: white;
+    content: '+';
+}
+
+.minus {
+    background-color: lightgrey;
+    color: #242424;
+}
+
+.plus, .minus {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: .2rem;
+    font-size: 16pt;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .7;
 }
 
 @media (max-width: 1150px) {

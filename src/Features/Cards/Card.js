@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MangaStatus from '../../Components/Manga/MangaStatus';
 import { Comments, Follows, Rating, Seen } from '../../SharedUI/Statistics';
@@ -9,11 +9,18 @@ import { filterSomeAttribute } from '../../Utils/filterAttribute';
 import { strToUpper } from '../../Utils/stringToUpperCase';
 import styles from './card.module.scss';
 
-const Card = memo(({ manga, mangaInfo, statistics, setRefCover, refCoverStyle, refTitleStyle }) => {
+const Card = memo(({ handleMangas, manga, mangaInfo, statistics, setRefCover, refCoverStyle, refTitleStyle }) => {
+    const [status, setStatus] = useState(false);
+
     const navigate = useNavigate();
     
     const handleManga = () => {
         navigate(`/manga/${manga.id}`)
+    }
+    
+    const handleChoice = () => {
+        setStatus(!status);
+        handleMangas(manga);
     }
 
     return (
@@ -59,6 +66,12 @@ const Card = memo(({ manga, mangaInfo, statistics, setRefCover, refCoverStyle, r
                     </div>
                 </div>
             </div>
+            {handleMangas
+                ? <div onClick={handleChoice} className={status ? styles.minus : styles.plus}>
+                      {status ? '-' : '+' }
+                  </div>
+                : null
+            }
         </div>
     );
 });

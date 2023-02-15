@@ -13,7 +13,7 @@ import FilterModal from './FilterModal';
 // TODO: perhaps create united component for Titles & Suggestion page controls 
 // Modal, that will be create for filter search, take to wrapp React Lazy, and when the modal closed don't load it's on the page   
 
-const FilterTitles = memo(({ tags = [] }) => {
+const FilterTitles = memo(({ tags = [], hasFilter = true }) => {
     const [active, setActive] = useState(false);
 
     const dispatch = useDispatch();
@@ -48,8 +48,8 @@ const FilterTitles = memo(({ tags = [] }) => {
 
     return (
         <>
-        <div className={styles.wrapp}>
-            <div style={{width: '100%', marginRight: '15px'}}>
+        <div className={styles.wrapp} style={{gap: '10px'}}>
+            <div style={{width: '100%'}}>
                 <input type="text" 
                     className="search-block search-input" 
                     placeholder='Search' 
@@ -57,10 +57,13 @@ const FilterTitles = memo(({ tags = [] }) => {
                     {...filterInput} 
                 />
             </div>
-            <div onClick={handleModal} style={{cursor: 'pointer'}} >
-                <svg data-v-20f285ec="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-icon-black dark:text-icon-white text-false icon" data-v-6b3fd699=""><path data-v-20f285ec="" d="M22 3H2l8 9.46V19l4 2v-8.54L22 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
-                <p>Filter</p>
-            </div>
+            {hasFilter 
+                ? <div onClick={handleModal} style={{cursor: 'pointer'}} >
+                      <svg data-v-20f285ec="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-icon-black dark:text-icon-white text-false icon" data-v-6b3fd699=""><path data-v-20f285ec="" d="M22 3H2l8 9.46V19l4 2v-8.54L22 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+                      <p>Filter</p>
+                  </div>
+                : null
+            }
         </div>
         
         <Modal active={active} setActive={setActive} styleModalContent={{width: '87vw', borderRadius: '0px'}} >

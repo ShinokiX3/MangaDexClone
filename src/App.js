@@ -11,6 +11,7 @@ import Titles from './Pages/Titles/Titles';
 import UserPage from './Pages/User/UserPage';
 import Library from './Pages/Library/Library';
 import MDLists from './Pages/MDLists/MDLists';
+import CreateList from './Pages/CreateList/CreateList';
 
 const App = () => {
   return (
@@ -35,6 +36,8 @@ const App = () => {
 
           <Route path='/follows' element={<Library />} />
           <Route path='/lists' element={<MDLists />} />
+
+          <Route path='/create/list' element={<CreateList />} />
           
           <Route path='*' element={<Main />} />
         </Routes>

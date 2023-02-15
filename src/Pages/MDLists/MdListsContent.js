@@ -20,6 +20,8 @@ const MdListsContent = () => {
     const [lists, setLists] = useState([]);
     const [activeTab, setActiveTab] = useState('MyLists');
 
+    const navigate = useNavigate();
+
     const user = useSelector(state => state.user.user);
 
     useEffect(() => {
@@ -56,7 +58,7 @@ const MdListsContent = () => {
     return (
         <>
         <Tabs handleTabs={handleTabs} tabs={['My Lists', 'Followed lists']} />
-        <div className={styles.newlist}>+ New List</div>
+        <div onClick={() => navigate('/create/list')} className={styles.newlist}>+ New List</div>
         {lists.map((list, index) => <List key={list.attributes.name + index} list={list} />)}
         </>
     );

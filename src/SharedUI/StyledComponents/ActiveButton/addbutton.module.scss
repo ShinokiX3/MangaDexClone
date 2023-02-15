@@ -1,0 +1,31 @@
+.default {
+    min-width:  85px;
+    min-height: 40px;
+    background-color: #ff6740;
+
+    border: 0;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    margin-right: 8px;
+    font-size: 12pt;
+    color: white;
+    font-weight: bold;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 0.2rem 1rem #ff67404d;
+
+    svg {
+        display: none;
+    }
+    
+    .butt-with-ico {
+        margin-left: 16px;
+    }
+}

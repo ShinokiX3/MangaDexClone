@@ -8,7 +8,7 @@ import MdListsContent from './MdListsContent';
 const MDLists = () => {
     return (
         <MainContainer mainClasses={styles.wrapp} containerClasses={styles.container} isHeaderBlack >
-            <PageArrowLink title={'MDLists'} link='/' arrowReDirection />
+            <PageArrowLink title={'MDLists'} link='' arrowReDirection />
             <MdListsContent />
         </MainContainer>
     );
