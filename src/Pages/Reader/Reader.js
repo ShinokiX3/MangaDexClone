@@ -36,7 +36,7 @@ const Read = () => {
     useEffect(() => {
         (async () => {
             const mangaName = await MangaDexApi.getMangaInfo(mangaId).then(data => data.json());
-            setMangaTitle(mangaName?.data?.attributes?.title?.en);
+            setMangaTitle(mangaName?.data?.attributes?.title?.en || mangaName?.data?.attributes?.title?.['ja-ro']);
         })()
     }, [])
 
@@ -261,7 +261,7 @@ const Read = () => {
                 }
             </div>
             <SideMenu options={{menuType: 'reader'}}>
-                <SideReader data={mangaVolumes} handleChapter={handleChapter} currImg={currentChapter.currImg} maxImg={currentChapter.maxImg} handleImage={handleImage} />
+                <SideReader data={mangaVolumes} handleChapter={handleChapter} currentChapter={currentChapter} mangaTitle={mangaTitle} currImg={currentChapter.currImg} maxImg={currentChapter.maxImg} handleImage={handleImage} />
             </SideMenu>
         </main>
     );

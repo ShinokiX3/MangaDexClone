@@ -6,7 +6,7 @@ import './side-reader.scss';
 import LinkList from '../../../SharedUI/Form/LinkList';
 import Select from '../../../SharedUI/StyledComponents/Select/Select';
 
-const SideReader = ({ data, handleChapter, currImg, maxImg, handleImage }) => {
+const SideReader = ({ data, handleChapter, currentChapter, mangaTitle, currImg, maxImg, handleImage }) => {
     const [selected, setSelected] = useState('');
     const [pageSelected, setPageSelected] = useState();
 
@@ -71,11 +71,11 @@ const SideReader = ({ data, handleChapter, currImg, maxImg, handleImage }) => {
             <div className="sd-ch-links">
                 <div>
                     <LinkList ico={<svg data-v-20f285ec="" data-v-79551784="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-book-open text-icon-black dark:text-icon-white text-false icon"><path data-v-20f285ec="" d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zm20 0h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>} 
-                        title="Current manga title" isSvg={true}></LinkList>
+                        title={mangaTitle} isSvg={true}></LinkList>
                 </div>
                 <div>
                     <LinkList ico={<svg data-v-20f285ec="" data-v-79551784="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-icon-black dark:text-icon-white text-false icon"><path data-v-20f285ec="" d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-7-7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path><path data-v-20f285ec="" d="M13 2v7h7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path></svg>}
-                        title="Current chapter" isSvg={true} />
+                        title={`Chapter ${currentChapter.chapter}`} isSvg={true} />
                 </div>
             </div>
             <div className="side-chapter-controls">
@@ -84,8 +84,8 @@ const SideReader = ({ data, handleChapter, currImg, maxImg, handleImage }) => {
             </div>
             <hr style={{width: '100%', opacity: '0.4', margin: '1rem 0px'}} />
             <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', marginLeft: '7px'}}>
-                <LinkList ico={<svg data-v-20f285ec="" data-v-79551784="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-book-open text-icon-black dark:text-icon-white text-false icon"><path data-v-20f285ec="" d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zm20 0h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>} 
-                    title="Current manga" isSvg={true} bgColor={'#f0f1f2'}></LinkList>
+                {/* <LinkList ico={<svg data-v-20f285ec="" data-v-79551784="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-book-open text-icon-black dark:text-icon-white text-false icon"><path data-v-20f285ec="" d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zm20 0h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>} 
+                    title="Current manga" isSvg={true} bgColor={'#f0f1f2'}></LinkList> */}
             </div>
         </div>
     );
