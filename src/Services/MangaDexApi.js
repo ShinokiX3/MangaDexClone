@@ -1,7 +1,7 @@
 import { filterSomeAttribute } from "../Utils/filterAttribute";
 
 class MangaDexApi {
-    CorsProxy = 'https://justcors.com/tl_106c7b6/';
+    CorsProxy = 'https://justcors.com/tl_f6b83a2/';
     Setting = '?forcePort443=false';
 
     BaseUrl = `${this.CorsProxy}https://api.mangadex.org`;
