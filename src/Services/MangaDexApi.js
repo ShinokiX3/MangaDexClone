@@ -63,6 +63,25 @@ class MangaDexApi {
 		}
 	};
 
+	addToMDLists = async (mangaId = '', listIds = [], token = '') => {
+		try {
+			return await Promise.all(
+				listIds.map(async (list) => {
+					return await fetch(`${this.BaseManga}/${mangaId}/list/${list}`, {
+						method: 'POST',
+						mode: 'cors',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: `Bearer ${token}`,
+						},
+					}).then((data) => data.json());
+				})
+			);
+		} catch (e) {
+			throw new Error('Failed in another way', { cause: e });
+		}
+	};
+
 	getSearcedManga = async (title) => {
 		try {
 			return await fetch(`${this.BaseManga}?title=${title}`, {

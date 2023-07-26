@@ -1,7 +1,11 @@
 import { memo, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLatestUpdates, fetchRecentlyAdded, fetchSeasonal } from '../../Store/Slices/suggestSlice';
+import {
+	fetchLatestUpdates,
+	fetchRecentlyAdded,
+	fetchSeasonal,
+} from '../../Store/Slices/suggestSlice';
 
 import MainContainer from '../../Layouts/MainContainer/MainContainer';
 import SuggestItem from './SuggestItem';
@@ -16,57 +20,68 @@ import SliderItem from '../../Features/Slider/SliderItem';
 import MangaVar1 from '../../Components/Manga/MangaVariables/MangaVar1';
 import MangaVar2 from '../../Components/Manga/MangaVariables/MangaVar2';
 import Spinner from '../../SharedUI/LoadComponents/Spiner/Spinner';
+import { Helmet } from 'react-helmet';
 
 const Suggestion = memo(() => {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-    const seasonal = useSelector(state => state.suggest.seasonal);
-    const latestUpdates = useSelector(state => state.suggest.latestUpdates); 
-    const recentlyAdded = useSelector(state => state.suggest.recentlyAdded);
+	const seasonal = useSelector((state) => state.suggest.seasonal);
+	const latestUpdates = useSelector((state) => state.suggest.latestUpdates);
+	const recentlyAdded = useSelector((state) => state.suggest.recentlyAdded);
 
-    useEffect(() => {
-        dispatch(fetchSeasonal());
-        dispatch(fetchLatestUpdates());
-        dispatch(fetchRecentlyAdded());
-    }, [])
+	useEffect(() => {
+		dispatch(fetchSeasonal());
+		dispatch(fetchLatestUpdates());
+		dispatch(fetchRecentlyAdded());
+	}, []);
 
-    return (
-        <MainContainer mainClasses='suggestion-page' containerClasses='suggest-content' isHeaderBlack >
-            <SuggestItem title='Seasonal' link='titles/seasonal' >
-                {
-                    seasonal.load.status === 'loading' ?
-                    <Spinner customStyle={{width: '50px', height: '50px'}} />
-                    :
-                    <Slider>
-                        <MangaItems mangas={seasonal?.data} 
-                            Variant={MangaVar1} 
-                            Wrapp={SliderItem}
-                            styles={{display: "flex", height: "228px"}}
-                        />
-                    </Slider>
-                }
-            </SuggestItem>
+	return (
+		<MainContainer
+			mainClasses="suggestion-page"
+			containerClasses="suggest-content"
+			isHeaderBlack
+		>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>MangaDex</title>
+				<meta name="description" content={`MangaDex manga homepage`} />
+			</Helmet>
 
-            <SuggestItem title='Latest Updates' link='' >
-                <LatestUpdates chapters={latestUpdates?.data} />
-            </SuggestItem>
+			<SuggestItem title="Seasonal" link="titles/seasonal">
+				{seasonal.load.status === 'loading' ? (
+					<Spinner customStyle={{ width: '50px', height: '50px' }} />
+				) : (
+					<Slider>
+						<MangaItems
+							mangas={seasonal?.data}
+							Variant={MangaVar1}
+							Wrapp={SliderItem}
+							styles={{ display: 'flex', height: '228px' }}
+						/>
+					</Slider>
+				)}
+			</SuggestItem>
 
-            <SuggestItem title='Recently added' link='titles/recently' >
-                {
-                    recentlyAdded.load.status === 'loading' ?
-                    <Spinner customStyle={{width: '50px', height: '50px'}} />
-                    : 
-                    <Slider>
-                        <MangaItems mangas={recentlyAdded?.data} 
-                            Variant={MangaVar2} 
-                            Wrapp={SliderItem} 
-                            styles={{display: "flex", width: "128px", height: "180px"}} 
-                        />
-                    </Slider>
-                }
-            </SuggestItem>
-        </MainContainer>    
-    );
+			<SuggestItem title="Latest Updates" link="">
+				<LatestUpdates chapters={latestUpdates?.data} />
+			</SuggestItem>
+
+			<SuggestItem title="Recently added" link="titles/recently">
+				{recentlyAdded.load.status === 'loading' ? (
+					<Spinner customStyle={{ width: '50px', height: '50px' }} />
+				) : (
+					<Slider>
+						<MangaItems
+							mangas={recentlyAdded?.data}
+							Variant={MangaVar2}
+							Wrapp={SliderItem}
+							styles={{ display: 'flex', width: '128px', height: '180px' }}
+						/>
+					</Slider>
+				)}
+			</SuggestItem>
+		</MainContainer>
+	);
 });
 
 export default Suggestion;
