@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Preview
 
 ![main](https://github.com/ShinokiX3/MangaDexClone/assets/68112402/8c8e60ad-12e8-402e-9a0c-d41469c82c60)
+##
 ![side](https://github.com/ShinokiX3/MangaDexClone/assets/68112402/2f1bf3c1-f65f-4384-977a-4ee0a4222bda)
 ![search](https://github.com/ShinokiX3/MangaDexClone/assets/68112402/8aeeb60f-5297-499c-ac9a-213da8c00985)
 ![manga](https://github.com/ShinokiX3/MangaDexClone/assets/68112402/e5b99789-59fb-439f-85a1-91899cd4f8ba)
