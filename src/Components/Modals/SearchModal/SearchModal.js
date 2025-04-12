@@ -34,10 +34,12 @@ const SearchModal = memo(({setActive}) => {
 
     async function searchData() {
         const mangas = await MangaDexApi.getSearcedManga(value);
-        const authors = await MangaDexApi.getSearcedAuthor(value);
+        const authors = [];
+        // const authors = await MangaDexApi.getSearcedAuthor(value);
         const groups = await MangaDexApi.getSearcedGroup(value);
 
-        setSearchValue({mangas: mangas?.data.slice(0, 5), groups: groups?.data.slice(0, 5), authors: authors?.data.slice(0, 5)})
+        // setSearchValue({mangas: mangas?.data.slice(0, 5), groups: groups?.data.slice(0, 5), authors: authors?.data.slice(0, 5)})
+        setSearchValue({mangas: mangas?.data.slice(0, 5), groups: groups?.data.slice(0, 5), authors: []})
         setIsLoading(false);
     }
 
